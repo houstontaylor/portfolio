@@ -1,0 +1,26 @@
+.tvContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--color-background);
+}
+
+.tvBody {
+  width: 100vw;
+  transform: translateY(-3vh);
+  transition: filter 0.2s ease;
+}
+
+.screenContent {
+  position: absolute;
+  width: min(52vw, 650px);
+  height: min(39vw, 487.5px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  border-radius: 8px;
+}
