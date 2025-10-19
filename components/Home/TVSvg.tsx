@@ -17,24 +17,17 @@ export default function TVSvg({ onTopDialClick, onBottomDialClick, mode, childre
   };
 
   const handleBottomClick = () => {
-    setBottomRotation((prev: number) => prev + 90);
+    setBottomRotation((prev: number) => prev + 180);
     onBottomDialClick();
   };
 
   return (
-    <div style={{ position: 'relative', width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div>
       <svg 
-        width="976" 
-        height="832" 
+        className={styles.tvBody}
         viewBox="0 0 976 832" 
         fill="none" 
         xmlns="http://www.w3.org/2000/svg"
-        style={{
-          width: '100vw',
-          transform: 'translateY(-3vh)',
-          transition: 'filter 0.2s ease',
-          filter: mode === 'grayscale' ? 'grayscale(1)' : 'none'
-        }}
       >
         <rect width="976" height="832"/>
         <g id="tv">
@@ -112,8 +105,17 @@ export default function TVSvg({ onTopDialClick, onBottomDialClick, mode, childre
               <path d="M27.8747 396.047L190.691 399.86L184.999 409.29H32.7305L27.8747 396.047Z" stroke="black" strokeWidth="5.04345" mask="url(#path-9-inside-7_0_1)"/>
             </g>
           </g>
+
           <g id="screen">
-            <path id="screen_2" d="M222.586 341.782C226.889 320.641 244.326 305.237 265.992 303.155C442.28 286.211 722.264 292.888 840.77 307.796C859.145 310.108 874.86 322.433 881.586 339.789C912.615 419.85 909.989 478.794 879.635 560.765C873.897 576.258 860.591 587.52 844.358 591.269C651.992 635.699 513.483 639.642 307.812 646.156C287.555 646.798 267.818 636.26 258.12 618.1C205.553 519.658 202.766 439.164 222.586 341.782Z" fill="#EEE0B3"/>
+            {/* Screen Area */}
+            <motion.path 
+              id="screen_2" 
+              d="M222.586 341.782C226.889 320.641 244.326 305.237 265.992 303.155C442.28 286.211 722.264 292.888 840.77 307.796C859.145 310.108 874.86 322.433 881.586 339.789C912.615 419.85 909.989 478.794 879.635 560.765C873.897 576.258 860.591 587.52 844.358 591.269C651.992 635.699 513.483 639.642 307.812 646.156C287.555 646.798 267.818 636.26 258.12 618.1C205.553 519.658 202.766 439.164 222.586 341.782Z" 
+              fill="#EEE0B3"
+              animate={{ filter: mode === 'grayscale' ? 'grayscale(100%)' : 'grayscale(0%)' }}
+              transition={{ duration: 0.3 }}
+            />
+            
             <g id="shadow">
               <mask id="path-11-inside-8_0_1" fill="white">
                 <path d="M301.712 645.68C286.558 645.617 272.186 638.491 263.687 625.945C206.692 541.808 184.901 452.769 216.05 331.417C220.924 312.431 237.825 299.14 257.361 297.536C501.777 277.464 610.851 279.329 842.061 301.293C862.218 303.208 879.14 317.533 884.322 337.107C908.655 429.026 918.634 475.167 885.234 565.927C879.61 581.211 866.015 592.126 850.013 595.151C633.919 636.012 531.563 646.629 301.712 645.68Z"/>
@@ -131,13 +133,11 @@ export default function TVSvg({ onTopDialClick, onBottomDialClick, mode, childre
           
           {/* Dials */}
           <motion.g 
+            className={styles.dial}
             onClick={handleTopClick}
-            style={{ 
-              cursor: 'pointer',
-              transformOrigin: '120.772px 489.272px',
-              transform: `rotate(${topRotation}deg)`,
-              transition: 'transform 0.3s ease-out'
-            }}
+            animate={{ rotate: topRotation }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            whileHover={{ scale: 1.1 }}
           >
             <ellipse cx="120.772" cy="489.272" rx="43.6181" ry="35.7443" fill="#007F7E"/>
             <path d="M123.68 447.47C146.869 447.47 164.776 462.791 164.776 480.693C164.776 498.595 146.869 513.916 123.68 513.916C100.49 513.916 82.583 498.595 82.583 480.693C82.5831 462.791 100.49 447.47 123.68 447.47Z" stroke="black" strokeWidth="5.04345"/>
@@ -145,13 +145,11 @@ export default function TVSvg({ onTopDialClick, onBottomDialClick, mode, childre
           </motion.g>
           
           <motion.g 
+            className={styles.dial}
             onClick={handleBottomClick}
-            style={{ 
-              cursor: 'pointer',
-              transformOrigin: '153.079px 585.02px',
-              transform: `rotate(${bottomRotation}deg)`,
-              transition: 'transform 0.3s ease-out'
-            }}
+            animate={{ rotate: bottomRotation }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            whileHover={{ scale: 1.1 }}
           >
             <ellipse cx="153.079" cy="585.02" rx="43.6181" ry="35.7443" fill="#007F7E"/>
             <path d="M165.292 549.891C188.481 549.891 206.388 565.211 206.388 583.113C206.388 601.015 188.481 616.336 165.292 616.336C142.102 616.336 124.195 601.015 124.195 583.113C124.195 565.211 142.102 549.891 165.292 549.891Z" stroke="black" strokeWidth="5.04345"/>
