@@ -11,14 +11,21 @@ import TVSvg from './TVSvg';
 export default function TV() {
   const [screen, setScreen] = useState<'home' | 'projects' | 'about' | 'contact'>('home');
   const [mode, setMode] = useState<'normal' | 'grayscale'>('normal');
+  const [isChanging, setIsChanging] = useState(false);
 
   const handleTopClick = () => {
-    setScreen((prev) => {
-      if (prev === 'home') return 'projects';
-      if (prev === 'projects') return 'about';
-      if (prev === 'about') return 'contact';
-      return 'home';
-    });
+    setIsChanging(true);
+
+    setTimeout(() => {
+      setScreen((prev) => {
+        if (prev === 'home') return 'projects';
+        if (prev === 'projects') return 'about';
+        if (prev === 'about') return 'contact';
+        return 'home';
+      });
+      
+      setTimeout(() => setIsChanging(false), 200);
+    }, 200);
   };
 
   const handleBottomClick = () => {
@@ -38,6 +45,7 @@ export default function TV() {
         onTopDialClick={handleTopClick}
         onBottomDialClick={handleBottomClick}
         mode={mode}
+        isChanging={isChanging}
       >
         <AnimatePresence mode="wait">
           <motion.div

@@ -1,96 +1,157 @@
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function AboutScreen() {
+  const techStack = [
+    { name: "Figma", category: "Design", color: "bg-pink", border: "border-dark-pink", textColor: "var(--dark-pink)" },
+    { name: "React", category: "Frontend", color: "bg-light-teal", border: "border-dark-teal", textColor: "var(--dark-teal)" },
+    { name: "Next.js", category: "Frontend", color: "bg-light-teal", border: "border-dark-teal", textColor: "var(--dark-teal)" },
+    { name: "Python", category: "Backend", color: "bg-light-green", border: "border-dark-green", textColor: "var(--dark-green)" },
+    { name: "TypeScript", category: "Frontend", color: "bg-light-neutral", border: "border-dark-neutral", textColor: "var(--dark-neutral)" },
+    { name: "Node.js", category: "Backend", color: "bg-light-green", border: "border-dark-green", textColor: "var(--dark-green)" },
+  ];
+
   return (
-    <div style={{
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '2rem',
-      gap: '1.5rem'
-    }}>
-      {/* Avatar/Icon */}
+    <div className="flex flex-col h-full px-6 py-4">
+      {/* Header SVG */}
       <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ type: "spring", duration: 0.6 }}
-        style={{
-          width: '80px',
-          height: '80px',
-          borderRadius: '50%',
-          background: 'linear-gradient(135deg, #00ff88, #00cc6a)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '2rem',
-          color: '#0a0a0a',
-          fontWeight: 'bold'
-        }}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="flex justify-center mb-3"
       >
-        HT
+        <Image 
+          src="/about.svg"
+          alt="About header"
+          width={500}
+          height={150}
+          className="w-[50%] h-auto"
+        />
       </motion.div>
 
-      {/* Bio */}
-      <div style={{ textAlign: 'center', maxWidth: '400px' }}>
-        <motion.h2
-          style={{
-            fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-            color: '#00ff88',
-            marginBottom: '0.5rem'
-          }}
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col gap-3">
+        {/* Bio Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="bg-light-pink border-3 border-dark-pink rounded-2xl p-4 relative overflow-hidden"
+        >
+          {/* Decorative starburst */}
+          <div className="absolute bottom-2 right-3 opacity-10">
+            <svg width="40" height="40" viewBox="0 0 40 40">
+              <circle cx="20" cy="20" r="3" fill="currentColor"/>
+              {[0, 60, 120, 180, 240, 300].map((angle, i) => (
+                <line
+                  key={i}
+                  x1="20"
+                  y1="20"
+                  x2={20 + 15 * Math.cos((angle * Math.PI) / 180)}
+                  y2={20 + 15 * Math.sin((angle * Math.PI) / 180)}
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+              ))}
+            </svg>
+          </div>
+
+          <p className="text-sm leading-relaxed opacity-90 relative z-10">
+            I create delightful digital experiences at the intersection of design and code. 
+            Passionate about user-centered design and bringing ideas to life from concept to deployment.
+          </p>
+        </motion.div>
+
+        {/* Tech Stack - Fun Badge Display */}
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.3 }}
+          className="flex-1"
         >
-          About Me
-        </motion.h2>
-        <motion.p
-          style={{
-            fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
-            color: '#88ffbb',
-            lineHeight: '1.6',
-            opacity: 0.9
-          }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.9 }}
-          transition={{ delay: 0.4 }}
-        >
-          Stanford student passionate about creating beautiful, functional digital experiences.
-          I specialize in UI/UX design and full-stack development.
-        </motion.p>
+          <p className="text-xs font-bold uppercase tracking-wider opacity-60 mb-2 text-center">
+            Tools & Technologies
+          </p>
+          
+          {/* Retro badge layout */}
+          <div className="flex flex-wrap justify-center gap-2 px-4">
+            {techStack.map((tech, index) => (
+              <motion.div
+                key={tech.name}
+                initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ delay: 0.4 + index * 0.05 }}
+                whileHover={{ scale: 1.1, rotate: 2 }}
+                className={`${tech.color} ${tech.border} border-2 rounded-lg px-3 py-1.5 relative overflow-hidden cursor-pointer group`}
+              >
+                {/* Decorative corner dot */}
+                <div 
+                  className="absolute top-0.5 right-0.5 w-1.5 h-1.5 rounded-full opacity-40"
+                  style={{ backgroundColor: tech.textColor }}
+                />
+                
+                {/* Badge shimmer effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20"
+                  animate={{ x: ['-100%', '100%'] }}
+                  transition={{ duration: 0.8, repeat: Infinity, repeatDelay: 2 }}
+                />
+
+                <p 
+                  className="text-sm font-bold relative z-10 group-hover:scale-105 transition-transform origin-left"
+                  style={{ color: tech.textColor }}
+                >
+                  {tech.name}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
 
-      {/* Skills Tags */}
+      {/* Bottom CTA - Matching Projects Style */}
       <motion.div
-        style={{
-          display: 'flex',
-          gap: '0.5rem',
-          flexWrap: 'wrap',
-          justifyContent: 'center'
-        }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ delay: 0.6 }}
+        className="text-center mt-3 relative"
       >
-        {['React', 'TypeScript', 'Figma', 'Next.js'].map((skill, i) => (
-          <span
-            key={skill}
-            style={{
-              padding: '0.4rem 0.8rem',
-              background: 'rgba(0,255,136,0.1)',
-              border: '1px solid rgba(0,255,136,0.3)',
-              borderRadius: '20px',
-              fontSize: 'clamp(0.7rem, 1.8vw, 0.9rem)',
-              color: '#00ff88'
-            }}
-          >
-            {skill}
-          </span>
-        ))}
+        {/* Decorative arrows */}
+        <motion.div 
+          className="absolute left-1/4 top-1/2 -translate-y-1/2"
+          animate={{ x: [0, -5, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20">
+            <path d="M 15 10 L 5 5 L 5 15 Z" fill="var(--dark-pink)" opacity="0.4"/>
+          </svg>
+        </motion.div>
+        
+        <motion.div 
+          className="absolute right-1/4 top-1/2 -translate-y-1/2"
+          animate={{ x: [0, 5, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20">
+            <path d="M 5 10 L 15 5 L 15 15 Z" fill="var(--dark-pink)" opacity="0.4"/>
+          </svg>
+        </motion.div>
+
+        <div className="inline-block bg-pink/30 border-2 border-dark-pink rounded-full px-6 py-2 cursor-pointer hover:bg-pink/50 transition-colors">
+          <p className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--dark-pink)' }}>
+            Read Full Bio →
+          </p>
+        </div>
       </motion.div>
+
+      {/* Retro scanline effect */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-5 bg-gradient-to-b from-transparent via-black to-transparent bg-[length:100%_4px] animate-[scan_8s_linear_infinite]"
+        style={{
+          clipPath: 'ellipse(48% 45% at 50% 50%)',
+          borderRadius: '8px'
+        }}
+      />
     </div>
   );
 }

@@ -15,13 +15,11 @@
 
 .screenContent {
   position: absolute;
-  width: min(52vw, 650px);
-  height: min(39vw, 487.5px);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: calc(2vw + 24vw);
+  top: calc(-3vh + 29vh);
+  width: 65vw;
+  height: 59vh;
   overflow: hidden;
-  border-radius: 8px;
 }
 
 .dial {
