@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 export default function TVSvg({ onTopDialClick, onBottomDialClick, mode, isChanging, children }: {
   onTopDialClick: () => void;
   onBottomDialClick: () => void;
-  mode: 'normal' | 'grayscale';
+  mode: 'color' | 'grayscale';
   isChanging: boolean;
   children: React.ReactNode;
 }) {
@@ -107,6 +107,7 @@ export default function TVSvg({ onTopDialClick, onBottomDialClick, mode, isChang
             </g>
           </g>
 
+          {/* Screen Area (Static or Filled In) */}
           {isChanging ? (
             <g id="screen">
               <g id="screen_2" filter="url(#filter1_n_183_37)">
@@ -123,11 +124,11 @@ export default function TVSvg({ onTopDialClick, onBottomDialClick, mode, isChang
                   <rect fill="white" x="202.556" y="274.517" width="705.338" height="365.775"/>
                   <path d="M223.363 344.429C226.71 323.079 244.288 307.691 265.952 305.602C436.263 289.181 703.921 294.392 828.978 308.115C853.894 310.849 872.714 331.489 876.384 356.205C887.378 430.246 901.499 477.998 876.962 552.941C871.633 569.216 857.47 580.647 840.537 584.044C648.457 622.583 514.277 628.465 313.4 628.962C293.246 629.012 273.966 618.039 264.91 599.73C228.823 526.766 208.32 440.399 223.363 344.429Z"/>
                 </mask>
-                <path d="M223.363 344.429C226.71 323.079 244.288 307.691 265.952 305.602C436.263 289.181 703.921 294.392 828.978 308.115C853.894 310.849 872.714 331.489 876.384 356.205C887.378 430.246 901.499 477.998 876.962 552.941C871.633 569.216 857.47 580.647 840.537 584.044C648.457 622.583 514.277 628.465 313.4 628.962C293.246 629.012 273.966 618.039 264.91 599.73C228.823 526.766 208.32 440.399 223.363 344.429Z" stroke="black" stroke-width="10.0869" mask="url(#path-13-outside-9_183_37)"/>
+                <path d="M223.363 344.429C226.71 323.079 244.288 307.691 265.952 305.602C436.263 289.181 703.921 294.392 828.978 308.115C853.894 310.849 872.714 331.489 876.384 356.205C887.378 430.246 901.499 477.998 876.962 552.941C871.633 569.216 857.47 580.647 840.537 584.044C648.457 622.583 514.277 628.465 313.4 628.962C293.246 629.012 273.966 618.039 264.91 599.73C228.823 526.766 208.32 440.399 223.363 344.429Z" stroke="black" strokeWidth="10.0869" mask="url(#path-13-outside-9_183_37)"/>
               </g>
               <defs>
-                <filter id="filter0_d_183_37" x="18.5" y="325.512" width="175.036" height="86.3005" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood floodOpacity={0} result="BackgroundImageFix"/>
+                <filter id="filter0_d_183_37" x="18.5" y="325.512" width="175.036" height="86.3005" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix"/>
                 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
                 <feOffset dy="2.52172"/>
                 <feComposite in2="hardAlpha" operator="out"/>
@@ -135,8 +136,8 @@ export default function TVSvg({ onTopDialClick, onBottomDialClick, mode, isChang
                 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_183_37"/>
                 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_183_37" result="shape"/>
                 </filter>
-                <filter id="filter1_n_183_37" x="211.238" y="293.164" width="692.423" height="353.02" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <filter id="filter1_n_183_37" x="211.238" y="293.164" width="692.423" height="353.02" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix"/>
                 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
                 <feTurbulence type="fractalNoise" baseFrequency="0.38461539149284363 0.38461539149284363" stitchTiles="stitch" numOctaves="3" result="noise" seed="4123" />
                 <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
@@ -144,7 +145,7 @@ export default function TVSvg({ onTopDialClick, onBottomDialClick, mode, isChang
                 <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "/>
                 </feComponentTransfer>
                 <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
-                <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+                <feFlood floodColor="rgba(0, 0, 0, 0.25)" result="color1Flood" />
                 <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
                 <feMerge result="effect1_noise_183_37">
                 <feMergeNode in="shape" />
@@ -155,7 +156,6 @@ export default function TVSvg({ onTopDialClick, onBottomDialClick, mode, isChang
             </g>
           ) : (
             <g id="screen">
-              {/* Screen Area */}
               <motion.path 
                 id="screen_2" 
                 d="M222.586 341.782C226.889 320.641 244.326 305.237 265.992 303.155C442.28 286.211 722.264 292.888 840.77 307.796C859.145 310.108 874.86 322.433 881.586 339.789C912.615 419.85 909.989 478.794 879.635 560.765C873.897 576.258 860.591 587.52 844.358 591.269C651.992 635.699 513.483 639.642 307.812 646.156C287.555 646.798 267.818 636.26 258.12 618.1C205.553 519.658 202.766 439.164 222.586 341.782Z" 
@@ -218,14 +218,14 @@ export default function TVSvg({ onTopDialClick, onBottomDialClick, mode, isChang
         </defs>
       </svg>
 
-      {/* Screen Content Overlay or Empty (For Loading Screen) */}
-      <div className={styles.screenContent} style={{ filter: mode === 'grayscale' ? 'grayscale(100%)' : 'grayscale(0%)' }}>
+      {/* Screen Content Overlay or Empty (For Static Screen)*/}
+      <div className={`${styles.screenContent} overflow-y-auto overflow-x-hidden min-h-0 max-h-full`}>
         {isChanging ? (
           <div></div>
         ): (
           children
         )}
-      </div>
+      </div> 
     </div>
   );
 }

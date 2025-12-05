@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function ProjectsScreen() {
   const projects = [
@@ -261,11 +262,13 @@ export default function ProjectsScreen() {
           </svg>
         </motion.div>
 
-        <div className="inline-block bg-green/30 border-2 border-dark-green rounded-full px-6 py-2 cursor-pointer hover:bg-green/50 transition-colors">
-          <p className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--dark-green)' }}>
-            View All Projects →
-          </p>
-        </div>
+        <Link href="/projects">
+          <div className="inline-block bg-green/30 border-2 border-dark-green rounded-full px-6 py-2 cursor-pointer hover:bg-green/50 transition-colors">
+            <p className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--dark-green)' }}>
+              View All Projects →
+            </p>
+          </div>
+        </Link>
       </motion.div>
 
       {/* Retro scanline effect */}

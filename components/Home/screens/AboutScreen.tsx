@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function AboutScreen() {
   const techStack = [
@@ -137,11 +138,13 @@ export default function AboutScreen() {
           </svg>
         </motion.div>
 
-        <div className="inline-block bg-pink/30 border-2 border-dark-pink rounded-full px-6 py-2 cursor-pointer hover:bg-pink/50 transition-colors">
-          <p className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--dark-pink)' }}>
-            Read Full Bio →
-          </p>
-        </div>
+        <Link href="/about">
+          <div className="inline-block bg-pink/30 border-2 border-dark-pink rounded-full px-6 py-2 cursor-pointer hover:bg-pink/50 transition-colors">
+            <p className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--dark-pink)' }}>
+              Read Full Bio →
+            </p>
+          </div>
+        </Link>
       </motion.div>
 
       {/* Retro scanline effect */}
