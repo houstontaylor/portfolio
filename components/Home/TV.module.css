@@ -8,18 +8,75 @@
   background-color: var(--color-background);
 }
 
-.tvBody {
+.tvWrapper {
+  position: relative;
   width: 98vw;
   transform: translateY(-3vh) translateX(2vw);
 }
 
+.tvBody {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 .screenContent {
   position: absolute;
-  left: calc(2vw + 24vw);
-  top: calc(-3vh + 29vh);
-  width: 65vw;
-  height: 59vh;
+  left: 24%;
+  top: 37%;
+  width: 65%;
+  height: 37%;
   overflow: hidden;
+}
+
+.screenScale {
+  width: 100%;
+  height: 100%;
+  transform: scale(var(--screen-scale, 1));
+  transform-origin: top left;
+}
+
+/* Make inner content scrollable if it overflows */
+.screenInner {
+  width: calc(100% / var(--screen-scale, 1));
+  height: calc(100% / var(--screen-scale, 1));
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.screenInner::-webkit-scrollbar {
+  width: 10px;
+}
+
+.screenInner::-webkit-scrollbar-track {
+  background: transparent;
+
+  margin-top: 50px;
+  margin-bottom: 75px;
+}
+
+.screenInner::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    var(--color-teal),
+    var(--color-dark-teal)
+  );
+
+  border-radius: 999px;
+
+  /* retro plastic edge */
+  border: 2px solid rgba(0, 0, 0, 0.40);
+
+  /* subtle highlight */
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.18);
+}
+
+.screenInner::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to bottom,
+    var(--color-light-teal),
+    var(--color-teal)
+  );
 }
 
 .dial {

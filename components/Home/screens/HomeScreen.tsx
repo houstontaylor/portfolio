@@ -13,7 +13,7 @@ export default function HomeScreen() {
           className="flex-shrink-0"
         >
           <Image 
-            src="/Logo.svg" 
+            src="/logo.svg" 
             alt="Houston Taylor Logo" 
             width={120}
             height={120}
@@ -102,7 +102,7 @@ export default function HomeScreen() {
           className="flex items-center justify-center gap-2 text-sm opacity-70"
         >
           <span className="inline-block w-2 h-2 bg-red rounded-full animate-pulse"></span>
-          <p className="text-small">TURN TOP DIAL TO CHANGE CHANNEL</p>
+          <p className="text-small">TURN TOP DIAL TO LEARN MORE ABOUT ME</p>
           <span className="inline-block w-2 h-2 bg-red rounded-full animate-pulse"></span>
         </motion.div>
 
@@ -114,7 +114,7 @@ export default function HomeScreen() {
           className="flex items-center justify-center gap-2 text-xs opacity-70"
         >
           <span className="inline-block w-1 h-1 bg-teal rounded-full animate-pulse"></span>
-          <p className="text-xs">TURN BOTTOM DIAL FOR GRAYSCALE</p>
+          <p className="text-xs">TURN BOTTOM DIAL FOR MORE DEPTH</p>
           <span className="inline-block w-1 h-1 bg-teal rounded-full animate-pulse"></span>
         </motion.div>
       </div>
