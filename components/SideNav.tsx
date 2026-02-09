@@ -10,7 +10,7 @@ interface SideNavProps {
 
 export default function SideNav({ 
   sections, 
-  showAfterY = 420
+  showAfterY = 600
 }: SideNavProps) {
   const [activeSection, setActiveSection] = useState('');
   const [showNav, setShowNav] = useState(false);
@@ -51,7 +51,7 @@ export default function SideNav({
           if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
 
     sections.forEach(({ id }) => {

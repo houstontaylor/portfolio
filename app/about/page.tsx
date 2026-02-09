@@ -1,10 +1,12 @@
 'use client';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useState } from 'react';
-import Header from '../../components/Header';
-import SideNav from '../../components/SideNav';
-import ScrollToTop from '../../components/ScrollToTop';
+import { useMemo, useState } from 'react';
+import Header from '@/components/Header';
+import SideNav from '@/components/SideNav';
+import ScrollToTop from '@/components/ScrollToTop';
+import CheckerDivider from '@/components/CheckerDivider';
+import RoadTripExperience from '@/components/RoadTripExperience';
 import { educationData } from '../data/education';
 import { experienceData } from '../data/experience';
 import { softwareSkills, languageSkills } from '../data/skills';
@@ -14,11 +16,24 @@ export default function AboutPage() {
   const [flippedCard, setFlippedCard] = useState<number | null>(null);
   const [activeSkill, setActiveSkill] = useState<string | null>(null);
 
+  const allSkills = useMemo(() => {
+    return [
+      ...softwareSkills.map((s) => ({ ...s, group: 'Software' as const })),
+      ...languageSkills.map((s) => ({ ...s, group: 'Languages' as const })),
+    ];
+  }, []);
+
+  const selectedSkill = useMemo(() => {
+    if (!activeSkill) return null;
+    return allSkills.find((s) => s.name === activeSkill) || null;
+  }, [activeSkill, allSkills]);
+
   const sections = [
     { id: 'intro', label: 'Intro' },
     { id: 'education', label: 'Education' },
     { id: 'experience', label: 'Experience' },
-    { id: 'skills', label: 'Skills' },
+    { id: 'techSkills', label: 'Tech Skills' },
+    { id: 'langSkills', label: 'Languages' },
     { id: 'hobbies', label: 'Hobbies' },
   ];
 
@@ -27,20 +42,6 @@ export default function AboutPage() {
       <Header />
       <SideNav sections={sections} />
       <ScrollToTop />
-
-      {/* Checkerboard background pattern */}
-      <div className="fixed inset-0 pointer-events-none opacity-5">
-        <div className="w-full h-full" style={{
-          backgroundImage: `
-            linear-gradient(45deg, var(--dark-neutral) 25%, transparent 25%),
-            linear-gradient(-45deg, var(--dark-neutral) 25%, transparent 25%),
-            linear-gradient(45deg, transparent 75%, var(--dark-neutral) 75%),
-            linear-gradient(-45deg, transparent 75%, var(--dark-neutral) 75%)
-          `,
-          backgroundSize: '60px 60px',
-          backgroundPosition: '0 0, 0 30px, 30px -30px, -30px 0px'
-        }}/>
-      </div>
       
       <main className="pt-8 pb-8 px-8 max-w-6xl mx-auto relative z-10">
         {/* ===== INTRO SECTION ===== */}
@@ -48,120 +49,105 @@ export default function AboutPage() {
           id="intro"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-32 scroll-mt-32"
+          className="mb-4 scroll-mt-8"
         >
           {/* Header SVG */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-12 flex justify-center"
+            className="mb-4 flex justify-center"
           >
             <Image 
-              src="/about.svg"
+              src="/about/about.svg"
               alt="About"
               width={800}
-              height={200}
-              className="w-3/4 h-auto"
+              height={250}
+              className="w-3/5 h-auto"
             />
           </motion.div>
 
-          {/* Intro Card - Diner Booth Style */}
+          {/* Intro blurb + portrait */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-gradient-to-br from-pink via-light-pink to-pink border-4 border-dark-pink rounded-3xl p-10 relative overflow-hidden shadow-2xl"
+            className="relative w-full"
           >
-            {/* Diner stripe accent */}
-            <div className="absolute top-0 left-0 right-0 h-4 bg-dark-pink opacity-80"/>
-            <div className="absolute bottom-0 left-0 right-0 h-4 bg-dark-pink opacity-80"/>
-
-            {/* Atomic starburst decorations */}
-            <div className="absolute top-8 right-8 opacity-20">
-              <svg width="80" height="80" viewBox="0 0 80 80">
-                <circle cx="40" cy="40" r="5" fill="var(--dark-pink)"/>
-                {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
-                  <line
-                    key={i}
-                    x1="40"
-                    y1="40"
-                    x2={40 + 30 * Math.cos((angle * Math.PI) / 180)}
-                    y2={40 + 30 * Math.sin((angle * Math.PI) / 180)}
-                    stroke="var(--dark-pink)"
-                    strokeWidth="3"
-                  />
-                ))}
-              </svg>
-            </div>
-
-            <div className="flex gap-10 items-center">
-              {/* Vector Photo */}
-              <motion.div 
-                className="flex-shrink-0"
-                whileHover={{ rotate: [0, -5, 5, -5, 0] }}
-                transition={{ duration: 0.5 }}
+            <div className="relative flex items-center">
+              {/* Blurb plaque */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.25 }}
+                className="w-full pl-28 md:pl-52 pr-4 md:pr-10 py-8 md:py-10"
               >
-                <div className="relative">
-                  <div className="absolute inset-0 bg-dark-pink rounded-full blur-xl opacity-30"/>
-                  <Image 
-                    src="/HTDiamond.svg"
-                    alt="Houston Taylor"
-                    width={200}
-                    height={200}
-                    className="relative z-10 drop-shadow-2xl"
+                <div
+                  className="relative rounded-[52px] shadow-2xl overflow-hidden"
+                  style={{
+                    background: 'var(--light-green)',
+                    border: '6px solid var(--red)',
+                    transform: 'rotate(-1deg) skewX(-6deg)',
+                  }}
+                >
+                  {/* inner highlight */}
+                  <div
+                    className="absolute inset-[10px] rounded-[42px] pointer-events-none opacity-40"
+                    style={{ border: '2px solid rgba(255,255,255,0.35)' }}
                   />
+
+                  {/* blurb content */}
+                  <div
+                    className="relative px-6 md:px-10 py-6 md:py-8"
+                    style={{ transform: 'skewX(6deg)' }}
+                  >
+                    <h2 className="text-right mb-4">
+                      Hi there, I’m Houston Taylor!
+                    </h2>
+
+                    <p className="text-[clamp(1rem,1.5vw,1.2rem)] leading-relaxed">
+                      I’m a UI/UX designer and full-stack developer passionate about unique and accessible design,
+                      finding new problems to help solve, and making products that inspire. Thanks for taking the
+                      time to learn more about me!
+                    </p>
+                  </div>
                 </div>
               </motion.div>
 
-              {/* Bio Text */}
-              <div className="flex-1 relative z-10">
-                <motion.h2 
-                  className="text-4xl font-bold mb-6"
-                  style={{ color: 'var(--dark-pink)' }}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  Hi there, I'm Houston Taylor! 👋
-                </motion.h2>
-                
-                <motion.div 
-                  className="space-y-4 text-lg leading-relaxed"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  <p>
-                    I'm a recent graduate from <strong>Stanford University</strong> with both my Bachelor's (2024) and Master's (2025) in Computer Science, specializing in Human-Computer Interaction.
-                  </p>
-                  <p>
-                    I'm passionate about creating <strong>accessible, functional, and useful products</strong>. I believe needfinding and user interviews are essential to building things people actually want to use.
-                  </p>
-                  <p>
-                    Beyond tech, I'm interested in the intersection of technology, law, and policy — I'd love to pursue a law degree someday to work at that crossroads.
-                  </p>
-                  <p className="text-base italic opacity-90">
-                    Thanks for taking the time to learn more about me! 🚀
-                  </p>
-                </motion.div>
-              </div>
+              {/* Diamond portrait */}
+              <motion.div
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-20"
+                whileHover={{ rotate: [0, -2, 2, -2, 0] }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="relative w-32 h-32 md:w-48 md:h-48">
+                  {/* glow behind */}
+                  <div
+                    className="absolute inset-0 blur-xl opacity-40"
+                    style={{ background: 'var(--dark-pink)' }}
+                  />
+
+                  <Image
+                    src="/about/HTDiamond.svg"
+                    alt="Houston Taylor"
+                    fill
+                    className="relative z-10 object-contain drop-shadow-2xl"
+                    sizes="(max-width: 768px) 160px, 220px"
+                    priority
+                  />
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         </motion.section>
 
         {/* ===== CHECKERBOARD DIVIDER ===== */}
-        <div className="mb-20">
-          <div className="h-8 w-full" style={{
-            backgroundImage: `
-              linear-gradient(45deg, var(--dark-pink) 25%, var(--pink) 25%),
-              linear-gradient(-45deg, var(--dark-pink) 25%, var(--pink) 25%),
-              linear-gradient(45deg, var(--pink) 75%, var(--dark-pink) 75%),
-              linear-gradient(-45deg, var(--pink) 75%, var(--dark-pink) 75%)
-            `,
-            backgroundSize: '40px 40px',
-            backgroundPosition: '0 0, 0 20px, 20px -20px, -20px 0px'
-          }}/>
-        </div>
+        <CheckerDivider
+          className="mt-4 mb-8 justify-center" 
+          fg="var(--teal)"
+          bg="var(--light-teal)"
+          height={30}
+          squareSize={15}
+        />
 
         {/* ===== EDUCATION SECTION ===== */}
         <motion.section
@@ -169,195 +155,203 @@ export default function AboutPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="mb-32 scroll-mt-32"
+          className="mb-8 scroll-mt-8"
         >
-          <h2 className="text-5xl font-bold text-center mb-4" style={{ fontFamily: 'var(--font-heading)', color: 'var(--dark-teal)' }}>
+          <h2 className="text-5xl font-bold text-center mb-2" style={{ fontFamily: 'var(--font-heading)', color: 'var(--dark-teal)' }}>
             EDUCATION
           </h2>
-          <p className="text-center text-lg mb-12 opacity-80">
-            Click the postcards to flip them over!
+          <div
+            className="mx-auto mb-4"
+            style={{
+              width: 160,
+              height: 6,
+              background:
+                'repeating-linear-gradient(90deg, var(--dark-teal) 0 12px, transparent 12px 20px)',
+              opacity: 0.7,
+            }}
+          />
+          <p
+            className="text-center text-sm tracking-widest mb-12"
+            style={{ color: 'var(--dark-green)', opacity: 0.75 }}
+          >
+            Turn the postcards over for more details!
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {educationData.map((edu, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 + index * 0.1 }}
-                className="perspective-1000"
-              >
-                <motion.div
-                  className="relative h-96 cursor-pointer"
-                  style={{ transformStyle: 'preserve-3d' }}
-                  animate={{ rotateY: flippedCard === index ? 180 : 0 }}
-                  transition={{ duration: 0.6 }}
-                  onClick={() => setFlippedCard(flippedCard === index ? null : index)}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  {/* Front of card */}
-                  <div 
-                    className="absolute inset-0 backface-hidden"
-                    style={{ backfaceVisibility: 'hidden' }}
-                  >
-                    <div className="h-full bg-light-teal border-4 border-dark-teal rounded-2xl overflow-hidden shadow-xl">
-                      <Image 
-                        src={edu.postcard}
-                        alt={`${edu.school} postcard`}
-                        width={400}
-                        height={400}
-                        className="w-full h-full object-cover"
-                      />
-                      
-                      {/* Postcard stamp */}
-                      <div className="absolute top-4 right-4 text-xs opacity-70 bg-white/80 px-2 py-1 rounded border-2 border-dashed border-dark-teal">
-                        📮 CLICK TO FLIP
-                      </div>
-                    </div>
-                  </div>
+          <div className="relative max-w-6xl mx-auto">
+            <div className="hidden md:block relative h-[520px]">
+              {educationData.map((edu, index) => {
+                const isFlipped = flippedCard === index;
+                const t = edu.theme;
 
-                  {/* Back of card */}
-                  <div 
-                    className="absolute inset-0 backface-hidden"
-                    style={{ 
-                      backfaceVisibility: 'hidden',
-                      transform: 'rotateY(180deg)'
-                    }}
-                  >
-                    <div className="h-full bg-light-teal border-4 border-dark-teal rounded-2xl p-6 overflow-auto shadow-xl">
-                      <h3 className="text-2xl font-bold mb-2" style={{ color: 'var(--dark-teal)' }}>
-                        {edu.school}
-                      </h3>
-                      <p className="text-sm mb-1">{edu.degree}</p>
-                      <p className="text-sm font-bold mb-1">{edu.focus}</p>
-                      <p className="text-xs opacity-70 mb-4">{edu.year}</p>
+                // positions + rotations for the 3 cards
+                const layout = [
+                  { left: '35%',  top: '10px',  rotate: -3, z: 20 }, // Bachelor's
+                  { left: '1%', top: '120px',  rotate: 3,  z: 30 }, // Master's
+                  { left: '68%', top: '160px', rotate: 2,  z: 10 }, // Paris
+                ][index] ?? { left: `${index * 30}%`, top: '80px', rotate: 0, z: 10 };
 
-                      <div className="mb-4">
-                        <h4 className="text-sm font-bold uppercase tracking-wider mb-2">Coursework:</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {edu.coursework.map((course) => (
-                            <span key={course} className="px-2 py-1 bg-white/70 rounded-full text-xs border border-dark-teal">
-                              {course}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div>
-                        <h4 className="text-sm font-bold uppercase tracking-wider mb-2">Clubs & Activities:</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {edu.clubs.map((club) => (
-                            <span key={club} className="px-2 py-1 bg-dark-teal/20 rounded-full text-xs border border-dark-teal">
-                              {club}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* ===== CHECKERBOARD DIVIDER ===== */}
-        <div className="mb-20">
-          <div className="h-8 w-full" style={{
-            backgroundImage: `
-              linear-gradient(45deg, var(--dark-teal) 25%, var(--teal) 25%),
-              linear-gradient(-45deg, var(--dark-teal) 25%, var(--teal) 25%),
-              linear-gradient(45deg, var(--teal) 75%, var(--dark-teal) 75%),
-              linear-gradient(-45deg, var(--teal) 75%, var(--dark-teal) 75%)
-            `,
-            backgroundSize: '40px 40px',
-            backgroundPosition: '0 0, 0 20px, 20px -20px, -20px 0px'
-          }}/>
-        </div>
-
-        {/* ===== EXPERIENCE SECTION ===== */}
-        <motion.section
-          id="experience"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
-          className="mb-32 scroll-mt-32"
-        >
-          <h2 className="text-5xl font-bold text-center mb-4" style={{ fontFamily: 'var(--font-heading)', color: 'var(--dark-green)' }}>
-            EXPERIENCE
-          </h2>
-          <p className="text-center text-lg mb-12 opacity-80">
-            My journey through tech, teaching, and service 💼
-          </p>
-
-          {/* Timeline style layout */}
-          <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-dark-green/30 -translate-x-1/2 hidden md:block"/>
-
-            <div className="space-y-12">
-              {experienceData.map((exp, index) => {
-                const isLeft = index % 2 === 0;
                 return (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className={`relative md:flex ${isLeft ? 'md:justify-end' : 'md:justify-start'} items-center`}
+                    className="absolute"
+                    style={{
+                      left: layout.left,
+                      top: layout.top,
+                      width: '400px',
+                      zIndex: isFlipped ? 40 : layout.z,
+                      perspective: '1200px',
+                    }}
+                    initial={{ opacity: 0, y: 25 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 + index * 0.08 }}
                   >
-                    {/* Timeline dot */}
-                    <div className="hidden md:block absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-dark-green border-4 border-background rounded-full z-10"/>
+                    <motion.div
+                      className="relative cursor-pointer"
+                      style={{
+                        width: '100%',
+                        aspectRatio: '3 / 2',
+                        transformStyle: 'preserve-3d',
+                      }}
+                      animate={{
+                        rotate: layout.rotate,                 // the -3/0/3 tilt
+                        rotateY: isFlipped ? 180 : 0,           // the flip
+                      }}
+                      transition={{ duration: 0.55, ease: 'easeInOut' }}
+                      whileHover={{ scale: 1.03 }}
+                      onClick={() => setFlippedCard(isFlipped ? null : index)}
+                    >
+                      {/* FRONT */}
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          backfaceVisibility: 'hidden',
+                          WebkitBackfaceVisibility: 'hidden',
+                        }}
+                      >
+                        <div
+                          className="relative w-full h-full"
+                          style={{ filter: 'drop-shadow(0 18px 22px rgba(0,0,0,0.18))' }}
+                        >
+                          <Image
+                            src={edu.postcard}
+                            alt={`${edu.school} postcard`}
+                            fill
+                            className="object-contain"
+                            sizes="360px"
+                            priority={index === 1}
+                          />
 
-                    {/* Experience card */}
-                    <div className={`md:w-5/12 ${exp.color} ${exp.border} border-4 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-shadow relative overflow-hidden group`}>
-                      {/* Retro corner decoration */}
-                      <div className={`absolute top-0 ${isLeft ? 'right-0' : 'left-0'} w-16 h-16 opacity-20`}>
-                        <svg viewBox="0 0 100 100">
-                          <circle cx="50" cy="50" r="8" fill="currentColor"/>
-                          {[0, 60, 120, 180, 240, 300].map((angle, i) => (
-                            <line
-                              key={i}
-                              x1="50"
-                              y1="50"
-                              x2={50 + 35 * Math.cos((angle * Math.PI) / 180)}
-                              y2={50 + 35 * Math.sin((angle * Math.PI) / 180)}
-                              stroke="currentColor"
-                              strokeWidth="3"
-                            />
-                          ))}
-                        </svg>
-                      </div>
-
-                      <div className="relative z-10">
-                        <div className="flex justify-between items-start mb-3">
-                          <div>
-                            <h3 className="text-2xl font-bold mb-1 group-hover:scale-105 transition-transform origin-left">
-                              {exp.title}
-                            </h3>
-                            <p className="text-lg font-semibold opacity-90">{exp.company}</p>
-                          </div>
-                          <span className="text-sm font-bold px-3 py-1 bg-white/60 rounded-full whitespace-nowrap">
-                            {exp.period}
-                          </span>
-                        </div>
-
-                        <p className="mb-4 opacity-90">{exp.description}</p>
-
-                        <div className="flex flex-wrap gap-2">
-                          {exp.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="px-3 py-1 bg-white/80 rounded-full text-xs font-bold border-2"
-                              style={{ borderColor: `var(--${exp.border.split('-')[1]})` }}
+                          {!isFlipped && (
+                            <div
+                              className="absolute right-3 top-3 text-[10px] font-bold px-2 py-1 rounded-full"
+                              style={{
+                                background: 'rgba(255,255,255,0.75)',
+                                border: `2px dashed ${t.chipBorder}`,
+                                color: t.chipBorder,
+                              }}
                             >
-                              {tag}
-                            </span>
-                          ))}
+                              FLIP
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
+
+                      {/* BACK */}
+                      <div
+                        className="absolute inset-0 backface-hidden"
+                        style={{ transform: 'rotateY(180deg)' }}
+                      >
+                        <div
+                          className="w-full h-full rounded-2xl p-5 overflow-auto retro-scroll"
+                          style={{
+                            background: t.bg,
+                            border: `4px solid ${t.border}`,
+                            boxShadow: '0 18px 22px rgba(0,0,0,0.18)',
+
+                            ['--scroll-track' as any]: t.scrollTrack,
+                            ['--scroll-thumb' as any]: t.scrollThumb,
+                            ['--scroll-thumb-hover' as any]: t.scrollThumbHover,
+                          }}
+                        >
+                          <div className="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                              <h3 className="font-bold leading-tight" style={{ color: t.accent }}>
+                                {edu.school}
+                              </h3>
+                              <p className="text-sm opacity-80">{edu.location}</p>
+                            </div>
+
+                            <div
+                              className="shrink-0 text-[11px] font-bold px-3 py-1 rounded-full"
+                              style={{
+                                background: t.chipBg,
+                                border: `2px dashed ${t.chipBorder}`,
+                                color: t.chipBorder,
+                              }}
+                            >
+                              {edu.year}
+                            </div>
+                          </div>
+
+                          <p className="text-sm mb-1">
+                            <span className="font-bold">{edu.degree}</span>
+                          </p>
+                          <p className="text-sm mb-3 opacity-90">
+                            Focus: <span className="font-bold">{edu.focus}</span>
+                          </p>
+
+                          {edu.description && (
+                            <p className="text-sm leading-relaxed mb-4 opacity-90">
+                              {edu.description}
+                            </p>
+                          )}
+
+                          <div className="mb-4">
+                            <h4 className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: t.accent }}>
+                              Coursework
+                            </h4>
+                            <div className="flex flex-wrap gap-2">
+                              {edu.coursework.map((course) => (
+                                <span
+                                  key={course}
+                                  className="px-2 py-1 rounded-full text-[11px]"
+                                  style={{
+                                    background: t.chipBg,
+                                    border: `1px solid ${t.chipBorder}`,
+                                    color: t.chipBorder,
+                                  }}
+                                >
+                                  {course}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+
+                          {edu.clubs.length > 0 && (
+                            <div>
+                              <h4 className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: t.accent }}>
+                                Clubs & Activities
+                              </h4>
+                              <div className="flex flex-wrap gap-2">
+                                {edu.clubs.map((club) => (
+                                  <span
+                                    key={club}
+                                    className="px-2 py-1 rounded-full text-[11px]"
+                                    style={{
+                                      background: t.chipBg,
+                                      border: `1px solid ${t.chipBorder}`,
+                                      color: t.chipBorder,
+                                    }}
+                                  >
+                                    {club}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
                   </motion.div>
                 );
               })}
@@ -366,32 +360,100 @@ export default function AboutPage() {
         </motion.section>
 
         {/* ===== CHECKERBOARD DIVIDER ===== */}
-        <div className="mb-20">
-          <div className="h-8 w-full" style={{
-            backgroundImage: `
-              linear-gradient(45deg, var(--dark-green) 25%, var(--green) 25%),
-              linear-gradient(-45deg, var(--dark-green) 25%, var(--green) 25%),
-              linear-gradient(45deg, var(--green) 75%, var(--dark-green) 75%),
-              linear-gradient(-45deg, var(--green) 75%, var(--dark-green) 75%)
-            `,
-            backgroundSize: '40px 40px',
-            backgroundPosition: '0 0, 0 20px, 20px -20px, -20px 0px'
-          }}/>
-        </div>
-
-        {/* ===== SKILLS SECTION ===== */}
-        <motion.section
-          id="skills"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mb-32 scroll-mt-32"
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.35 }}
         >
-          <h2 className="text-5xl font-bold text-center mb-4" style={{ fontFamily: 'var(--font-heading)', color: 'var(--dark-neutral)' }}>
-            SKILLS
+          <CheckerDivider
+            className="mt-4 mb-8 justify-center" 
+            fg="var(--pink)"
+            bg="var(--light-pink)"
+            height={30}
+            squareSize={15}
+          />
+        </motion.div>
+
+        {/* ===== EXPERIENCE SECTION ===== */}
+        <motion.section
+          id="experience"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="mb-8 scroll-mt-8"
+        >
+          <h2 className="text-5xl font-bold text-center mb-4" style={{ fontFamily: 'var(--font-heading)', color: 'var(--dark-pink)' }}>
+            EXPERIENCE
           </h2>
-          <p className="text-center text-lg mb-12 opacity-80">
-            Hover or click the satellites for details! 🛰️
+          <div
+            className="mx-auto mb-4"
+            style={{
+              width: 160,
+              height: 6,
+              background:
+                'repeating-linear-gradient(90deg, var(--dark-pink) 0 12px, transparent 12px 20px)',
+              opacity: 0.7,
+            }}
+          />
+          <p
+            className="text-center text-sm tracking-widest mb-12"
+            style={{ color: 'var(--dark-green)', opacity: 0.75 }}
+          >
+            My journey through tech, teaching, and constant learning!
+          </p>
+
+          <div className="relative mx-auto max-w-6xl">
+            <RoadTripExperience
+              items={experienceData}
+              carSrc="/about/belair.svg"
+              height={1500}
+            />
+          </div>
+        </motion.section>
+
+        {/* ===== CHECKERBOARD DIVIDER ===== */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.35 }}
+        >
+          <CheckerDivider
+            className="mt-4 mb-8 justify-center" 
+            fg="var(--green)"
+            bg="var(--light-green)"
+            height={30}
+            squareSize={15}
+          />
+        </motion.div>
+
+        {/* ===== TECH SKILLS SECTION ===== */}
+        <motion.section
+          id="techSkills"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="mb-8 scroll-mt-8"
+        >
+          <h2 className="text-5xl font-bold text-center mb-4" style={{ fontFamily: 'var(--font-heading)', color: 'var(--dark-green)' }}>
+            TECH SKILLS
+          </h2>
+          <div
+            className="mx-auto mb-4"
+            style={{
+              width: 160,
+              height: 6,
+              background:
+                'repeating-linear-gradient(90deg, var(--dark-green) 0 12px, transparent 12px 20px)',
+              opacity: 0.7,
+            }}
+          />
+          <p
+            className="text-center text-sm tracking-widest mb-12"
+            style={{ color: 'var(--dark-green)', opacity: 0.75 }}
+          >
+            Click or hover on each skill to learn more!
           </p>
 
           <div className="relative w-full max-w-4xl mx-auto h-[600px] flex items-center justify-center">
@@ -533,32 +595,92 @@ export default function AboutPage() {
         </motion.section>
 
         {/* ===== CHECKERBOARD DIVIDER ===== */}
-        <div className="mb-20">
-          <div className="h-8 w-full" style={{
-            backgroundImage: `
-              linear-gradient(45deg, var(--dark-neutral) 25%, var(--neutral) 25%),
-              linear-gradient(-45deg, var(--dark-neutral) 25%, var(--neutral) 25%),
-              linear-gradient(45deg, var(--neutral) 75%, var(--dark-neutral) 75%),
-              linear-gradient(-45deg, var(--neutral) 75%, var(--dark-neutral) 75%)
-            `,
-            backgroundSize: '40px 40px',
-            backgroundPosition: '0 0, 0 20px, 20px -20px, -20px 0px'
-          }}/>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.35 }}
+        >
+          <CheckerDivider
+            className="mt-4 mb-8 justify-center" 
+            fg="var(--pink)"
+            bg="var(--light-pink)"
+            height={30}
+            squareSize={15}
+          />
+        </motion.div>
+
+        {/* ===== LANGUAGE SKILLS SECTION ===== */}
+        <motion.section
+          id="langSkills"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="mb-8 scroll-mt-8"
+        >
+          <h2 className="text-5xl font-bold text-center mb-4" style={{ fontFamily: 'var(--font-heading)', color: 'var(--dark-pink)' }}>
+            LANGUAGE SKILLS
+          </h2>
+          <div
+            className="mx-auto mb-4"
+            style={{
+              width: 160,
+              height: 6,
+              background:
+                'repeating-linear-gradient(90deg, var(--dark-pink) 0 12px, transparent 12px 20px)',
+              opacity: 0.7,
+            }}
+          />
+          <p
+            className="text-center text-sm tracking-widest mb-12"
+            style={{ color: 'var(--dark-green)', opacity: 0.75 }}
+          >
+            Beyond technology, I love learning new modes of communication and languages!
+          </p>
+        </motion.section>
+
+        {/* ===== CHECKERBOARD DIVIDER ===== */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.35 }}
+        >
+          <CheckerDivider
+            className="mt-4 mb-8 justify-center" 
+            fg="var(--teal)"
+            bg="var(--light-teal)"
+            height={30}
+            squareSize={15}
+          />
+        </motion.div>
 
         {/* ===== HOBBIES SECTION ===== */}
         <motion.section
           id="hobbies"
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mb-20 scroll-mt-32"
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="mb-8 scroll-mt-8"
         >
-          <h2 className="text-5xl font-bold text-center mb-4" style={{ fontFamily: 'var(--font-heading)', color: 'var(--red)' }}>
-            HOBBIES & INTERESTS
+          <h2 className="text-5xl font-bold text-center mb-2" style={{ fontFamily: 'var(--font-heading)', color: 'var(--dark-teal)' }}>
+            HOBBIES
           </h2>
-          <p className="text-center text-lg mb-12 opacity-80">
-            What I do when I'm not coding 🎨
+          <div
+            className="mx-auto mb-4"
+            style={{
+              width: 160,
+              height: 6,
+              background:
+                'repeating-linear-gradient(90deg, var(--dark-teal) 0 12px, transparent 12px 20px)',
+              opacity: 0.7,
+            }}
+          />
+          <p
+            className="text-center text-sm tracking-widest mb-12"
+            style={{ color: 'var(--dark-green)', opacity: 0.75 }}
+          >
+            What I'm up to when I'm not coding or designing!
           </p>
 
           {/* Jukebox/Record Player Style Grid */}

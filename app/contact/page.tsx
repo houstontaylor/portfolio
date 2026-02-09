@@ -49,7 +49,7 @@ export default function ContactPage() {
       color: "bg-light-teal", 
       border: "border-dark-teal",
       textColor: "var(--dark-teal)",
-      url: "https://linkedin.com/in/yourprofile" 
+      url: "https://www.linkedin.com/in/houston-taylor/" 
     },
     { 
       name: "GitHub", 
@@ -57,7 +57,7 @@ export default function ContactPage() {
       color: "bg-light-pink", 
       border: "border-dark-pink",
       textColor: "var(--dark-pink)",
-      url: "https://github.com/yourusername" 
+      url: "https://github.com/houstontaylor" 
     },
     { 
       name: "Email", 
@@ -65,7 +65,7 @@ export default function ContactPage() {
       color: "bg-light-green", 
       border: "border-dark-green",
       textColor: "var(--dark-green)",
-      url: "mailto:your.email@example.com" 
+      url: "mailto:houstonctaylor@alumni.stanford.edu" 
     },
   ];
 
@@ -131,7 +131,7 @@ export default function ContactPage() {
         </motion.div>
       </div>
       
-      <main className="pt-32 pb-16 px-8 max-w-6xl mx-auto relative z-10">
+      <main className="pt-8 pb-8 px-8 max-w-6xl mx-auto relative z-10">
         {/* Header SVG */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}

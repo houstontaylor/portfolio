@@ -1,65 +1,63 @@
 'use client';
-import { motion, AnimatePresence } from 'framer-motion';
+
+import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.scrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+    const onScroll = () => {
+      setIsVisible(window.scrollY > 300);
     };
 
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.button
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0 }}
-          whileHover={{ scale: 1.1, rotate: 5 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-40 bg-teal border-4 border-dark-teal rounded-full w-16 h-16 flex items-center justify-center cursor-pointer shadow-lg group"
-          title="Back to top"
-        >
-          {/* Rocket pointing up */}
-          <motion.span 
-            className="text-3xl"
-            animate={{ y: [0, -3, 0] }}
-            transition={{ duration: 1, repeat: Infinity }}
-          >
-            🚀
-          </motion.span>
+    <motion.button
+      key="scroll-top"
+      onClick={scrollToTop}
+      initial={{ opacity: 0, scale: 0.8, y: 10 }}
+      animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.8, y: isVisible ? 0 : 10 }}
+      exit={{ opacity: 0, scale: 0.8, y: 10 }}
+      transition={{ duration: 0.25, ease: 'easeOut' }}
+      whileHover={{ scale: 1.08, rotate: 2 }}
+      whileTap={{ scale: 0.92 }}
+      className="fixed bottom-8 right-8 z-40 cursor-pointer"
+      style={{
+        pointerEvents: isVisible ? 'auto' : 'none',
+      }}
+      aria-label="Scroll back to top"
+      title="Back to top"
+    >
+      <motion.div
+        animate={{ y: [0, -3, 0] }}
+        transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+        className="relative"
+      >
+        <Image
+          src="/arrowUp.svg"
+          alt=""
+          width={56}
+          height={56}
+          priority
+        />
 
-          {/* Decorative sparkle */}
-          <motion.div
-            className="absolute -top-1 -right-1 text-yellow-400"
-            animate={{ 
-              scale: [1, 1.3, 1],
-              rotate: [0, 180, 360] 
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            ✨
-          </motion.div>
-        </motion.button>
-      )}
-    </AnimatePresence>
+        {/* subtle glow on hover */}
+        <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition pointer-events-none"
+          style={{
+            boxShadow: '0 0 18px rgba(231, 70, 86, 0.45)',
+          }}
+        />
+      </motion.div>
+    </motion.button>
   );
 }

@@ -1,57 +1,81 @@
+export type ThemeKey = 'teal' | 'pink' | 'green' | 'neutral';
+export type OverlayPreset = 'default' | 'wideTop';
+
 export interface ExperienceData {
   title: string;
   company: string;
   period: string;
-  description: string;
+  description: string[];
   tags: string[];
-  color: string;
-  border: string;
+  theme: ThemeKey;
+  signSrc: string;
+  location?: string;
+  signText?: string;
+  overlayPreset?: OverlayPreset;
 }
 
 export const experienceData: ExperienceData[] = [
   {
-    title: "Designer & Project Manager",
-    company: "Sunao Lab",
-    period: "2024 - Present",
-    description: "Building AI-powered podcast chatbots that respond in host's style, sourcing from past episodes",
-    tags: ["Startup", "AI/ML", "Design", "PM"],
-    color: "bg-light-pink",
-    border: "border-dark-pink"
-  },
-  {
     title: "Barista",
-    company: "Local Coffee Shop",
-    period: "2024 - Present",
-    description: "Crafting specialty drinks and creating welcoming customer experiences",
-    tags: ["Customer Service", "Operations"],
-    color: "bg-light-neutral",
-    border: "border-dark-neutral"
+    company: "Lula's Coffee Co.",
+    period: "July 2024 - Present (Non-Consecutive)",
+    description: [
+      "Provided excellent customer service",
+      "Identified customer needs",
+      "Currently developing a mobile ordering app"
+    ],
+    tags: ["Customer Service", "Teamwork", "Mobile App Development"],
+    theme: "neutral",
+    signSrc: "/about/sign1.svg",
+    overlayPreset: "wideTop",
   },
   {
-    title: "Software Engineering Intern",
-    company: "Florence, SC Tech Company",
-    period: "Summer 2023",
-    description: "Developed web applications and internal tools for local business",
+    title: "Lifeguard Supervisor",
+    company: "Stanford Aquatics",
+    period: "March 2022 - June 2025",
+    description: [
+      "Supervised lifeguard teams",
+      "Ensured pool safety",
+      "Trained new staff"
+    ],
+    tags: ["Leadership", "Safety", "Training"],
+    theme: "teal",
+    signSrc: "/about/sign2.svg",
+  },
+  {
+    title: "Project and Accessibility Manager",
+    company: "Sunao Lab",
+    period: "May 2023 - April 2024",
+    description: [
+      "Built accessible AI-powered podcast chatbots that respond in host's style, sourcing from past episodes."
+    ],
+    tags: ["Startup", "AI/ML", "Design", "PM"],
+    theme: "green",
+    signSrc: "/about/sign3.svg",
+  },
+  {
+    title: "Software Development Intern",
+    company: "Employ Reward Solutions, Inc.",
+    period: "June 2023 - September 2023",
+    description: [
+      "Developed features for internal job-search platform used by career coaches and businesses."
+    ],
     tags: ["Full-Stack", "JavaScript", "React"],
-    color: "bg-light-teal",
-    border: "border-dark-teal"
+    theme: "pink",
+    signSrc: "/about/sign4.svg",
+    overlayPreset: "wideTop",
   },
   {
     title: "Head TA & Assistant TA",
     company: "NSLC Law & Mock Trial",
-    period: "Summers 2021-2023",
-    description: "Led teaching teams and mentored students in law and mock trial summer programs",
+    period: "Summers 2021 and 2022",
+    description: [
+      "Hired staff", 
+      "Led teaching teams", 
+      "Mentored students in law and mock trial summer programs."
+    ],
     tags: ["Education", "Leadership", "Law"],
-    color: "bg-light-green",
-    border: "border-dark-green"
-  },
-  {
-    title: "Lifeguard Supervisor",
-    company: "Stanford Recreation",
-    period: "2020 - 2024",
-    description: "Supervised lifeguard teams, ensured pool safety, trained new staff",
-    tags: ["Leadership", "Safety", "Training"],
-    color: "bg-light-pink",
-    border: "border-dark-pink"
+    theme: "neutral",
+    signSrc: "/about/sign5.svg",
   },
 ];

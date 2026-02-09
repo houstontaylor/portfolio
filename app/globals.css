@@ -75,7 +75,7 @@ h2 {
 }
 
 h3 {
-  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  font-size: clamp(1.3rem, 2.25vw, 1.75rem);
   line-height: 1.4;
 }
 
@@ -96,11 +96,27 @@ p {
   font-size: clamp(0.75rem, 1vw, 0.875rem);
 }
 
-.perspective-1000 {
-  perspective: 1000px;
+/* Scrollbar styling */
+.retro-scroll {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
 }
 
-.backface-hidden {
-  backface-visibility: hidden;
+.retro-scroll::-webkit-scrollbar {
+  width: 10px;
 }
 
+.retro-scroll::-webkit-scrollbar-track {
+  background: var(--scroll-track);
+  border-radius: 999px;
+}
+
+.retro-scroll::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border-radius: 999px;
+  border: 2px solid var(--scroll-track);
+}
+
+.retro-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--scroll-thumb-hover);
+}
