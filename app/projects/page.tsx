@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import ScrollToTop from '../../components/ScrollToTop';
 import TrapezoidCard from '../../components/TrapezoidCard';
 import { projectsData } from '../data/projects';
+import { PiStarFourFill } from 'react-icons/pi';
 
 export default function ProjectsPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -149,7 +150,7 @@ export default function ProjectsPage() {
                       animate={{ rotate: 360 }}
                       transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                     >
-                      ✦
+                      <PiStarFourFill />
                     </motion.span>
                   )}
                 </motion.button>

@@ -1,49 +1,78 @@
 'use client';
+
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 
 interface SideNavProps {
   sections: { id: string; label: string }[];
-  showAfterY?: number; // Optional prop to specify scrollY after which nav appears
+  startSentinelId?: string; // appear after this leaves viewport
+  endSentinelId?: string;   // hide when this enters viewport
 }
 
-export default function SideNav({ 
-  sections, 
-  showAfterY = 600
+export default function SideNav({
+  sections,
+  startSentinelId = 'sidenav-start',
+  endSentinelId = 'sidenav-end',
 }: SideNavProps) {
   const [activeSection, setActiveSection] = useState('');
-  const [showNav, setShowNav] = useState(false);
+  const [pastStart, setPastStart] = useState(false);
+  const [beforeEnd, setBeforeEnd] = useState(true);
+
+  const showNav = pastStart && beforeEnd;
+
   const topSrc = '/nav/remoteTop.svg';
   const middleSrc = '/nav/remoteMiddle.svg';
   const bottomSrc = '/nav/remoteBottom.svg';
-  
-  // Layout constants for svg sizing and spacing
+
   const width = 140;
   const rowHeight = 44;
   const rowGap = 5;
   const panelPaddingY = 15;
   const panelPaddingX = 12;
-  const middleHeight =
-    panelPaddingY * 2 +
-    sections.length * rowHeight +
-    Math.max(0, sections.length - 1) * rowGap;
 
-  // Show nav after scrolling past a certain point
+  const middleHeight = useMemo(() => {
+    return panelPaddingY * 2 + sections.length * rowHeight + Math.max(0, sections.length - 1) * rowGap;
+  }, [sections.length]);
+
+  // Header/footer bound visibility
   useEffect(() => {
-    const startY = showAfterY;
+    const startEl = document.getElementById(startSentinelId);
+    const endEl = document.getElementById(endSentinelId);
 
-    const update = () => {
-      setShowNav(window.scrollY >= startY);
+    if (!startEl || !endEl) {
+      // fallback: show always if sentinels not found
+      setPastStart(true);
+      setBeforeEnd(true);
+      return;
+    }
+
+    const startObs = new IntersectionObserver(
+      ([entry]) => {
+        // if start sentinel is visible, we're still at the top; nav should be hidden
+        setPastStart(!entry.isIntersecting);
+      },
+      { threshold: 0.01 }
+    );
+
+    const endObs = new IntersectionObserver(
+      ([entry]) => {
+        // if end sentinel is visible, we're near footer; nav should hide
+        setBeforeEnd(!entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    startObs.observe(startEl);
+    endObs.observe(endEl);
+
+    return () => {
+      startObs.disconnect();
+      endObs.disconnect();
     };
+  }, [startSentinelId, endSentinelId]);
 
-    update();
-    window.addEventListener('scroll', update, { passive: true });
-    return () => window.removeEventListener('scroll', update);
-  }, [showAfterY]);
-
-
-  // Track active section based on scroll position
+  // Track active section
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -71,12 +100,9 @@ export default function SideNav({
     <motion.div
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: showNav ? 1 : 0, x: showNav ? 0 : -20 }}
-      exit={{ opacity: 0, x: -20 }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0.35 }}
       className="fixed left-8 top-1/3 -translate-y-1/2 z-40"
-      style={{
-        pointerEvents: showNav ? 'auto' : 'none',
-      }}
+      style={{ pointerEvents: showNav ? 'auto' : 'none' }}
       aria-hidden={!showNav}
     >
       {/* TOP SLICE */}

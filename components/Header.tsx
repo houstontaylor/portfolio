@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { PiStarFourFill } from 'react-icons/pi';
 
 export default function Header() {
   const pathname = usePathname();
@@ -44,14 +45,14 @@ export default function Header() {
                           animate={{ rotate: 360 }}
                           transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                         >
-                          ✦
+                          <PiStarFourFill size={16} />
                         </motion.span>
                         <motion.span
                           className="absolute -right-6 top-1/2 -translate-y-1/2 text-red"
                           animate={{ rotate: -360 }}
                           transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                         >
-                          ✦
+                          <PiStarFourFill size={16} />
                         </motion.span>
                         {/* Underline */}
                         <motion.div
@@ -89,6 +90,7 @@ export default function Header() {
           </Link>
         </div>
       </div>
+      <div id="sidenav-start" style={{ height: 1 }} />
     </header>
   );
 }

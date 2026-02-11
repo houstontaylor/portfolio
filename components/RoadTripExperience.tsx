@@ -74,14 +74,14 @@ export default function RoadTripExperience({
   const carRotRaw = useTransform(scrollYProgress, roadRot);
 
   // smooth final vals
-  const carY = useSpring(carYRaw, { stiffness: 180, damping: 28 });
-  const carX = useSpring(carXRaw, { stiffness: 180, damping: 28 });
-  const carRot = useSpring(carRotRaw, { stiffness: 180, damping: 28 });
+  const carY = useSpring(carYRaw, { stiffness: 180, damping: 35 });
+  const carX = useSpring(carXRaw, { stiffness: 180, damping: 35 });
+  const carRot = useSpring(carRotRaw, { stiffness: 180, damping: 35 });
 
   const stopMeta = useMemo(() => {
     const n = items.length;
     const topPad = 200;
-    const bottomPad = 300;
+    const bottomPad = 250;
     const usable = Math.max(1, height - topPad - bottomPad);
 
     return items.map((_, i) => {

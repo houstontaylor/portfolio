@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useMemo, useState } from 'react';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import SideNav from '@/components/SideNav';
 import ScrollToTop from '@/components/ScrollToTop';
 import CheckerDivider from '@/components/CheckerDivider';
@@ -11,8 +12,8 @@ import { educationData } from '../data/education';
 import { experienceData } from '../data/experience';
 import { techSkills, languageSkills } from '../data/skills';
 import { hobbiesData } from '../data/hobbies';
-import { WiStars } from 'react-icons/wi';
 import { GiPolarStar } from 'react-icons/gi';
+import { PiStarFourFill } from 'react-icons/pi';
 
 export default function AboutPage() {
   const [flippedCard, setFlippedCard] = useState<number | null>(null);
@@ -174,9 +175,9 @@ export default function AboutPage() {
 
                 // positions + rotations for the 3 cards
                 const layout = [
-                  { left: '35%',  top: '10px',  rotate: -3, z: 20 }, // Bachelor's
+                  { left: '35%',  top: '10px',  rotate: -4, z: 20 }, // Bachelor's
                   { left: '1%', top: '120px',  rotate: 3,  z: 30 }, // Master's
-                  { left: '68%', top: '160px', rotate: 2,  z: 10 }, // Paris
+                  { left: '68%', top: '180px', rotate: -2,  z: 10 }, // Paris
                 ][index] ?? { left: `${index * 30}%`, top: '80px', rotate: 0, z: 10 };
 
                 return (
@@ -372,7 +373,7 @@ export default function AboutPage() {
           transition={{ delay: 0.5 }}
           className="mb-8 scroll-mt-8"
         >
-          <h2 className="text-5xl font-bold text-center mb-4" style={{ fontFamily: 'var(--font-heading)', color: 'var(--dark-pink)' }}>
+          <h2 className="text-5xl font-bold text-center mb-2" style={{ fontFamily: 'var(--font-heading)', color: 'var(--dark-pink)' }}>
             EXPERIENCE
           </h2>
           <div
@@ -426,7 +427,7 @@ export default function AboutPage() {
           className="mb-12 scroll-mt-8"
         >
           <h2
-            className="text-5xl font-bold text-center mb-4"
+            className="text-5xl font-bold text-center mb-2"
             style={{ fontFamily: 'var(--font-heading)', color: 'var(--dark-green)' }}
           >
             TECH SKILLS
@@ -790,7 +791,7 @@ export default function AboutPage() {
           className="mb-8 scroll-mt-8"
         >
           <h2
-            className="text-5xl font-bold text-center mb-4"
+            className="text-5xl font-bold text-center mb-2"
             style={{ fontFamily: "var(--font-heading)", color: "var(--dark-pink)" }}
           >
             LANGUAGE SKILLS
@@ -1075,17 +1076,17 @@ export default function AboutPage() {
         >
           <h2
             className="text-5xl font-bold text-center mb-2"
-            style={{ fontFamily: "var(--font-pacifico)", color: "var(--dark-teal)" }}
+            style={{ fontFamily: "var(--font-heading)", color: "var(--dark-teal)" }}
           >
             HOBBIES
           </h2>
-
           <div
             className="mx-auto mb-4"
             style={{
               width: 160,
               height: 6,
-              background: "repeating-linear-gradient(90deg, var(--dark-teal) 0 12px, transparent 12px 20px)",
+              background:
+                'repeating-linear-gradient(90deg, var(--dark-teal) 0 12px, transparent 12px 20px)',
               opacity: 0.7,
             }}
           />
@@ -1260,7 +1261,7 @@ export default function AboutPage() {
                                 className="mt-3 text-[10px] font-bold tracking-widest opacity-70 group-hover:opacity-100 transition-opacity"
                                 style={{ color: t.border }}
                               >
-                                HOVER TO REVEAL ✦
+                                HOVER TO REVEAL <PiStarFourFill />
                               </div>
                             </div>
                           </div>
@@ -1283,6 +1284,8 @@ export default function AboutPage() {
           })()}
         </motion.section>
       </main>
+
+      <Footer />
     </div>
   );
 }

@@ -6,15 +6,36 @@ import Image from 'next/image';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const [beforeEnd, setBeforeEnd] = useState(true);
+
+  const endSentinelId = 'scrolltotop-end';
 
   useEffect(() => {
     const onScroll = () => {
-      setIsVisible(window.scrollY > 300);
+      setIsVisible(window.scrollY > 300 && beforeEnd);
     };
 
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, [beforeEnd]);
+
+  useEffect(() => {
+    const endEl = document.getElementById(endSentinelId);
+    if (!endEl) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // If footer is visible → hide button
+        setBeforeEnd(!entry.isIntersecting);
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+
+    observer.observe(endEl);
+    return () => observer.disconnect();
   }, []);
 
   const scrollToTop = () => {
@@ -26,7 +47,11 @@ export default function ScrollToTop() {
       key="scroll-top"
       onClick={scrollToTop}
       initial={{ opacity: 0, scale: 0.8, y: 10 }}
-      animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.8, y: isVisible ? 0 : 10 }}
+      animate={{
+        opacity: isVisible ? 1 : 0,
+        scale: isVisible ? 1 : 0.8,
+        y: isVisible ? 0 : 10,
+      }}
       exit={{ opacity: 0, scale: 0.8, y: 10 }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
       whileHover={{ scale: 1.08, rotate: 2 }}
@@ -49,13 +74,6 @@ export default function ScrollToTop() {
           width={56}
           height={56}
           priority
-        />
-
-        {/* subtle glow on hover */}
-        <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition pointer-events-none"
-          style={{
-            boxShadow: '0 0 18px rgba(231, 70, 86, 0.45)',
-          }}
         />
       </motion.div>
     </motion.button>

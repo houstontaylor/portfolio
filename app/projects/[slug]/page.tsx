@@ -8,6 +8,7 @@ import { FaGithub, FaExternalLinkAlt, FaFigma } from 'react-icons/fa';
 import Header from '../../../components/Header';
 import ScrollToTop from '../../../components/ScrollToTop';
 import { getProjectBySlug, projectsData } from '../../data/projects';
+import { PiStarFourFill } from 'react-icons/pi';
 
 export default function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   // Unwrap the params Promise
@@ -237,7 +238,9 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
                       transition={{ delay: 0.6 + index * 0.1 }}
                       className="flex items-start gap-3 text-lg"
                     >
-                      <span className="text-2xl flex-shrink-0">✦</span>
+                      <span className="text-2xl flex-shrink-0">
+                        <PiStarFourFill />
+                      </span>
                       <span>{item}</span>
                     </motion.li>
                   ))}
