@@ -6,6 +6,7 @@ import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 import { IoRocket } from 'react-icons/io5';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import ScrollToTop from '@/components/ScrollToTop';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -105,6 +106,7 @@ export default function ContactPage() {
       <div className="relative z-20">
         <Header />
       </div>
+      <ScrollToTop />
 
       {/* Floating space decorations */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">

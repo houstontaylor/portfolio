@@ -4,6 +4,7 @@ import Image from 'next/image';
 import ResumeCard from '@/components/resumes/ResumeCard';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ScrollToTop from '@/components/ScrollToTop';
 
 export default function ResumePage() {
   return (
@@ -11,7 +12,8 @@ export default function ResumePage() {
       <div className="relative z-20">
         <Header />
       </div>
-
+      <ScrollToTop />
+      
       {/* Header SVG */}
       <div
         className="mt-[-1rem] mb-2 flex justify-center"
