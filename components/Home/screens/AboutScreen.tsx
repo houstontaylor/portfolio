@@ -22,7 +22,7 @@ export default function AboutScreen() {
         className="flex justify-center mb-3"
       >
         <Image 
-          src="/about.svg"
+          src="/about/about.svg"
           alt="About header"
           width={500}
           height={150}

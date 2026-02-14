@@ -3,9 +3,10 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { use } from 'react'; // Add this import
+import { use } from 'react';
 import { FaGithub, FaExternalLinkAlt, FaFigma } from 'react-icons/fa';
 import Header from '../../../components/Header';
+import Footer from '../../../components/Footer';
 import ScrollToTop from '../../../components/ScrollToTop';
 import { getProjectBySlug, projectsData } from '../../data/projects';
 import { PiStarFourFill } from 'react-icons/pi';
@@ -355,6 +356,8 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
           </div>
         </motion.section>
       </main>
+
+      <Footer />
     </div>
   );
 }

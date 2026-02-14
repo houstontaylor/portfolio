@@ -3,8 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import ScrollToTop from '../../components/ScrollToTop';
-import TrapezoidCard from '../../components/TrapezoidCard';
+import TrapezoidCard from '../../components/projects/TrapezoidCard';
 import { projectsData } from '../data/projects';
 import { PiStarFourFill } from 'react-icons/pi';
 
@@ -45,14 +46,14 @@ export default function ProjectsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12 flex justify-center"
+          className="mb-4 flex justify-center"
         >
           <Image 
             src="/projects.svg"
             alt="Projects"
             width={800}
             height={200}
-            className="w-2/3 h-auto"
+            className="w-3/5 h-auto"
           />
         </motion.div>
 
@@ -365,6 +366,8 @@ export default function ProjectsPage() {
           </motion.div>
         )}
       </main>
+
+      <Footer />
     </div>
   );
 }

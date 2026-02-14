@@ -55,7 +55,7 @@ export default function ContactScreen() {
             className="flex justify-center items-start"
           >
             <Image 
-              src="/contact.svg"
+              src="/contact/contact.svg"
               alt="Contact header"
               width={400}
               height={200}

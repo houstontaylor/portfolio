@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import Image from 'next/image';
 import { useMemo, useRef } from 'react';
+import { experienceData } from '@/app/data/experience';
 
 export type ThemeKey = 'teal' | 'pink' | 'green' | 'neutral';
 
@@ -26,13 +27,6 @@ const themeVars: Record<ThemeKey, { light: string; dark: string }> = {
   neutral: { light: 'var(--light-neutral)', dark: 'var(--dark-neutral)' },
 };
 
-type Props = {
-  items: RoadTripItem[];
-  carSrc?: string;
-  height?: number;
-  className?: string;
-};
-
 const overlayPresets = {
   default: { 
     paddingTop: 0,
@@ -48,13 +42,11 @@ const overlayPresets = {
   },
 } as const;
 
-export default function RoadTripExperience({
-  items,
-  carSrc = '/about/belair.svg',
-  height = 1400,
-  className = '',
-}: Props) {
+export default function RoadTripExperience() {
+  const items = useMemo(() => experienceData as RoadTripItem[], []);
   const roadRef = useRef<HTMLDivElement | null>(null);
+  const carSrc = '/about/belair.svg';
+  const HEIGHT = 1400;
   const WIGGLES = 3; // number of left/right swings down the road
   const AMP = 15;    // px sway for car + anchor
   const SIGN_WIDTH = 450;
@@ -69,7 +61,7 @@ export default function RoadTripExperience({
   const roadX = (p: number) => Math.sin(p * Math.PI * 2 * WIGGLES) * AMP;
   const roadRot = (p: number) => Math.cos(p * Math.PI * 2 * WIGGLES) * 6;
 
-  const carYRaw = useTransform(scrollYProgress, [0, 1], [15, height - 100]);
+  const carYRaw = useTransform(scrollYProgress, [0, 1], [15, HEIGHT - 100]);
   const carXRaw = useTransform(scrollYProgress, roadX);
   const carRotRaw = useTransform(scrollYProgress, roadRot);
 
@@ -82,18 +74,18 @@ export default function RoadTripExperience({
     const n = items.length;
     const topPad = 200;
     const bottomPad = 250;
-    const usable = Math.max(1, height - topPad - bottomPad);
+    const usable = Math.max(1, HEIGHT - topPad - bottomPad);
 
     return items.map((_, i) => {
       const top = topPad + (usable * i) / Math.max(1, n - 1);
       const p = (top - topPad) / usable;
       return { top, p };
     });
-  }, [items, height]);
+  }, [items, HEIGHT]);
 
 
   return (
-    <div ref={roadRef} className={`relative w-full ${className}`} style={{ height }}>
+    <div ref={roadRef} className={`relative w-full`} style={{ height: HEIGHT }}>
       {/* Winding road */}
       <div className="absolute inset-0 pointer-events-none">
         <svg viewBox="0 0 900 1200" className="w-full h-full" preserveAspectRatio="none" aria-hidden="true">
