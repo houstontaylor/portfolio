@@ -1,4 +1,4 @@
-import { AiOutlinePython, AiOutlineGithub } from "react-icons/ai";
+import { AiOutlinePython } from "react-icons/ai";
 import { IconType } from "react-icons";
 import { CgCPlusPlus } from "react-icons/cg";
 import { RiJavascriptLine } from "react-icons/ri";

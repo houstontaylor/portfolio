@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useMemo, useState } from 'react';
+import Image from 'next/image';
 import { techSkills } from '@/app/data/skills';
 import { GiPolarStar } from 'react-icons/gi';
 
@@ -70,11 +71,11 @@ export default function OrbitSkills() {
             height: 180,
             }}
         >
-            <img
-            src="/about/Planet.svg"
-            alt=""
-            className="absolute inset-0 w-full h-full object-contain"
-            aria-hidden
+            <Image
+                src="/about/Planet.svg"
+                alt=""
+                className="absolute inset-0 w-full h-full object-contain"
+                aria-hidden
             />
             <div className="relative text-center px-4">
             <div className="text-[28px] font-bold leading-tight" style={{ color: 'var(--light-neutral)' }}>

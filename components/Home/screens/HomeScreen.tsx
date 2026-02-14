@@ -1,4 +1,4 @@
-import { color, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 export default function HomeScreen() {
@@ -91,7 +91,7 @@ export default function HomeScreen() {
           className="text-center text-base italic"
           style={{ color: 'var(--dark-teal)' }}
         >
-          "Designing tomorrow's interfaces with yesterday's charm"
+          {"Designing tomorrow's interfaces with yesterday's charm"}
         </motion.p>
 
         {/* Retro TV Guide Style Hint */}
