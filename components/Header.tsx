@@ -78,7 +78,7 @@ export default function Header() {
                 className="relative"
               >
                 <Image 
-                  src="/logo.svg"
+                  src="/Logo.svg"
                   alt="Houston Taylor Logo"
                   width={100}
                   height={100}

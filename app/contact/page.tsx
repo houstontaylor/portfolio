@@ -3,10 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useState, useMemo } from 'react';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
+import { IoRocket } from 'react-icons/io5';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import ScrollToTop from '../../components/ScrollToTop';
-import { IoRocket } from 'react-icons/io5';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -24,7 +23,7 @@ export default function ContactPage() {
         // deterministic “random”
         const left = (i * 73) % 100;
         const top = (i * 41) % 100;
-        const size = 1 + (i % 3); // 1..3
+        const size = 1 + (i % 3);
         const dur = 2.4 + (i % 5) * 0.55;
         const delay = (i % 7) * 0.25;
 
@@ -47,17 +46,31 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // TODO - replace with actual email service
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    setIsSubmitting(false);
-    setSubmitSuccess(true);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error ?? "Failed to send message");
+      }
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setSubmitSuccess(true);
+
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setSubmitSuccess(false);
+      }, 3000);
+    } catch (err) {
+      console.error(err);
       setSubmitSuccess(false);
-    }, 3000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const socials = [
@@ -83,7 +96,7 @@ export default function ContactPage() {
       color: "bg-light-green", 
       border: "border-dark-green",
       textColor: "var(--dark-green)",
-      url: "mailto:houstonctaylor@alumni.stanford.edu" 
+      url: "mailto:hctaylor@alumni.stanford.edu" 
     },
   ];
 
@@ -92,7 +105,6 @@ export default function ContactPage() {
       <div className="relative z-20">
         <Header />
       </div>
-      <ScrollToTop />
 
       {/* Floating space decorations */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
@@ -160,7 +172,7 @@ export default function ContactPage() {
         </motion.div>
       </div>
       
-      <main className="pt-8 pb-8 px-8 max-w-6xl mx-auto relative z-10">
+      <main className="pt-8 pb-2 px-8 max-w-6xl mx-auto relative z-10">
         {/* Header SVG */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -187,7 +199,7 @@ export default function ContactPage() {
             className="lg:col-span-2"
           >
             {(() => {
-              const SAFE = { left: "12%", top: "9%", width: "67%", height: "59%" };
+              const SAFE = { left: "12%", top: "7%", width: "67%", height: "61%" };
 
               const inputStyle: React.CSSProperties = {
                 background: "rgba(from var(--dark-teal) r g b / 0.55)",
@@ -201,7 +213,7 @@ export default function ContactPage() {
                 color: "rgba(from var(--dark-pink) r g b / 0.95)",
                 letterSpacing: "0.12em",
                 fontWeight: 800,
-                fontSize: 12,
+                fontSize: 14,
               };
 
               return (
@@ -229,7 +241,7 @@ export default function ContactPage() {
                     >
                       <div className="h-full flex flex-col">
                         {/* Title row */}
-                        <div className="flex items-center gap-3 mb-4">
+                        <div className="flex justify-end items-center gap-3 mb-4">
                           <motion.span
                             className="text-3xl"
                             animate={{ rotate: [0, -10, 10, -10, 0] }}
@@ -242,10 +254,8 @@ export default function ContactPage() {
                           <h2
                             className="font-bold"
                             style={{
-                              fontFamily: "var(--font-pacifico)",
                               color: "var(--dark-green)",
-                              fontSize: "clamp(1.35rem, 2.2vw, 2.05rem)",
-                              lineHeight: 1,
+                              fontSize: "clamp(1.55rem, 2.5vw, 2.55rem)",
                               textShadow: "0 6px 18px rgba(0,0,0,0.22)",
                             }}
                           >
@@ -405,7 +415,7 @@ export default function ContactPage() {
             className="relative flex justify-center"
           >
             {(() => {
-              const PANEL = { left: "15%", top: "7.5%", width: "70%", height: "78.5%" };
+              const PANEL = { left: "15%", top: "7.5%", width: "70%", height: "79%" };
 
               return (
                 <div className="relative">
@@ -460,7 +470,7 @@ export default function ContactPage() {
                     {/* Socials (spread in the middle) */}
                     <div
                       className="flex-1 flex flex-col items-center justify-center"
-                      style={{ gap: 85 }}
+                      style={{ gap: 80 }}
                     >
                       {socials.map((social, index) => {
                         const Icon = social.icon;

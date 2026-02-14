@@ -22,7 +22,7 @@ export default function Footer ( { className = '' }: Props ) {
   const socials = [
     { name: 'GitHub', href: 'https://github.com/houstontaylor', icon: FaGithub },
     { name: 'LinkedIn', href: 'https://www.linkedin.com/in/houston-taylor/', icon: FaLinkedin },
-    { name: 'Email', href: 'mailto:houstonctaylor@alumni.stanford.edu', icon: FaEnvelope },
+    { name: 'Email', href: 'mailto:hctaylor@alumni.stanford.edu', icon: FaEnvelope },
   ];
 
   const year = new Date().getFullYear();
@@ -89,7 +89,7 @@ export default function Footer ( { className = '' }: Props ) {
                     }}
                   >
                     <Image
-                      src="/logo.svg"
+                      src="/Logo.svg"
                       alt="Houston Taylor Logo"
                       width={44}
                       height={44}
@@ -123,7 +123,7 @@ export default function Footer ( { className = '' }: Props ) {
 
                 <div className="mt-4 flex flex-wrap gap-2">
                   <a
-                    href="mailto:houstonctaylor@alumni.stanford.edu"
+                    href="mailto:hctaylor@alumni.stanford.edu"
                     className="inline-flex items-center gap-2 px-3 py-2 rounded-full text-[11px] font-bold"
                     style={{
                       background: 'rgba(255,255,255,0.55)',
@@ -132,7 +132,7 @@ export default function Footer ( { className = '' }: Props ) {
                     }}
                   >
                     <span aria-hidden="true">✉</span>
-                    houstonctaylor@alumni.stanford.edu
+                    hctaylor@alumni.stanford.edu
                   </a>
 
                   <button

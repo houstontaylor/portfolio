@@ -13,7 +13,7 @@ export default function HomeScreen() {
           className="flex-shrink-0"
         >
           <Image 
-            src="/logo.svg" 
+            src="/Logo.svg" 
             alt="Houston Taylor Logo" 
             width={120}
             height={120}

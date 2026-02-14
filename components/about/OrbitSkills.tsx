@@ -74,6 +74,7 @@ export default function OrbitSkills() {
             <Image
                 src="/about/Planet.svg"
                 alt=""
+                fill
                 className="absolute inset-0 w-full h-full object-contain"
                 aria-hidden
             />
