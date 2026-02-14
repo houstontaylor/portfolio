@@ -6,6 +6,7 @@ type ContactPayload = {
   email: string;
   subject: string;
   message: string;
+  company?: string; // honeypot field for bots
 };
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -26,6 +27,11 @@ export async function POST(req: Request) {
     const email = (body.email ?? "").trim();
     const subject = (body.subject ?? "").trim();
     const message = (body.message ?? "").trim();
+    const company = (body.company ?? "").trim();
+
+    if (company) {
+      return NextResponse.json({ ok: true }); // silently ignore bots that fill the honeypot
+    }
 
     if (!name || !email || !subject || !message) {
       return NextResponse.json({ ok: false, error: "Missing fields" }, { status: 400 });

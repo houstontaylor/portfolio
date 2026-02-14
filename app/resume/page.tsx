@@ -1,111 +1,60 @@
 'use client';
-import { motion } from 'framer-motion';
+
 import Image from 'next/image';
-import Header from '../../components/Header';
-import ScrollToTop from '../../components/ScrollToTop';
+import ResumeCard from '@/components/resumes/ResumeCard';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export default function ResumePage() {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <ScrollToTop />
-
-      <div className="max-w-5xl mx-auto pt-8">
-        <motion.h1 
-          className="text-5xl font-bold mb-8 text-center"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          Resume
-        </motion.h1>
-
-        <motion.p
-          className="text-center text-lg mb-12 max-w-2xl mx-auto"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          Choose your preferred format below
-        </motion.p>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Themed Resume */}
-          <motion.div
-            className="bg-dark-neutral p-8 rounded-lg"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            <h2 className="text-2xl font-bold mb-4 text-red">Creative Resume</h2>
-            <p className="mb-6 text-gray-300">
-              A visually designed resume showcasing my personality and design skills
-            </p>
-            
-            <div className="mb-6 border-2 border-gray-700 rounded overflow-hidden">
-              <Image 
-                src="/resume-creative-preview.png"
-                alt="Creative Resume Preview"
-                width={400}
-                height={500}
-                className="w-full h-auto"
-              />
-            </div>
-
-            <a 
-              href="/houston-taylor-resume-creative.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full"
-            >
-              <motion.button
-                className="w-full bg-red text-white font-bold py-3 px-6 rounded"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                View Creative Resume
-              </motion.button>
-            </a>
-          </motion.div>
-
-          {/* ATS-Friendly Resume */}
-          <motion.div
-            className="bg-dark-neutral p-8 rounded-lg"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            <h2 className="text-2xl font-bold mb-4 text-red">ATS-Friendly Resume</h2>
-            <p className="mb-6 text-gray-300">
-              A clean, professional format optimized for applicant tracking systems
-            </p>
-            
-            <div className="mb-6 border-2 border-gray-700 rounded overflow-hidden">
-              <Image 
-                src="/resume-ats-preview.png"
-                alt="ATS Resume Preview"
-                width={400}
-                height={500}
-                className="w-full h-auto"
-              />
-            </div>
-
-            <a 
-              href="/houston-taylor-resume-ats.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full"
-            >
-              <motion.button
-                className="w-full bg-red text-white font-bold py-3 px-6 rounded"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                View ATS Resume
-              </motion.button>
-            </a>
-          </motion.div>
-        </div>
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      <div className="relative z-20">
+        <Header />
       </div>
+
+      {/* Header SVG */}
+      <div
+        className="mt-[-1rem] mb-2 flex justify-center"
+      >
+        <Image 
+          src="/resumes/resumes.svg"
+          alt="Resumes"
+          width={1440}
+          height={340}
+          className="w-full h-auto"
+        />
+      </div>
+
+      <main className="relative z-10 max-w-6xl mx-auto px-6 pb-8">
+        {/* panels */}
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-10">
+          <ResumeCard
+            title="Creative Resume"
+            blurb="A designed, personality-forward version that shows visual craft."
+            previewSrc="/resumes/Creative.png"
+            pdfHref="/resumes/Creative.pdf"
+            accent="pink"
+          />
+
+          <ResumeCard
+            title="ATS-Friendly Resume"
+            blurb="A clean, recruiter-friendly format optimized for scanning."
+            previewSrc="/resumes/ATS.png"
+            pdfHref="/resumes/ATS.pdf"
+            accent="teal"
+          />
+        </div>
+
+        {/* footer note */}
+        <div
+          className="mt-10 text-center text-xs font-extrabold tracking-widest"
+          style={{ color: 'rgba(0,0,0,0.55)' }}
+        >
+          TIP: “VIEW” opens in a new tab • “DOWNLOAD” saves the PDF
+        </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }

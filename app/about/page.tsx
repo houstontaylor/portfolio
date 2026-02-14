@@ -27,6 +27,20 @@ export default function AboutPage() {
       <Header />
       <SideNav sections={sections} />
       <ScrollToTop />
+
+      {/* Checkerboard background pattern */}
+      <div className="fixed inset-0 pointer-events-none opacity-5">
+        <div className="w-full h-full" style={{
+          backgroundImage: `
+            linear-gradient(45deg, var(--dark-neutral) 25%, transparent 25%),
+            linear-gradient(-45deg, var(--dark-neutral) 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, var(--dark-neutral) 75%),
+            linear-gradient(-45deg, transparent 75%, var(--dark-neutral) 75%)
+          `,
+          backgroundSize: '60px 60px',
+          backgroundPosition: '0 0, 0 30px, 30px -30px, -30px 0px'
+        }}/>
+      </div>
       
       <main className="pt-8 pb-8 px-8 max-w-6xl mx-auto relative z-10">
         {/* ===== INTRO SECTION ===== */}

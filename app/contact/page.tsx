@@ -284,6 +284,15 @@ export default function ContactPage() {
                             />
                           </div>
 
+                          {/* honeypot field for bots */}
+                          <input
+                            type="text"
+                            name="company"
+                            className="hidden"
+                            tabIndex={-1}
+                            autoComplete="off"
+                          />
+
                           <div>
                             <label style={labelStyle} className="block mb-1">
                               TRANSMISSION ID (EMAIL)
@@ -373,7 +382,7 @@ export default function ContactPage() {
                             }}
                           >
                             <span className="relative z-10 flex items-center justify-center gap-3">
-                              {submitSuccess ? "✅ MESSAGE SENT!" : isSubmitting ? "LAUNCHING..." : "SEND TO ORBIT!"}
+                              {submitSuccess ? "MESSAGE SENT!" : isSubmitting ? "LAUNCHING..." : "SEND TO ORBIT!"}
                             </span>
                           </motion.button>
                         </form>
