@@ -49,7 +49,7 @@ export default function ProjectsPage() {
           className="mb-4 flex justify-center"
         >
           <Image 
-            src="/projects.svg"
+            src="/projects/projects.svg"
             alt="Projects"
             width={800}
             height={200}
@@ -292,17 +292,16 @@ export default function ProjectsPage() {
                   transition={{ delay: idx * 0.05 }}
                   className={[
                     idx % 5 === 0 ? 'lg:col-span-2' : '',
-                    idx % 7 === 0 ? 'md:translate-y-2' : '',
+                    idx % 6 === 0 ? 'md:translate-y-2' : '',
                   ].join(' ')}
                 >
                   <TrapezoidCard
                     project={{
-                      id: p.slug,
+                      id: idx,
                       title: p.title,
                       tagline: p.tagline,
                       tags: p.tags,
                       href: `/projects/${p.slug}`,
-                      image: p.image,
                       number: String(p.id).padStart(2, '0'),
                       tone: p.color,
                       size: idx % 5 === 0 ? 'large' : 'small',

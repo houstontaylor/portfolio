@@ -51,19 +51,19 @@ export default function AboutPage() {
           className="mb-4 scroll-mt-8"
         >
           {/* Header SVG */}
-          <motion.div
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="mb-4 flex justify-center"
           >
             <Image 
               src="/about/about.svg"
-              alt="About"
+              alt="About Houston Taylor"
               width={800}
               height={250}
               className="w-3/5 h-auto"
             />
-          </motion.div>
+          </motion.h1>
 
           {/* Intro blurb + portrait */}
           <motion.div

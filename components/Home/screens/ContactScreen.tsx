@@ -59,7 +59,7 @@ export default function ContactScreen() {
               alt="Contact header"
               width={400}
               height={200}
-              className="w-full h-auto"
+              className="w-full h-auto mt-8"
             />
           </motion.div>
 

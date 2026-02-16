@@ -2,19 +2,17 @@
 
 import * as React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 
 type CardTone = 'teal' | 'pink' | 'green' | 'neutral';
 
 export type ProjectCard = {
-  id: string;
+  id: number;
   title: string;
   tagline: string;
   tags: string[];
   href: string;
-  image?: string; // optional hover background
-  number?: string; // e.g. "01"
+  number?: string;
   tone: CardTone;
   size?: 'small' | 'large';
 };
@@ -42,57 +40,72 @@ const TONE = {
   },
 } as const;
 
+const SAFE: Record<
+  'small' | 'large',
+  Record<'left' | 'right' | 'flat', { left: string; top: string; width: string; height: string }>
+> = {
+  large: {
+    // big cards
+    left:  { left: '7%',  top: '11%', width: '81%', height: '71%' },
+    right: { left: '5%',  top: '15%', width: '81%', height: '67%' },
+    flat:  { left: '4%',  top: '11%', width: '84%', height: '71%' },
+  },
+  small: {
+    // small cards
+    left:  { left: '7%', top: '11%', width: '82%', height: '71%' },
+    right: { left: '7%', top: '13%', width: '80%', height: '70%' },
+    flat:  { left: '5%', top: '9%', width: '84%', height: '75%' },
+  },
+} as const;
+
 function trapezoidPath(variant: 'left' | 'right' | 'flat') {
-  // Irregular, “almost trapezoid” shapes with rounded-ish corners via quadratic curves.
-  // ViewBox: 0 0 600 360
+  // Irregular shapes made in figma
   if (variant === 'left') {
     return `
-      M 70 40
-      Q 40 55 40 85
-      L 20 290
-      Q 18 320 45 330
-      L 520 345
-      Q 565 345 575 310
-      L 590 95
-      Q 595 55 555 45
-      L 165 30
-      Q 105 28 70 40
+      M 267 5
+      C 354 4 449 7 530 13
+      C 550 14 567 29 568 48
+      C 576 137 557 243 539 294
+      C 535 308 522 316 506 317
+      C 327 324 145 329 47 320
+      C 28 319 13 303 11 284
+      C 1 191 1 103 27 43
+      C 32 33 41 26 51 23
+      C 100 12 179 7 267 5
       Z
     `;
   }
   if (variant === 'right') {
     return `
-      M 60 55
-      Q 35 70 35 95
-      L 50 305
-      Q 55 345 95 345
-      L 545 340
-      Q 585 338 592 305
-      L 575 80
-      Q 570 35 530 40
-      L 135 50
-      Q 85 50 60 55
+      M 33 43
+      C 157 0 306 -2 504 15
+      C 523 16 538 29 543 47
+      C 560 112 573 176 570 224
+      C 568 249 563 269 552 284
+      C 542 299 527 309 506 312
+      C 381 332 263 326 78 314
+      C 60 313 45 301 39 285
+      C 21 234 0 161 6 77
+      C 7 61 18 48 33 43
       Z
     `;
   }
   return `
-    M 55 55
-    Q 35 70 35 95
-    L 35 295
-    Q 35 335 75 340
-    L 535 345
-    Q 575 345 585 310
-    L 585 95
-    Q 585 55 545 50
-    L 95 45
-    Q 70 45 55 55
+    M 47 10
+    C 231 0 350 5 531 18
+    C 553 20 571 37 572 59
+    C 574 148 562 217 534 290
+    C 528 306 512 316 495 317
+    C 310 326 255 323 71 311
+    C 52 310 37 298 32 280
+    C 9 204 2 138 6 51
+    C 7 29 25 12 47 10
     Z
   `;
 }
 
-function pickVariant(id: string) {
-  const n = [...id].reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
-  const v = n % 3;
+function pickVariant(id: number) {
+  const v = id % 3;
   return v === 0 ? 'left' : v === 1 ? 'right' : 'flat';
 }
 
@@ -101,9 +114,10 @@ export default function TrapezoidCard({ project }: { project: ProjectCard }) {
   const palette = TONE[project.tone];
   const variant = pickVariant(project.id);
   const path = trapezoidPath(variant);
-
+  const isLarge = project.size === 'large';
+  const s = SAFE[isLarge ? 'large' : 'small'][variant];
   const sizes =
-    project.size === 'large'
+    isLarge
       ? 'min-h-[240px] md:min-h-[280px]'
       : 'min-h-[210px] md:min-h-[240px]';
 
@@ -118,7 +132,7 @@ export default function TrapezoidCard({ project }: { project: ProjectCard }) {
       whileHover={reduceMotion ? undefined : { y: -4 }}
       transition={{ type: 'spring', stiffness: 300, damping: 24 }}
     >
-      {/* Click target (accessible) */}
+      {/* Click target */}
       <Link
         href={project.href}
         className={[
@@ -161,79 +175,85 @@ export default function TrapezoidCard({ project }: { project: ProjectCard }) {
             strokeWidth="10"
             strokeLinejoin="round"
           />
+          {/* outline */}
+          <path
+            d={path}
+            fill="transparent"
+            stroke="var(--foreground)"
+            strokeWidth="3"
+            strokeLinejoin="round"
+            transform="translate(-2 2) scale (1.02)"
+          />
         </svg>
 
-        {/* Hover image wash */}
-        {project.image ? (
-          <motion.div
-            className="absolute inset-0 -z-10 overflow-hidden"
-            initial={{ opacity: 0 }}
-            whileHover={reduceMotion ? undefined : { opacity: 0.25 }}
-            transition={{ duration: 0.2 }}
-            aria-hidden="true"
-          >
-            <Image
-              src={project.image}
-              alt=""
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-              priority={false}
-            />
-          </motion.div>
-        ) : null}
-
         {/* Content */}
-        <div className="relative h-full p-6 md:p-7">
-          <div className="flex items-start justify-between gap-4">
-            <h3 className="text-[1.6rem] leading-tight text-[color:var(--foreground)]">
-              {project.title}
-            </h3>
+        <div
+          className="absolute"
+          style={{
+            left: s.left,
+            top: s.top,
+            width: s.width,
+            height: s.height,
+          }}
+        >
+          <div className="h-full flex flex-col">
+            {/* top row */}
+            <div className="flex items-start justify-between gap-3">
+              <h3 style={{ color: 'var(--foreground)', opacity: 0.8 }}>
+                {project.title}
+              </h3>
 
-            {project.number ? (
-              <div
-                className="text-2xl md:text-3xl font-extrabold tracking-wide text-[color:var(--foreground)]/35"
-                aria-hidden="true"
-              >
-                {project.number}
-              </div>
-            ) : null}
-          </div>
-
-          <p className="mt-3 text-[color:var(--dark-green)] text-base md:text-[1.05rem] leading-snug">
-            {project.tagline}
-          </p>
-
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {project.tags.slice(0, 4).map((t) => (
-              <li key={t}>
-                <span
-                  className={[
-                    'inline-flex items-center rounded-full',
-                    'border-2 px-3 py-1 text-sm',
-                    'bg-[color:var(--light-neutral)]/70',
-                    'border-[color:var(--dark-green)]/50',
-                    'text-[color:var(--foreground)]',
-                  ].join(' ')}
+              {project.number ? (
+                <div
+                  className="shrink-0 text-2xl md:text-3xl font-extrabold tracking-wide text-[color:var(--foreground)]/35"
+                  aria-hidden="true"
                 >
-                  {t}
-                </span>
-              </li>
-            ))}
-            {project.tags.length > 4 ? (
-              <li>
-                <span className="inline-flex items-center rounded-full border-2 px-3 py-1 text-sm bg-[color:var(--light-neutral)]/70 border-[color:var(--dark-green)]/50 text-[color:var(--foreground)]">
-                  +{project.tags.length - 4}
-                </span>
-              </li>
-            ) : null}
-          </ul>
+                  {project.number}
+                </div>
+              ) : null}
+            </div>
 
-          <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--foreground)]">
-            <span className="underline decoration-[color:var(--dark-green)]/60 underline-offset-4 group-hover:decoration-[color:var(--dark-pink)]/70">
-              View project
-            </span>
-            <span aria-hidden="true">→</span>
+            {/* tagline */}
+            <p>
+              {project.tagline}
+            </p>
+
+            {/* tags */}
+            <ul className="mt-1 flex flex-wrap gap-1">
+              {(isLarge ? project.tags.slice(0, 4) : project.tags.slice(0, 2)).map((t) => (
+                <li key={t}>
+                  <span
+                    className={[
+                      'inline-flex items-center rounded-full border-2 px-3 py-1',
+                      isLarge ? 'text-sm' : 'text-[0.82rem]',
+                      'bg-[color:var(--light-neutral)]/70',
+                      'border-[color:var(--dark-green)]/50',
+                      'text-[color:var(--foreground)]',
+
+                    ].join(' ')}
+                    title={t}
+                  >
+                    {t}
+                  </span>
+                </li>
+              ))}
+
+              {project.tags.length > (isLarge ? 4 : 2) ? (
+                <li>
+                  <span className="inline-flex items-center rounded-full border-2 px-3 py-1 text-sm bg-[color:var(--light-neutral)]/70 border-[color:var(--dark-green)]/50 text-[color:var(--foreground)]">
+                    +{project.tags.length - (isLarge ? 4 : 2)}
+                  </span>
+                </li>
+              ) : null}
+            </ul>
+
+            {/* CTA pinned to bottom of safe area */}
+            <div className="mt-auto pt-2 pr-5 inline-flex items-center justify-end gap-2 text-sm font-semibold text-[color:var(--foreground)]">
+              <span className="underline decoration-[color:var(--dark-green)]/60 underline-offset-4 group-hover:decoration-[color:var(--dark-pink)]/70">
+                View project
+              </span>
+              <span aria-hidden="true">→</span>
+            </div>
           </div>
         </div>
       </Link>

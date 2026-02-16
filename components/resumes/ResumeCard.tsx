@@ -22,10 +22,10 @@ export default function ResumeCard({ title, blurb, previewSrc, pdfHref, accent }
       transition={{ duration: 0.45, ease: 'easeOut' }}
       className="relative"
     >
-      {/* red poster frame */}
+      {/* frame */}
       <div
         className="rounded-[28px] p-[10px] shadow-[0_22px_40px_rgba(0,0,0,0.18)]"
-        style={{ background: 'var(--dark-pink)' }}
+        style={{ background: 'var(--red)' }}
       >
         {/* inner paper */}
         <div

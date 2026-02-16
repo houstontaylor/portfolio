@@ -92,7 +92,7 @@ export default function ProjectsScreen() {
         className="flex justify-center mb-4"
       >
         <Image 
-          src="/projects.svg"
+          src="/projects/projects.svg"
           alt="Projects header"
           width={500}
           height={200}

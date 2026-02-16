@@ -31,7 +31,7 @@ export default function Header() {
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <span 
-                    className="text-lg font-bold tracking-wider relative"
+                    className="text-xl font-bold tracking-wider relative"
                     style={{ 
                       color: isActive ? 'var(--red)' : 'var(--foreground)',
                     }}

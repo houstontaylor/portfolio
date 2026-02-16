@@ -34,6 +34,39 @@ export interface ProjectData {
 export const projectsData: ProjectData[] = [
   {
     id: 1,
+    slug: 'lulasapp',
+    title: "Lula's Coffee Co. Mobile Ordering App",
+    tagline: 'Order Local Coffee with Ease',
+    description: 'A platform designed to streamline the coffee ordering experience.',
+    fullDescription: [
+      '',
+      ''
+    ],
+    tags: ['Mobile App', 'E-commerce', 'UI/UX Design', 'Full-Stack Development'],
+    tech: ['React Native', 'Node.js', 'MongoDB'],
+    image: '/projects/lulasapp/hero.jpg',
+    images: [
+      '/projects/lulasapp/wireframes.jpg',
+      '/projects/lulasapp/figma-iterations.jpg'
+    ],
+    featured: true,
+    color: 'green',
+    links: {
+      github: 'https://github.com/lulasapp'
+    },
+    year: 2026,
+    role: 'Full-Stack Developer',
+    team: 'Solo Project',
+    challenge: '',
+    solution: '',
+    impact: [
+      '',
+      '',
+      ''
+    ]
+  },
+  {
+    id: 2,
     slug: 'podbot',
     title: 'PodBot',
     tagline: 'AI-Powered Podcast Chatbots',
@@ -70,7 +103,7 @@ export const projectsData: ProjectData[] = [
     ]
   },
   {
-    id: 2,
+    id: 3,
     slug: 'queerx',
     title: 'QUEERx',
     tagline: 'LGBTQ+-Friendly Healthcare Provider Finder',
@@ -107,7 +140,7 @@ export const projectsData: ProjectData[] = [
     ]
   },
   {
-    id: 3,
+    id: 4,
     slug: 'tend',
     title: 'Tend',
     tagline: 'Friendship Maintenance Through Plant Care',
@@ -144,7 +177,7 @@ export const projectsData: ProjectData[] = [
     ]
   },
   {
-    id: 4,
+    id: 5,
     slug: 'filmflicks',
     title: 'FilmFlicks',
     tagline: 'Social Movie Discovery Platform',
@@ -180,9 +213,9 @@ export const projectsData: ProjectData[] = [
     ]
   },
   {
-    id: 5,
-    slug: 'accessible-barcode-scanner',
-    title: 'Accessible Barcode Scanner',
+    id: 6,
+    slug: 'barcodeScanner',
+    title: 'Blind/Low-Vision Barcode Scanner',
     tagline: 'Allergen Detection for Blind & Low-Vision Users',
     description: 'An app helping blind and low-vision users identify allergens in products through scanning with haptic feedback.',
     fullDescription: [
@@ -192,11 +225,11 @@ export const projectsData: ProjectData[] = [
     ],
     tags: ['Accessibility', 'Mobile', 'Computer Vision', 'LLM'],
     tech: ['Mobile Development', 'API Integration', 'LLM', 'Computer Vision', 'Accessibility Standards'],
-    image: '/projects/barcode-scanner/hero.jpg',
+    image: '/projects/barcodeScanner/hero.jpg',
     images: [
-      '/projects/barcode-scanner/scanning.jpg',
-      '/projects/barcode-scanner/results.jpg',
-      '/projects/barcode-scanner/alternatives.jpg'
+      '/projects/barcodeScanner/scanning.jpg',
+      '/projects/barcodeScanner/results.jpg',
+      '/projects/barcodeScanner/alternatives.jpg'
     ],
     featured: false,
     color: 'teal',
@@ -217,7 +250,7 @@ export const projectsData: ProjectData[] = [
     ]
   },
   {
-    id: 6,
+    id: 7,
     slug: 'critter',
     title: 'Critter',
     tagline: 'Environmental Puzzle-Platformer',
@@ -254,10 +287,10 @@ export const projectsData: ProjectData[] = [
     ]
   },
   {
-    id: 7,
-    slug: 'interstellar-postal-service',
-    title: 'InterStellar Postal Service',
-    tagline: 'Space-Themed Educational Game',
+    id: 8,
+    slug: 'isps',
+    title: 'InterStellar Postal Service (ISPS)',
+    tagline: 'Educational Mail Game',
     description: 'A space-themed Unity game teaching postal systems through package sorting and alien delivery mechanics.',
     fullDescription: [
       'A polished Unity game about delivering packages in space. Features custom pixel art, engaging sorting mechanics, and teaches postal systems through space-themed gameplay with alien planets.',
@@ -266,11 +299,11 @@ export const projectsData: ProjectData[] = [
     ],
     tags: ['Unity', 'Pixel Art', 'Game Design', 'Educational'],
     tech: ['Unity', 'C#', 'Pixel Art', 'UI Design', 'Educational Design'],
-    image: '/projects/interstellar-postal/hero.jpg',
+    image: '/projects/isps/hero.jpg',
     images: [
-      '/projects/interstellar-postal/sorting.jpg',
-      '/projects/interstellar-postal/delivery.jpg',
-      '/projects/interstellar-postal/upgrades.jpg'
+      '/projects/isps/sorting.jpg',
+      '/projects/isps/delivery.jpg',
+      '/projects/isps/upgrades.jpg'
     ],
     featured: false,
     color: 'neutral',
@@ -291,8 +324,8 @@ export const projectsData: ProjectData[] = [
     ]
   },
   {
-    id: 8,
-    slug: 'raccoon-mama',
+    id: 9,
+    slug: 'raccoonMama',
     title: 'Raccoon Mama',
     tagline: 'Stanford Campus Adventure',
     description: 'A Unity platformer following a raccoon mother searching for her babies across Stanford campus.',
@@ -303,11 +336,11 @@ export const projectsData: ProjectData[] = [
     ],
     tags: ['Unity', 'Game Design', 'C#', 'Campus Culture'],
     tech: ['Unity', 'C#', 'Digital Art', 'Level Design', 'Game Mechanics'],
-    image: '/projects/raccoon-mama/hero.jpg',
+    image: '/projects/raccoonMama/hero.jpg',
     images: [
-      '/projects/raccoon-mama/campus.jpg',
-      '/projects/raccoon-mama/mama.jpg',
-      '/projects/raccoon-mama/locations.jpg'
+      '/projects/raccoonMama/campus.jpg',
+      '/projects/raccoonMama/mama.jpg',
+      '/projects/raccoonMama/locations.jpg'
     ],
     featured: false,
     color: 'pink',
@@ -327,10 +360,10 @@ export const projectsData: ProjectData[] = [
     ]
   },
   {
-    id: 9,
-    slug: 'national-gallery-analysis',
-    title: 'National Gallery Art Acquisition Analysis',
-    tagline: 'Power Dynamics in Art Institutions',
+    id: 10,
+    slug: 'nationalGallery',
+    title: 'National Gallery Data Visualization',
+    tagline: 'Art Acquisition and Power',
     description: 'Interactive data visualization exploring power dynamics in art acquisition and display at the National Gallery.',
     fullDescription: [
       'A comprehensive data analysis titled "What Shapes What We See?" examining manifestations of power in art acquisition and display trends.',
@@ -339,11 +372,11 @@ export const projectsData: ProjectData[] = [
     ],
     tags: ['Data Visualization', 'D3.js', 'Analysis', 'Art History'],
     tech: ['D3.js', 'Observable', 'Data Analysis', 'Interactive Design'],
-    image: '/projects/national-gallery/hero.jpg',
+    image: '/projects/nationalGallery/hero.jpg',
     images: [
-      '/projects/national-gallery/viz1.jpg',
-      '/projects/national-gallery/viz2.jpg',
-      '/projects/national-gallery/viz3.jpg'
+      '/projects/nationalGallery/viz1.jpg',
+      '/projects/nationalGallery/viz2.jpg',
+      '/projects/nationalGallery/viz3.jpg'
     ],
     featured: false,
     color: 'teal',
@@ -363,8 +396,8 @@ export const projectsData: ProjectData[] = [
     ]
   },
   {
-    id: 10,
-    slug: 'brainspark-games-strategy',
+    id: 11,
+    slug: 'brainspark',
     title: 'BrainSpark Games Strategy',
     tagline: 'EdTech Product Strategy',
     description: 'Product management strategy and PRD for educational gaming company\'s MathQuest 2.',
@@ -400,9 +433,9 @@ export const projectsData: ProjectData[] = [
     ]
   },
   {
-    id: 11,
-    slug: 'sign-language-recognition',
-    title: 'Inclusive ASL Fingerspelling Recognition',
+    id: 12,
+    slug: 'ASLVision',
+    title: 'Fingerspelling in CV',
     tagline: 'Bias Mitigation in Computer Vision',
     description: 'Computer vision project improving fingerspelling recognition across different skin tones and lighting.',
     fullDescription: [
@@ -412,11 +445,11 @@ export const projectsData: ProjectData[] = [
     ],
     tags: ['Computer Vision', 'Machine Learning', 'Accessibility', 'Bias Mitigation'],
     tech: ['Python', 'Computer Vision', 'Machine Learning', 'Data Analysis'],
-    image: '/projects/sign-language/hero.jpg',
+    image: '/projects/ASLVision/hero.jpg',
     images: [
-      '/projects/sign-language/model.jpg',
-      '/projects/sign-language/testing.jpg',
-      '/projects/sign-language/results.jpg'
+      '/projects/ASLVision/model.jpg',
+      '/projects/ASLVision/testing.jpg',
+      '/projects/ASLVision/results.jpg'
     ],
     featured: false,
     color: 'neutral',
@@ -434,8 +467,8 @@ export const projectsData: ProjectData[] = [
     ]
   },
   {
-    id: 12,
-    slug: 'archival-echoes',
+    id: 13,
+    slug: 'archivalEchoes',
     title: 'Archival Echoes',
     tagline: 'Interactive Fiction on Information Control',
     description: 'A Twine-based interactive fiction exploring information integrity and archival power dynamics.',
@@ -446,11 +479,11 @@ export const projectsData: ProjectData[] = [
     ],
     tags: ['Twine', 'Interactive Fiction', 'Information Integrity', 'Narrative'],
     tech: ['Twine', 'Interactive Narrative', 'Game Design'],
-    image: '/projects/archival-echoes/hero.jpg',
+    image: '/projects/archivalEchoes/hero.jpg',
     images: [
-      '/projects/archival-echoes/choice1.jpg',
-      '/projects/archival-echoes/choice2.jpg',
-      '/projects/archival-echoes/outcome.jpg'
+      '/projects/archivalEchoes/choice1.jpg',
+      '/projects/archivalEchoes/choice2.jpg',
+      '/projects/archivalEchoes/outcome.jpg'
     ],
     featured: false,
     color: 'pink',

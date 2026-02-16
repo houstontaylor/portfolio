@@ -457,7 +457,7 @@ export default function ContactPage() {
                         className="font-bold"
                         style={{
                           fontFamily: "var(--font-pacifico)",
-                          color: "var(--dark-neutral)",
+                          color: "var(--deep-neutral)",
                           fontSize: "clamp(1.05rem, 1.5vw, 1.45rem)",
                           lineHeight: 1.05,
                         }}
@@ -551,7 +551,7 @@ export default function ContactPage() {
                         className="font-bold"
                         style={{
                           fontFamily: "var(--font-pacifico)",
-                          color: "var(--dark-neutral)",
+                          color: "var(--deep-neutral)",
                           fontSize: "clamp(1.05rem, 1.5vw, 1.45rem)",
                           lineHeight: 1.05,
                           marginTop: 10,
