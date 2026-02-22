@@ -3,17 +3,14 @@
 import * as React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
+import { ProjectData } from '@/app/data/projects';
 
-type CardTone = 'teal' | 'pink' | 'green' | 'neutral';
+type CardTone = ProjectData['color'];
 
-export type ProjectCard = {
-  id: number;
-  title: string;
-  tagline: string;
-  tags: string[];
+export type ProjectCard = Pick<ProjectData, 'id' | 'title' | 'tagline' | 'tags' > & {
+  tone: CardTone;
   href: string;
   number?: string;
-  tone: CardTone;
   size?: 'small' | 'large';
 };
 
@@ -32,11 +29,6 @@ const TONE = {
     fill: 'var(--green)',
     fillSoft: 'var(--light-green)',
     stroke: 'var(--dark-green)',
-  },
-  neutral: {
-    fill: 'var(--neutral)',
-    fillSoft: 'var(--light-neutral)',
-    stroke: 'var(--dark-neutral)',
   },
 } as const;
 
@@ -182,7 +174,7 @@ export default function TrapezoidCard({ project }: { project: ProjectCard }) {
             stroke="var(--foreground)"
             strokeWidth="3"
             strokeLinejoin="round"
-            transform="translate(-2 2) scale (1.02)"
+            transform="translate(-2 2) scale(1.02)"
           />
         </svg>
 
@@ -199,9 +191,9 @@ export default function TrapezoidCard({ project }: { project: ProjectCard }) {
           <div className="h-full flex flex-col">
             {/* top row */}
             <div className="flex items-start justify-between gap-3">
-              <h3 style={{ color: 'var(--foreground)', opacity: 0.8 }}>
+              <h2 style={{ color: 'var(--foreground)', opacity: 0.8 }}>
                 {project.title}
-              </h3>
+              </h2>
 
               {project.number ? (
                 <div
@@ -214,9 +206,9 @@ export default function TrapezoidCard({ project }: { project: ProjectCard }) {
             </div>
 
             {/* tagline */}
-            <p>
+            <h4>
               {project.tagline}
-            </p>
+            </h4>
 
             {/* tags */}
             <ul className="mt-1 flex flex-wrap gap-1">

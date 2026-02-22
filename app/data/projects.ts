@@ -1,16 +1,26 @@
 export interface ProjectData {
+  // Core Metadata
   id: number;
   slug: string;
   title: string;
-  tagline: string;
-  description: string;
-  fullDescription: string[];
-  tags: string[];
-  tech: string[];
-  image: string;
-  images: string[];
+  tagline: string; // One-liner for cards
+  color: 'teal' | 'pink' | 'green';
   featured: boolean;
-  color: 'teal' | 'pink' | 'green' | 'neutral';
+  year: number;
+
+  // Header Info
+  role: string; // "Lead UX Designer", "Full-Stack Developer"
+  team?: string; // "Solo project", "Team of 4", "2 designers, 3 engineers"
+  timeline: string; // "3 months", "Sep 2023 - Dec 2023", "2 weeks sprint"
+  
+  // Technologies/Tools
+  tags: string[]; // High-level categories: ['AI/ML', 'UI/UX', 'Accessibility']
+  tech: string[]; // Specific tech: ['React', 'Figma', 'Python', 'Firebase']
+
+  // Overview Section
+  overview: string; // 2-3 sentence summary of what the project is and why it matters
+  
+  // Links
   links: {
     live?: string;
     github?: string;
@@ -22,13 +32,58 @@ export interface ProjectData {
     observable?: string;
     prd?: string;
     companyDetails?: string;
+    other?: { label: string; url: string }[]; // For any additional links
   };
-  year: number;
-  role: string;
-  team?: string;
-  challenge?: string;
-  solution?: string;
-  impact?: string[];
+
+  // Media
+  image: string; // Primary hero image
+  images: string[]; // Additional screenshots, mockups, diagrams
+
+  // Problem
+  problem: {
+    context: string; // What's the situation? Who's affected?
+    gap: string; // What's missing or broken? Why does this matter?
+    goals?: string[]; // Specific objectives to achieve
+  };
+
+  // Research & Discovery
+  research?: {
+    interviews?: string[]; // Paragraphs or bullet points about user interviews
+    marketResearch?: string[]; // Competitive analysis, market gaps, trends
+    analysis?: string[]; // Synthesis, insights, personas, journey maps
+  };
+
+  // Design Process
+  process?: {
+    approach?: string; // Overall methodology ("Design thinking", "Agile sprints")
+    keyDecisions?: string[]; // Important choices made and why
+    constraints?: string[]; // Technical, time, budget, or user constraints
+    iterations?: string[]; // What was tried and discarded, learnings from prototypes
+  };
+
+  // Solution
+  solution: {
+    approach: string; // How does this project address the gap?
+    features: {
+      name: string;
+      description: string;
+      image?: string; // Screenshot/diagram for this feature
+    }[];
+    finalIteration?: {
+      description: string; // Narrative about the polished result
+      images: string[]; // High-fidelity screenshots, demo video thumbnail, etc.
+    };
+  };
+
+  // Impact & Results
+  impact?: {
+    metrics?: string[]; // "50% reduction in task time", "500+ downloads"
+    outcomes?: string[]; // Qualitative results, user testimonials, adoption
+    lessonsLearned?: string[]; // What you'd do differently, key takeaways
+  };
+
+  // Related Projects
+  relatedProjects?: number[]; // Array of project IDs to show at the bottom
 }
 
 export const projectsData: ProjectData[] = [
@@ -37,470 +92,956 @@ export const projectsData: ProjectData[] = [
     slug: 'lulasapp',
     title: "Lula's Coffee Co. Mobile Ordering App",
     tagline: 'Order Local Coffee with Ease',
-    description: 'A platform designed to streamline the coffee ordering experience.',
-    fullDescription: [
-      '',
-      ''
-    ],
+    overview: 'A mobile platform designed to streamline the coffee ordering experience for local cafes, making it easier for customers to order ahead and support small businesses.',
+    color: 'green',
+    featured: true,
+    year: 2026,
+    
+    role: 'Full-Stack Developer',
+    team: 'Solo Project',
+    timeline: '4 months',
+    
     tags: ['Mobile App', 'E-commerce', 'UI/UX Design', 'Full-Stack Development'],
     tech: ['React Native', 'Node.js', 'MongoDB'],
+    
+    links: {
+      github: 'https://github.com/lulasapp'
+    },
+    
     image: '/projects/lulasapp/hero.jpg',
     images: [
       '/projects/lulasapp/wireframes.jpg',
       '/projects/lulasapp/figma-iterations.jpg'
     ],
-    featured: true,
-    color: 'green',
-    links: {
-      github: 'https://github.com/lulasapp'
+    
+    problem: {
+      context: 'Local coffee shops struggle to compete with chains that have mobile ordering.',
+      gap: 'Small coffee shops lack affordable, easy-to-use mobile ordering solutions.',
+      goals: ['Streamline ordering process', 'Support local businesses', 'Reduce wait times']
     },
-    year: 2026,
-    role: 'Full-Stack Developer',
-    team: 'Solo Project',
-    challenge: '',
-    solution: '',
-    impact: [
-      '',
-      '',
-      ''
-    ]
+    
+    solution: {
+      approach: 'Built a full-stack mobile ordering platform specifically designed for independent coffee shops.',
+      features: [
+        {
+          name: 'Mobile Ordering',
+          description: 'Order ahead and skip the line'
+        },
+        {
+          name: 'Payment Integration',
+          description: 'Secure payment processing'
+        },
+        {
+          name: 'Order Tracking',
+          description: 'Real-time order status updates'
+        }
+      ]
+    },
   },
+
   {
     id: 2,
     slug: 'podbot',
     title: 'PodBot',
     tagline: 'AI-Powered Podcast Chatbots',
-    description: 'An accessible AI chatbot that answers podcast listener questions in the style of the host using past episodes, with full transcripts and source citations.',
-    fullDescription: [
-      'Started as an independent study combining accessibility work and AI chatbot development. PodBot answers podcast listeners\' questions in the host\'s style using only past episodes as sources, with accessible transcripts and episode carousels.',
-      'Combined two existing projects: accessible podcast captioning (including ads with affiliate links) and another team\'s Planet Money chatbot. We interviewed podcast listeners and accessibility advocates to understand needs for inclusive podcast interaction.',
-      'After the independent study completed, our professor invested his own money to begin a startup called Sunao Labs, where I served as Project Manager and Frontend Designer.'
-    ],
+    overview: 'An accessible AI chatbot that answers podcast listener questions in the style of the host using past episodes, with full transcripts and source citations.',
+    color: 'teal',
+    featured: true,
+    year: 2024,
+    
+    role: 'Project Manager & Frontend Designer',
+    team: 'Sunao Lab startup team (4 people)',
+    timeline: '6 months',
+    
     tags: ['AI/ML', 'Startup', 'Accessibility', 'PM'],
     tech: ['Machine Learning', 'NLP', 'Figma', 'Frontend Development', 'Captioning'],
+    
+    links: {
+      figma: 'https://figma.com/podbot-designs',
+      article: 'https://jskfellows.stanford.edu/can-we-build-an-ai-chatbot-for-journalism-79ffe39e053e'
+    },
+    
     image: '/projects/podbot/hero.jpg',
     images: [
       '/projects/podbot/wireframes.jpg',
       '/projects/podbot/figma-iterations.jpg',
       '/projects/podbot/accessibility-testing.jpg'
     ],
-    featured: true,
-    color: 'pink',
-    links: {
-      figma: 'https://figma.com/podbot-designs',
-      article: 'https://jskfellows.stanford.edu/can-we-build-an-ai-chatbot-for-journalism-79ffe39e053e'
+    
+    research: {
+      interviews: [
+        'Interviewed podcast listeners about their information verification needs',
+        'Spoke with accessibility advocates about captioning gaps',
+        'Discovered users wanted to verify information while maintaining host authenticity'
+      ],
+      marketResearch: [
+        'Analyzed existing podcast platforms for captioning coverage',
+        'Found comprehensive captioning lacking, especially for dynamic ad content'
+      ],
+      analysis: [
+        'Combined insights from two existing projects: accessible podcast captioning and Planet Money chatbot',
+        'Identified opportunity to merge accessibility and AI chatbot development'
+      ]
     },
-    year: 2024,
-    role: 'Project Manager & Frontend Designer',
-    team: 'Sunao Lab startup team (4 people)',
-    challenge: 'Podcast platforms lacked comprehensive captioning, especially for dynamic ad content. Users wanted to verify information by accessing original episode sources while maintaining host voice authenticity.',
-    solution: 'Created accessible podcast captioning with ads and affiliate links, combined with AI chatbot that maintains host voice. Implemented frontend UI/UX design with accessible transcripts and clear citation display.',
-    impact: [
-      'Secured startup funding from Stanford professor',
-      'Featured in Stanford journalism fellowship article',
-      'Created proof of concept for accessible podcast interaction',
-      'Demonstrated how AI can maintain authentic voice while serving accessibility needs'
-    ]
+    
+    problem: {
+      context: 'Podcast platforms lacked comprehensive captioning, especially for dynamic ad content. Users wanted to verify information by accessing original episode sources.',
+      gap: 'No solution existed that combined accessible transcripts with AI-powered question answering while maintaining host voice authenticity.',
+      goals: ['Provide accessible podcast captioning', 'Enable source verification', 'Maintain authentic host voice']
+    },
+    
+    process: {
+      approach: 'Started as independent study, then secured startup funding',
+      keyDecisions: [
+        'Combined two existing projects into unified solution',
+        'Prioritized accessibility from the start, not as afterthought',
+        'Chose to maintain host voice authenticity over generic AI responses'
+      ]
+    },
+    
+    solution: {
+      approach: 'Created accessible podcast captioning with ads and affiliate links, combined with AI chatbot that maintains host voice.',
+      features: [
+        {
+          name: 'Accessible Transcripts',
+          description: 'Full captioning including ads with affiliate links'
+        },
+        {
+          name: 'AI Chatbot',
+          description: 'Answers questions in host\'s style using only past episodes'
+        },
+        {
+          name: 'Source Citations',
+          description: 'Clear episode references with accessible transcript access'
+        },
+        {
+          name: 'Episode Carousels',
+          description: 'Browse and discover related episodes easily'
+        }
+      ],
+      finalIteration: {
+        description: 'Frontend UI/UX design with accessible transcripts and clear citation display',
+        images: ['/projects/podbot/final-ui.jpg']
+      }
+    },
+    
+    impact: {
+      metrics: [
+        'Secured startup funding from Stanford professor',
+        'Featured in Stanford journalism fellowship article'
+      ],
+      outcomes: [
+        'Created proof of concept for accessible podcast interaction',
+        'Demonstrated how AI can maintain authentic voice while serving accessibility needs'
+      ]
+    },
   },
+
   {
     id: 3,
     slug: 'queerx',
     title: 'QUEERx',
     tagline: 'LGBTQ+-Friendly Healthcare Provider Finder',
-    description: 'A React app helping queer patients find LGBTQ+-friendly healthcare providers through crowdsourced reviews.',
-    fullDescription: [
-      'A comprehensive platform that allows LGBTQ+ patients to vet healthcare providers based on community reviews. Addresses critical gaps in healthcare accessibility for queer individuals seeking sensitive, affirming care.',
-      'Interviewed about a dozen people across different age groups in the United States (19-80s) to understand healthcare challenges in LGBTQ+ community. Discovered issues like providers making assumptions about sexual activity based on orientation, or lack of gender-affirming care knowledge.',
-      'Won "Greatest Social Impact" award at CS 147 final presentation, voted by visiting professionals in the industry.'
-    ],
+    overview: 'A React app helping queer patients find LGBTQ+-friendly healthcare providers through crowdsourced reviews, addressing critical gaps in healthcare accessibility.',
+    color: 'teal',
+    featured: true,
+    year: 2023,
+    
+    role: 'Full-Stack Developer (Solo Coding)',
+    team: 'Group of 4 (research), Solo development',
+    timeline: '10 weeks (CS 147 course)',
+    
     tags: ['React', 'Healthcare', 'Social Impact', 'UI/UX'],
     tech: ['React', 'JavaScript', 'CSS', 'Figma', 'User Research'],
+    
+    links: {
+      figma: 'https://www.figma.com/design/qVVPOrhMlClvlKx8GzU1Sp/QueerX-Workspace',
+      github: 'https://github.com/houstontaylor/QUEERx'
+    },
+    
     image: '/projects/queerx/hero.jpg',
     images: [
       '/projects/queerx/user-interviews.jpg',
       '/projects/queerx/persona-development.jpg',
       '/projects/queerx/wireframe-iterations.jpg'
     ],
-    featured: true,
-    color: 'teal',
-    links: {
-      figma: 'https://www.figma.com/design/qVVPOrhMlClvlKx8GzU1Sp/QueerX-Workspace',
-      github: 'https://github.com/houstontaylor/QUEERx'
+    
+    research: {
+      interviews: [
+        'Interviewed about a dozen people across different age groups (19-80s) in the United States',
+        'Discovered issues like providers making assumptions about sexual activity based on orientation',
+        'Found lack of gender-affirming care knowledge among many providers'
+      ],
+      analysis: [
+        'Developed personas representing different LGBTQ+ community needs',
+        'Mapped patient journeys to identify trust and privacy concerns',
+        'Identified need for peer-verified review system'
+      ]
     },
-    year: 2023,
-    role: 'Full-Stack Developer (Solo Coding)',
-    team: 'Group of 4 (research), Solo development',
-    challenge: 'Healthcare providers often make incorrect assumptions about LGBTQ+ patients\' needs. No centralized resource for finding LGBTQ+-friendly providers with verified reviews.',
-    solution: 'Solo developed entire React application with crowdsourced review system. Conducted extensive user research across age groups to understand community needs and design for trust and privacy.',
-    impact: [
-      'Won "Greatest Social Impact" award at CS 147 final presentation',
-      'Addresses critical healthcare accessibility gap for LGBTQ+ community',
-      'Interviewed diverse age groups (19-80) across the United States',
-      'Created peer review system for sensitive healthcare information'
-    ]
+    
+    problem: {
+      context: 'Healthcare providers often make incorrect assumptions about LGBTQ+ patients\' needs, leading to inadequate or harmful care.',
+      gap: 'No centralized resource for finding LGBTQ+-friendly providers with verified, trustworthy reviews.',
+      goals: ['Help LGBTQ+ patients find affirming care', 'Create trusted review system', 'Improve healthcare accessibility']
+    },
+    
+    solution: {
+      approach: 'Solo developed entire React application with crowdsourced review system designed for trust and privacy.',
+      features: [
+        {
+          name: 'Provider Search',
+          description: 'Find healthcare providers by specialty and location'
+        },
+        {
+          name: 'Community Reviews',
+          description: 'Read and contribute reviews from LGBTQ+ patients'
+        },
+        {
+          name: 'Privacy-First Design',
+          description: 'Anonymous reviews with verified patient status'
+        },
+        {
+          name: 'Provider Profiles',
+          description: 'Detailed information about LGBTQ+-friendly practices'
+        }
+      ]
+    },
+    
+    impact: {
+      outcomes: [
+        'Won "Greatest Social Impact" award at CS 147 final presentation',
+        'Addresses critical healthcare accessibility gap for LGBTQ+ community',
+        'Created peer review system for sensitive healthcare information'
+      ],
+      lessonsLearned: [
+        'Importance of building trust in sensitive health contexts',
+        'Value of extensive user research across age groups',
+        'Balancing privacy with verification in review systems'
+      ]
+    },
   },
+
   {
     id: 4,
-    slug: 'tend',
-    title: 'Tend',
-    tagline: 'Friendship Maintenance Through Plant Care',
-    description: 'A behavior change app using plant metaphors to help new graduates nurture and maintain their friendships.',
-    fullDescription: [
-      'An innovative behavior change design that gamifies friendship maintenance for new graduates. Users create virtual plants representing each friendship and care for them through real-world activities.',
-      'Texting gives sun, calling provides water, meeting in person adds nutrients. Each plant has different care needs based on friendship dynamics and user goals.',
-      'Interviewed and ran behavior change studies on about a dozen new graduates to understand challenges in maintaining friendships after leaving college environment.'
-    ],
-    tags: ['Figma', 'Behavior Change', 'UI/UX', 'Psychology'],
-    tech: ['Figma', 'User Research', 'Behavioral Psychology', 'Prototyping'],
-    image: '/projects/tend/hero.jpg',
-    images: [
-      '/projects/tend/plant-mechanic.jpg',
-      '/projects/tend/action-logging.jpg',
-      '/projects/tend/widget-design.jpg'
-    ],
-    featured: true,
-    color: 'green',
-    links: {
-      figma: 'https://www.figma.com/design/MpbBcBCQncpo5LsIaRjyTk/Clickable-Prototype',
-      writeup: 'https://highercommonsense.com/cs247b/16794/'
-    },
-    year: 2025,
-    role: 'Designer & Researcher',
-    team: 'Group of 4',
-    challenge: 'New graduates struggle to maintain friendships after leaving college environment. Abstract friendship concepts are hard to translate into engaging, sustainable behaviors.',
-    solution: 'Created plant metaphor system where friendships are represented as plants needing care (texting=sun, calling=water, meeting=nutrients). Home screen widgets provide quick friendship health overview.',
-    impact: [
-      'Novel approach to maintaining social connections for young adults',
-      'Conducted behavior change studies with new graduates',
-      'Gamified abstract social concepts into concrete actions',
-      'Created sustainable behavior change mechanics'
-    ]
-  },
-  {
-    id: 5,
     slug: 'filmflicks',
     title: 'FilmFlicks',
     tagline: 'Social Movie Discovery Platform',
-    description: 'A movie recommendation app where users swipe on films and join groups for personalized suggestions.',
-    fullDescription: [
-      'A social movie discovery platform combining individual preferences with group dynamics. Users swipe on movies like Letterboxd, then join groups with friends to get curated recommendations.',
-      'Frontend team of 3 (including me) worked on Figma design and React development, while 1 backend developer handled LLM functionality for smart recommendations.',
-      'Features Tinder-style swiping, group formation, and filtering by genre, length, time, and more with LLM-powered recommendation engine.'
-    ],
+    overview: 'A movie recommendation app where users swipe on films and join groups for personalized suggestions powered by LLM technology.',
+    color: 'pink',
+    featured: true,
+    year: 2024,
+    
+    role: 'Frontend Developer & Designer',
+    team: 'Frontend team of 3 + 1 backend developer',
+    timeline: '10 weeks',
+    
     tags: ['React', 'Social Features', 'UI/UX', 'LLM'],
     tech: ['React', 'JavaScript', 'Figma', 'LLM Integration', 'Recommendation Algorithms'],
+    
+    links: {
+      figma: 'https://www.figma.com/design/avbYqkfzrZbES49Aqu9lqg/CS194W--Flim-Flicks'
+    },
+    
     image: '/projects/filmflicks/hero.jpg',
     images: [
       '/projects/filmflicks/swipe-interface.jpg',
       '/projects/filmflicks/group-recommendations.jpg',
       '/projects/filmflicks/filters.jpg'
     ],
-    featured: true,
-    color: 'neutral',
-    links: {
-      figma: 'https://www.figma.com/design/avbYqkfzrZbES49Aqu9lqg/CS194W--Flim-Flicks'
+    
+    problem: {
+      context: 'Movie discovery is overwhelming with too many streaming options. Friend groups struggle to find films everyone wants to watch.',
+      gap: 'Existing platforms don\'t balance individual preferences with group dynamics for collaborative watching decisions.',
+      goals: ['Simplify movie discovery', 'Enable group decision-making', 'Personalize recommendations']
     },
-    year: 2024,
-    role: 'Frontend Developer & Designer',
-    team: 'Frontend team of 3 + 1 backend developer',
-    challenge: 'Movie discovery is overwhelming with too many options. Existing platforms don\'t balance individual preferences with group dynamics for watching together.',
-    solution: 'Created Tinder-style swiping for individual preferences combined with group formation for collective recommendations. Integrated LLM for smart filtering and suggestions.',
-    impact: [
-      'Simplified movie discovery for friend groups',
-      'Personalized AI recommendations',
-      'Balanced individual and group preferences',
-      'Collaborative frontend development experience'
-    ]
+    
+    solution: {
+      approach: 'Created Tinder-style swiping for individual preferences combined with group formation for collective recommendations powered by LLM.',
+      features: [
+        {
+          name: 'Swipe Interface',
+          description: 'Letterboxd-style movie swiping to build preference profile'
+        },
+        {
+          name: 'Group Formation',
+          description: 'Create watch groups with friends for collaborative recommendations'
+        },
+        {
+          name: 'Smart Filtering',
+          description: 'Filter by genre, length, time period, and more'
+        },
+        {
+          name: 'LLM Recommendations',
+          description: 'AI-powered suggestions that balance individual and group preferences'
+        }
+      ]
+    },
+    
+    impact: {
+      outcomes: [
+        'Simplified movie discovery for friend groups',
+        'Balanced individual and group preferences effectively',
+        'Collaborative frontend development experience'
+      ]
+    },
   },
+
+  {
+    id: 5,
+    slug: 'tend',
+    title: 'Tend',
+    tagline: 'Friendship Maintenance Through Plant Care',
+    overview: 'A behavior change app using plant metaphors to help new graduates nurture and maintain their friendships through gamified interactions.',
+    color: 'green',
+    featured: true,
+    year: 2025,
+    
+    role: 'Designer & Researcher',
+    team: 'Group of 4',
+    timeline: '10 weeks (CS 247B course)',
+    
+    tags: ['Figma', 'Behavior Change', 'UI/UX', 'Psychology'],
+    tech: ['Figma', 'User Research', 'Behavioral Psychology', 'Prototyping'],
+    
+    links: {
+      figma: 'https://www.figma.com/design/MpbBcBCQncpo5LsIaRjyTk/Clickable-Prototype',
+      writeup: 'https://highercommonsense.com/cs247b/16794/'
+    },
+    
+    image: '/projects/tend/hero.jpg',
+    images: [
+      '/projects/tend/plant-mechanic.jpg',
+      '/projects/tend/action-logging.jpg',
+      '/projects/tend/widget-design.jpg'
+    ],
+    
+    research: {
+      interviews: [
+        'Interviewed about a dozen new graduates about friendship maintenance challenges',
+        'Ran behavior change studies to understand what motivates consistent friendship actions'
+      ],
+      analysis: [
+        'Discovered new graduates struggle with abstract "stay in touch" goals',
+        'Found need for concrete, trackable friendship maintenance actions',
+        'Identified widget visibility as key to behavior prompting'
+      ]
+    },
+    
+    problem: {
+      context: 'New graduates struggle to maintain friendships after leaving college environment with built-in social structure.',
+      gap: 'Abstract friendship concepts are hard to translate into engaging, sustainable behaviors without external prompting.',
+      goals: ['Create sustainable friendship maintenance habits', 'Make abstract social goals concrete', 'Provide gentle behavioral nudges']
+    },
+    
+    process: {
+      keyDecisions: [
+        'Chose plant metaphor for intuitive care mechanics',
+        'Designed each friendship as unique plant with different needs',
+        'Added home screen widget for passive awareness without opening app'
+      ],
+      iterations: [
+        'Tested various metaphors before settling on plants',
+        'Refined action-to-resource mapping (texting=sun, calling=water, meeting=nutrients)',
+        'Balanced notification frequency to avoid annoyance'
+      ]
+    },
+    
+    solution: {
+      approach: 'Created plant metaphor system where friendships are represented as plants needing care through real-world social actions.',
+      features: [
+        {
+          name: 'Plant Care Mechanics',
+          description: 'Texting gives sun, calling provides water, meeting in person adds nutrients',
+          image: '/projects/tend/plant-mechanic.jpg'
+        },
+        {
+          name: 'Personalized Plants',
+          description: 'Each plant has different care needs based on friendship dynamics'
+        },
+        {
+          name: 'Home Screen Widget',
+          description: 'Quick friendship health overview without opening app',
+          image: '/projects/tend/widget-design.jpg'
+        },
+        {
+          name: 'Action Logging',
+          description: 'Track friendship maintenance activities over time'
+        }
+      ]
+    },
+    
+    impact: {
+      outcomes: [
+        'Novel approach to maintaining social connections for young adults',
+        'Gamified abstract social concepts into concrete actions',
+        'Created sustainable behavior change mechanics'
+      ],
+      lessonsLearned: [
+        'Metaphors need to be immediately intuitive for adoption',
+        'Passive visibility (widgets) more effective than notifications',
+        'Different friendships genuinely need different maintenance patterns'
+      ]
+    },
+  },
+
   {
     id: 6,
     slug: 'barcodeScanner',
     title: 'Blind/Low-Vision Barcode Scanner',
     tagline: 'Allergen Detection for Blind & Low-Vision Users',
-    description: 'An app helping blind and low-vision users identify allergens in products through scanning with haptic feedback.',
-    fullDescription: [
-      'An accessibility-focused shopping app for blind and low-vision users. Scans product barcodes to quickly identify allergens with haptic feedback and clear SAFE/NOT SAFE responses.',
-      'Calls two allergen databases, uses LLM to determine safety when APIs conflict or lack information. Suggests alternative products when unsafe.',
-      'Interviewed blind and low-vision individuals to understand shopping challenges and designed intuitive non-visual interaction patterns.'
-    ],
+    overview: 'An app helping blind and low-vision users identify allergens in products through barcode scanning with haptic feedback and LLM-powered conflict resolution.',
+    color: 'pink',
+    featured: false,
+    year: 2025,
+    
+    role: 'API Developer & Frontend Developer',
+    team: 'Group of 5',
+    timeline: '10 weeks',
+    
     tags: ['Accessibility', 'Mobile', 'Computer Vision', 'LLM'],
     tech: ['Mobile Development', 'API Integration', 'LLM', 'Computer Vision', 'Accessibility Standards'],
+    
+    links: {
+      figma: 'https://www.figma.com/design/w6O54iLL5FVgMDWIwOJaW7/P3-Prototyping',
+      github: 'https://github.com/houstontaylor/accessible-barcode-scanner'
+    },
+    
     image: '/projects/barcodeScanner/hero.jpg',
     images: [
       '/projects/barcodeScanner/scanning.jpg',
       '/projects/barcodeScanner/results.jpg',
       '/projects/barcodeScanner/alternatives.jpg'
     ],
-    featured: false,
-    color: 'teal',
-    links: {
-      figma: 'https://www.figma.com/design/w6O54iLL5FVgMDWIwOJaW7/P3-Prototyping',
-      github: 'https://github.com/houstontaylor/accessible-barcode-scanner'
+    
+    research: {
+      interviews: [
+        'Interviewed blind and low-vision individuals about shopping challenges',
+        'Discovered need for immediate, non-visual feedback during shopping'
+      ],
+      analysis: [
+        'Identified gaps in existing allergen detection solutions',
+        'Found need for quick, reliable verification without sighted assistance'
+      ]
     },
-    year: 2025,
-    role: 'API Developer & Frontend Developer',
-    team: 'Group of 5',
-    challenge: 'Blind and low-vision individuals lack quick, reliable way to identify allergens while shopping. Existing solutions don\'t provide immediate, non-visual feedback.',
-    solution: 'Developed API functionality integrating two allergen databases with LLM conflict resolution. Created haptic feedback system and clear SAFE/NOT SAFE indicators with alternative suggestions.',
-    impact: [
-      'Improves shopping safety and independence',
-      'Intuitive non-visual interaction patterns',
-      'Quick haptic feedback for immediate response',
-      'Alternative product suggestions for safer choices'
-    ]
+    
+    problem: {
+      context: 'Blind and low-vision individuals lack quick, reliable way to identify allergens while shopping independently.',
+      gap: 'Existing solutions don\'t provide immediate, non-visual feedback or handle conflicting allergen information.',
+      goals: ['Enable independent shopping', 'Provide immediate allergen detection', 'Suggest safe alternatives']
+    },
+    
+    solution: {
+      approach: 'Developed API functionality integrating two allergen databases with LLM conflict resolution and haptic feedback system.',
+      features: [
+        {
+          name: 'Barcode Scanning',
+          description: 'Camera-based product identification with audio guidance'
+        },
+        {
+          name: 'Dual Database Integration',
+          description: 'Queries two allergen databases for comprehensive coverage'
+        },
+        {
+          name: 'LLM Conflict Resolution',
+          description: 'Uses AI to determine safety when databases conflict or lack information'
+        },
+        {
+          name: 'Haptic Feedback',
+          description: 'Immediate tactile SAFE/NOT SAFE indicators'
+        },
+        {
+          name: 'Alternative Suggestions',
+          description: 'Recommends safer products when allergens detected'
+        }
+      ]
+    },
+    
+    impact: {
+      outcomes: [
+        'Improves shopping safety and independence for blind/low-vision users',
+        'Intuitive non-visual interaction patterns',
+        'Quick feedback for immediate response'
+      ]
+    },
   },
+
   {
     id: 7,
     slug: 'critter',
     title: 'Critter',
     tagline: 'Environmental Puzzle-Platformer',
-    description: 'A Unity puzzle-platformer about a forest creature stopping factory robots from destroying its home.',
-    fullDescription: [
-      'An environmental narrative game where a small forest critter enters a robot factory to stop the destruction of its home. Combines 2D platforming with puzzle mechanics.',
-      'Created sound design, art assets, and game object setup. Worked in team of 5 to balance puzzle difficulty with narrative pacing.',
-      'Explores environmental themes through interactive storytelling - critter navigates factory, solves puzzles to reach AI core and shut down robot production.'
-    ],
+    overview: 'A Unity puzzle-platformer about a forest creature stopping factory robots from destroying its home through environmental storytelling.',
+    color: 'teal',
+    featured: false,
+    year: 2024,
+    
+    role: 'Sound Designer, Artist, & Developer',
+    team: 'Group of 5',
+    timeline: '10 weeks',
+    
     tags: ['Unity', 'Game Design', 'Sound Design', 'C#'],
     tech: ['Unity', 'C#', 'Sound Design', 'Digital Art', 'Game Mechanics'],
+    
+    links: {
+      github: 'https://github.com/houstontaylor/critter-game',
+      itchio: 'https://lwcoding.itch.io/critter'
+    },
+    
     image: '/projects/critter/hero.jpg',
     images: [
       '/projects/critter/gameplay.jpg',
       '/projects/critter/factory.jpg',
       '/projects/critter/puzzles.jpg'
     ],
-    featured: false,
-    color: 'green',
-    links: {
-      github: 'https://github.com/houstontaylor/critter-game',
-      itchio: 'https://lwcoding.itch.io/critter'
+    
+    problem: {
+      context: 'Environmental themes in games often feel preachy or disconnected from gameplay.',
+      gap: 'Creating cohesive audio-visual experience while balancing puzzle difficulty with narrative pacing.',
+      goals: ['Integrate environmental message into gameplay', 'Create accessible puzzle progression', 'Build cohesive audio-visual atmosphere']
     },
-    year: 2024,
-    role: 'Sound Designer, Artist, & Developer',
-    team: 'Group of 5',
-    challenge: 'Creating cohesive audio-visual experience while balancing puzzle difficulty with narrative pacing in environmental storytelling.',
-    solution: 'Designed sound and visual assets that reinforce environmental narrative. Created puzzle mechanics that teach through gameplay about habitat destruction and taking action.',
-    impact: [
-      'Explores environmental themes through interactive gameplay',
-      'Cohesive audio-visual storytelling',
-      'Accessible puzzle difficulty progression',
-      'Published on itch.io for public play'
-    ]
+    
+    solution: {
+      approach: 'Designed sound and visual assets that reinforce environmental narrative through gameplay mechanics teaching about habitat destruction.',
+      features: [
+        {
+          name: '2D Platforming',
+          description: 'Navigate factory environment as forest critter'
+        },
+        {
+          name: 'Puzzle Mechanics',
+          description: 'Solve environmental puzzles to progress'
+        },
+        {
+          name: 'Sound Design',
+          description: 'Audio reinforces contrast between nature and industrial settings'
+        },
+        {
+          name: 'Environmental Narrative',
+          description: 'Story unfolds through gameplay rather than exposition'
+        }
+      ]
+    },
+    
+    impact: {
+      outcomes: [
+        'Published on itch.io for public play',
+        'Explores environmental themes through interactive gameplay',
+        'Cohesive audio-visual storytelling'
+      ]
+    },
   },
+
   {
     id: 8,
-    slug: 'isps',
-    title: 'InterStellar Postal Service (ISPS)',
-    tagline: 'Educational Mail Game',
-    description: 'A space-themed Unity game teaching postal systems through package sorting and alien delivery mechanics.',
-    fullDescription: [
-      'A polished Unity game about delivering packages in space. Features custom pixel art, engaging sorting mechanics, and teaches postal systems through space-themed gameplay with alien planets.',
-      'Team of 2 artists (including me) + 2 programmers. I created all pixel art assets and animations, focusing on visual design and UI elements.',
-      'Players catch falling packages, sort into correct piles, deliver by shooting at receiving aliens, avoid obstacles, and earn money to upgrade equipment and unlock new areas.'
-    ],
-    tags: ['Unity', 'Pixel Art', 'Game Design', 'Educational'],
-    tech: ['Unity', 'C#', 'Pixel Art', 'UI Design', 'Educational Design'],
-    image: '/projects/isps/hero.jpg',
-    images: [
-      '/projects/isps/sorting.jpg',
-      '/projects/isps/delivery.jpg',
-      '/projects/isps/upgrades.jpg'
-    ],
-    featured: false,
-    color: 'neutral',
-    links: {
-      github: 'https://github.com/anaxrocks/ISPS-P3',
-      itchio: 'https://anaxrocks.itch.io/interstellar-postal-service'
-    },
-    year: 2024,
-    role: 'Artist',
-    team: '2 artists + 2 programmers',
-    challenge: 'Creating intuitive sorting mechanics that scale in difficulty while maintaining educational value about postal systems.',
-    solution: 'Created engaging pixel art visual style and sorting mechanics mapped to postal concepts. Designed upgrade system that rewards learning and progression.',
-    impact: [
-      'Demonstrates collaborative game development',
-      'Educational game design for postal systems',
-      'Engaging pixel art aesthetic',
-      'Published and playable on itch.io'
-    ]
-  },
-  {
-    id: 9,
-    slug: 'raccoonMama',
-    title: 'Raccoon Mama',
-    tagline: 'Stanford Campus Adventure',
-    description: 'A Unity platformer following a raccoon mother searching for her babies across Stanford campus.',
-    fullDescription: [
-      'An ongoing independent study project creating a 2D platformer set on Stanford campus. A raccoon mother navigates familiar campus locations, encountering helpful animals and iconic landmarks while searching for her five lost babies.',
-      'Started as independent study with partner, continuing solo as side project after graduation. Creating all art and game development.',
-      'Story: Raccoon mama loses babies in campus flood. First baby in storm drains, second held at fraternity house, three more scattered across campus landmarks. Tribute to Stanford featuring recognizable locations.'
-    ],
-    tags: ['Unity', 'Game Design', 'C#', 'Campus Culture'],
-    tech: ['Unity', 'C#', 'Digital Art', 'Level Design', 'Game Mechanics'],
-    image: '/projects/raccoonMama/hero.jpg',
-    images: [
-      '/projects/raccoonMama/campus.jpg',
-      '/projects/raccoonMama/mama.jpg',
-      '/projects/raccoonMama/locations.jpg'
-    ],
-    featured: false,
-    color: 'pink',
-    links: {
-      github: 'https://github.com/Nils-Forstall/Raccoon-Mama'
-    },
-    year: 2025,
-    role: 'Artist & Developer',
-    team: 'Started with 2, now solo',
-    challenge: 'Accurately representing campus geography while maintaining engaging gameplay. Balancing nostalgia with universal appeal.',
-    solution: 'Created recognizable Stanford landmarks and campus culture references. Designed levels that honor campus geography while providing platforming challenges.',
-    impact: [
-      'Combines local Stanford culture with universal themes',
-      'Ongoing passion project after graduation',
-      'Tribute to Stanford community',
-      'Solo development of all art and code'
-    ]
-  },
-  {
-    id: 10,
-    slug: 'nationalGallery',
-    title: 'National Gallery Data Visualization',
-    tagline: 'Art Acquisition and Power',
-    description: 'Interactive data visualization exploring power dynamics in art acquisition and display at the National Gallery.',
-    fullDescription: [
-      'A comprehensive data analysis titled "What Shapes What We See?" examining manifestations of power in art acquisition and display trends.',
-      'Uses three interactive D3 visualizations to reveal institutional collecting patterns. I created 2 of 3 visualizations and co-authored analysis.',
-      'Analysis of National Gallery acquisition data through interactive visualization approaches to understand how power dynamics manifest in institutional art decisions.'
-    ],
-    tags: ['Data Visualization', 'D3.js', 'Analysis', 'Art History'],
-    tech: ['D3.js', 'Observable', 'Data Analysis', 'Interactive Design'],
-    image: '/projects/nationalGallery/hero.jpg',
-    images: [
-      '/projects/nationalGallery/viz1.jpg',
-      '/projects/nationalGallery/viz2.jpg',
-      '/projects/nationalGallery/viz3.jpg'
-    ],
-    featured: false,
-    color: 'teal',
-    links: {
-      observable: 'https://observablehq.com/d/0897f83ea44f3d15'
-    },
-    year: 2024,
-    role: 'Data Analyst & Visualization Developer',
-    team: 'Partnership (2 people)',
-    challenge: 'Transforming complex institutional data into engaging, accessible narratives that reveal hidden power structures.',
-    solution: 'Created interactive D3 visualizations that allow users to explore acquisition patterns. Co-authored analysis revealing how institutional decisions shape what art we see.',
-    impact: [
-      'Reveals hidden patterns in museum collecting practices',
-      'Interactive exploration of institutional power structures',
-      'Created 2 of 3 visualizations',
-      'Co-authored comprehensive analysis'
-    ]
-  },
-  {
-    id: 11,
     slug: 'brainspark',
     title: 'BrainSpark Games Strategy',
     tagline: 'EdTech Product Strategy',
-    description: 'Product management strategy and PRD for educational gaming company\'s MathQuest 2.',
-    fullDescription: [
-      'A comprehensive product strategy for BrainSpark Games\' MathQuest 2, including market analysis, user research, competitive analysis, and complete Product Requirements Document.',
-      'Deliverables included: one-pager executive summary, pitch deck presentation, student interviews and research, competitive analysis, and complete PRD.',
-      'Complete go-to-market strategy for educational gaming company\'s new math learning game balancing educational effectiveness with engaging gameplay.'
-    ],
+    overview: 'Product management strategy and PRD for educational gaming company\'s MathQuest 2, including market analysis and go-to-market planning.',
+    color: 'pink',
+    featured: false,
+    year: 2025,
+    
+    role: 'Team Member (Strategy & Research)',
+    team: 'Group Project',
+    timeline: '10 weeks',
+    
     tags: ['Product Management', 'Strategy', 'EdTech', 'PRD'],
     tech: ['Market Research', 'User Interviews', 'Competitive Analysis', 'PRD Development'],
+    
+    links: {
+      prd: 'https://docs.google.com/document/d/e/2PACX-1vR0YIDuD-twc_lFp-y1N4jHPZYo1d39C9RPtIapJ5g0Puq14X3AWA1e6QV-RBjgnfu5GHKg-0br--CS/pub',
+      companyDetails: 'https://docs.google.com/document/d/e/2PACX-1vReKbSCpBy2j_MW3m5ID9MjLywQ2Kl3DBW8QIysumJSI-hmfZT2Ccq5ucj8pILa8ul8EZ0yy7ET-RNf/pub'
+    },
+    
     image: '/projects/brainspark/hero.jpg',
     images: [
       '/projects/brainspark/strategy.jpg',
       '/projects/brainspark/research.jpg',
       '/projects/brainspark/prd.jpg'
     ],
-    featured: false,
-    color: 'green',
-    links: {
-      prd: 'https://docs.google.com/document/d/e/2PACX-1vR0YIDuD-twc_lFp-y1N4jHPZYo1d39C9RPtIapJ5g0Puq14X3AWA1e6QV-RBjgnfu5GHKg-0br--CS/pub',
-      companyDetails: 'https://docs.google.com/document/d/e/2PACX-1vReKbSCpBy2j_MW3m5ID9MjLywQ2Kl3DBW8QIysumJSI-hmfZT2Ccq5ucj8pILa8ul8EZ0yy7ET-RNf/pub'
+    
+    research: {
+      interviews: ['Conducted student interviews to understand learning preferences and pain points'],
+      marketResearch: ['Analyzed competitive EdTech landscape', 'Identified market gaps in educational gaming'],
+      analysis: ['Synthesized research into evidence-based product recommendations']
     },
-    year: 2025,
-    role: 'Team Member (Strategy & Research)',
-    team: 'Group Project',
-    challenge: 'Balancing educational effectiveness with engaging gameplay mechanics for student audiences in competitive EdTech market.',
-    solution: 'Conducted student interviews, competitive analysis, and market research. Created comprehensive PRD and go-to-market strategy with evidence-based recommendations.',
-    impact: [
-      'Comprehensive product strategy for educational gaming',
-      'Evidence-based recommendations from user research',
-      'Complete PRD and go-to-market plan',
-      'Competitive analysis of EdTech landscape'
-    ]
+    
+    problem: {
+      context: 'Educational gaming market is competitive with varying degrees of educational effectiveness.',
+      gap: 'Balancing educational effectiveness with engaging gameplay mechanics for student audiences.',
+      goals: ['Create engaging educational experience', 'Ensure learning outcomes', 'Compete in EdTech market']
+    },
+    
+    solution: {
+      approach: 'Conducted comprehensive research and created complete PRD with go-to-market strategy.',
+      features: [
+        {
+          name: 'Executive Summary',
+          description: 'One-pager summarizing strategy and recommendations'
+        },
+        {
+          name: 'Market Analysis',
+          description: 'Competitive landscape and opportunity assessment'
+        },
+        {
+          name: 'User Research',
+          description: 'Student interviews and needs analysis'
+        },
+        {
+          name: 'Product Requirements',
+          description: 'Complete PRD with feature specifications'
+        },
+        {
+          name: 'Go-to-Market Strategy',
+          description: 'Launch plan and success metrics'
+        }
+      ]
+    },
+    
+    impact: {
+      outcomes: [
+        'Comprehensive product strategy for educational gaming',
+        'Evidence-based recommendations from user research',
+        'Complete PRD and go-to-market plan'
+      ]
+    },
   },
+
+  {
+    id: 9,
+    slug: 'isps',
+    title: 'InterStellar Postal Service (ISPS)',
+    tagline: 'Educational Mail Game',
+    overview: 'A space-themed Unity game teaching postal systems through package sorting and alien delivery mechanics with custom pixel art.',
+    color: 'teal',
+    featured: false,
+    year: 2024,
+    
+    role: 'Artist',
+    team: '2 artists + 2 programmers',
+    timeline: '10 weeks',
+    
+    tags: ['Unity', 'Pixel Art', 'Game Design', 'Educational'],
+    tech: ['Unity', 'C#', 'Pixel Art', 'UI Design', 'Educational Design'],
+    
+    links: {
+      github: 'https://github.com/anaxrocks/ISPS-P3',
+      itchio: 'https://anaxrocks.itch.io/interstellar-postal-service'
+    },
+    
+    image: '/projects/isps/hero.jpg',
+    images: [
+      '/projects/isps/sorting.jpg',
+      '/projects/isps/delivery.jpg',
+      '/projects/isps/upgrades.jpg'
+    ],
+    
+    problem: {
+      context: 'Educational games often sacrifice engagement for learning objectives.',
+      gap: 'Creating intuitive sorting mechanics that scale in difficulty while maintaining educational value about postal systems.',
+      goals: ['Teach postal system concepts', 'Create engaging gameplay', 'Design progression that rewards learning']
+    },
+    
+    solution: {
+      approach: 'Created engaging pixel art visual style and sorting mechanics mapped to postal concepts with upgrade-based progression.',
+      features: [
+        {
+          name: 'Package Sorting',
+          description: 'Catch falling packages and sort into correct piles'
+        },
+        {
+          name: 'Alien Deliveries',
+          description: 'Shoot packages to receiving aliens on different planets'
+        },
+        {
+          name: 'Obstacle Avoidance',
+          description: 'Navigate space hazards while delivering'
+        },
+        {
+          name: 'Upgrade System',
+          description: 'Earn money to upgrade equipment and unlock new areas'
+        }
+      ]
+    },
+    
+    impact: {
+      outcomes: [
+        'Published and playable on itch.io',
+        'Demonstrates collaborative game development',
+        'Engaging educational game design'
+      ]
+    },
+  },
+
+  {
+    id: 10,
+    slug: 'raccoonMama',
+    title: 'Raccoon Mama',
+    tagline: 'Stanford Campus Adventure',
+    overview: 'An ongoing Unity platformer following a raccoon mother searching for her five babies across Stanford campus landmarks.',
+    color: 'green',
+    featured: false,
+    year: 2025,
+    
+    role: 'Artist & Developer',
+    team: 'Started with 2, now solo',
+    timeline: 'Ongoing (started 2025)',
+    
+    tags: ['Unity', 'Game Design', 'C#', 'Campus Culture'],
+    tech: ['Unity', 'C#', 'Digital Art', 'Level Design', 'Game Mechanics'],
+    
+    links: {
+      github: 'https://github.com/Nils-Forstall/Raccoon-Mama'
+    },
+    
+    image: '/projects/raccoonMama/hero.jpg',
+    images: [
+      '/projects/raccoonMama/campus.jpg',
+      '/projects/raccoonMama/mama.jpg',
+      '/projects/raccoonMama/locations.jpg'
+    ],
+    
+    problem: {
+      context: 'Creating game that honors Stanford community while being accessible to broader audience.',
+      gap: 'Accurately representing campus geography while maintaining engaging gameplay and balancing nostalgia with universal appeal.',
+      goals: ['Create recognizable Stanford locations', 'Design engaging platformer mechanics', 'Balance local references with broader appeal']
+    },
+    
+    solution: {
+      approach: 'Created recognizable Stanford landmarks and campus culture references with platforming challenges that honor campus geography.',
+      features: [
+        {
+          name: 'Campus Locations',
+          description: 'Recognizable Stanford landmarks as game levels'
+        },
+        {
+          name: 'Story Progression',
+          description: 'Five babies scattered across campus after flood'
+        },
+        {
+          name: 'Helpful NPCs',
+          description: 'Campus animals provide guidance and assistance'
+        },
+        {
+          name: 'Platforming Mechanics',
+          description: '2D platformer controls and level design'
+        }
+      ]
+    },
+    
+    impact: {
+      outcomes: [
+        'Ongoing passion project after graduation',
+        'Tribute to Stanford community',
+        'Solo development of all art and code',
+        'Combines local culture with universal themes'
+      ]
+    },
+  },
+
+  {
+    id: 11,
+    slug: 'nationalGallery',
+    title: 'National Gallery Data Visualization',
+    tagline: 'Art Acquisition and Power',
+    overview: 'Interactive data visualization exploring power dynamics in art acquisition and display trends at the National Gallery through D3 visualizations.',
+    color: 'teal',
+    featured: false,
+    year: 2024,
+    
+    role: 'Data Analyst & Visualization Developer',
+    team: 'Partnership (2 people)',
+    timeline: '10 weeks',
+    
+    tags: ['Data Visualization', 'D3.js', 'Analysis', 'Art History'],
+    tech: ['D3.js', 'Observable', 'Data Analysis', 'Interactive Design'],
+    
+    links: {
+      observable: 'https://observablehq.com/d/0897f83ea44f3d15'
+    },
+    
+    image: '/projects/nationalGallery/hero.jpg',
+    images: [
+      '/projects/nationalGallery/viz1.jpg',
+      '/projects/nationalGallery/viz2.jpg',
+      '/projects/nationalGallery/viz3.jpg'
+    ],
+    
+    problem: {
+      context: 'Museum acquisition patterns reveal power structures but are often opaque to public.',
+      gap: 'Transforming complex institutional data into engaging, accessible narratives that reveal hidden power structures.',
+      goals: ['Make acquisition patterns visible', 'Reveal institutional power dynamics', 'Create accessible data exploration']
+    },
+    
+    solution: {
+      approach: 'Created interactive D3 visualizations allowing users to explore acquisition patterns and co-authored analysis revealing institutional decision-making.',
+      features: [
+        {
+          name: 'Interactive Visualizations',
+          description: 'Three D3 visualizations exploring different aspects of acquisition data'
+        },
+        {
+          name: 'Pattern Analysis',
+          description: 'Reveals how power manifests in collecting decisions'
+        },
+        {
+          name: 'Historical Context',
+          description: 'Places acquisition trends in broader art history context'
+        }
+      ]
+    },
+    
+    impact: {
+      outcomes: [
+        'Reveals hidden patterns in museum collecting practices',
+        'Interactive exploration of institutional power structures',
+        'Created 2 of 3 visualizations',
+        'Co-authored comprehensive analysis'
+      ]
+    },
+  },
+
   {
     id: 12,
     slug: 'ASLVision',
     title: 'Fingerspelling in CV',
     tagline: 'Bias Mitigation in Computer Vision',
-    description: 'Computer vision project improving fingerspelling recognition across different skin tones and lighting.',
-    fullDescription: [
-      'A machine learning project addressing bias in computer vision systems by creating a more inclusive ASL fingerspelling recognition model designed to work accurately across different skin tones and lighting conditions.',
-      'As someone who knows ASL and is half Black, I wanted to design for underrepresented groups who would benefit immensely from improved recognition.',
-      'Focused on recognition and distinction between ASL fingerspelling letters across diverse skin tones and lighting conditions, addressing systemic bias in existing computer vision models.'
-    ],
+    overview: 'Computer vision project improving fingerspelling recognition across different skin tones and lighting to address systemic bias in accessibility technology.',
+    color: 'pink',
+    featured: false,
+    year: 2022,
+    
+    role: 'Solo Developer & Researcher',
+    team: 'Individual Project',
+    timeline: '10 weeks',
+    
     tags: ['Computer Vision', 'Machine Learning', 'Accessibility', 'Bias Mitigation'],
     tech: ['Python', 'Computer Vision', 'Machine Learning', 'Data Analysis'],
+    
+    links: {},
+    
     image: '/projects/ASLVision/hero.jpg',
     images: [
       '/projects/ASLVision/model.jpg',
       '/projects/ASLVision/testing.jpg',
       '/projects/ASLVision/results.jpg'
     ],
-    featured: false,
-    color: 'neutral',
-    links: {},
-    year: 2022,
-    role: 'Solo Developer & Researcher',
-    team: 'Individual Project',
-    challenge: 'Improving computer vision efficacy for darker skin tones that are typically underrepresented in training data. Existing models show bias against people of color.',
-    solution: 'Created more inclusive ASL fingerspelling recognition model with focus on diverse skin tones. Ensured inclusive dataset representation and tested across varied lighting conditions.',
-    impact: [
-      'More inclusive accessibility technology',
-      'Addresses systemic bias in computer vision',
-      'Designed for deaf/HOH community, particularly people of color',
-      'Personal motivation from knowing ASL and being half Black'
-    ]
+    
+    problem: {
+      context: 'Computer vision models for ASL recognition show bias against darker skin tones due to underrepresentation in training data.',
+      gap: 'Existing models lack efficacy for people of color in the deaf/HOH community who would benefit from improved recognition.',
+      goals: ['Improve recognition for darker skin tones', 'Address systemic bias in CV', 'Create more inclusive accessibility technology']
+    },
+    
+    process: {
+      approach: 'Personal motivation from knowing ASL and being half Black drove focus on underrepresented groups',
+      keyDecisions: [
+        'Ensured inclusive dataset representation across skin tones',
+        'Tested across varied lighting conditions',
+        'Focused on fingerspelling as foundational ASL skill'
+      ]
+    },
+    
+    solution: {
+      approach: 'Created more inclusive ASL fingerspelling recognition model with focus on diverse skin tones and lighting conditions.',
+      features: [
+        {
+          name: 'Inclusive Training Data',
+          description: 'Dataset with diverse skin tone representation'
+        },
+        {
+          name: 'Lighting Robustness',
+          description: 'Model performs across varied lighting conditions'
+        },
+        {
+          name: 'Fingerspelling Recognition',
+          description: 'Letter recognition and distinction for ASL alphabet'
+        }
+      ]
+    },
+    
+    impact: {
+      outcomes: [
+        'More inclusive accessibility technology',
+        'Addresses systemic bias in computer vision',
+        'Designed for deaf/HOH community, particularly people of color'
+      ],
+      lessonsLearned: [
+        'Importance of representative training data',
+        'Personal connection to problem drives better solutions',
+        'Bias mitigation requires intentional design choices'
+      ]
+    },
   },
+
   {
     id: 13,
     slug: 'archivalEchoes',
     title: 'Archival Echoes',
     tagline: 'Interactive Fiction on Information Control',
-    description: 'A Twine-based interactive fiction exploring information integrity and archival power dynamics.',
-    fullDescription: [
-      'A short interactive game where players take on the role of an archivist discovering they\'re being tasked with deleting evidence of past revolutions.',
-      'Explores themes of information control and resistance. Player discovers they\'re deleting evidence of civil unrest rather than neutral archival work, must choose between compliance and resistance.',
-      'Thought-provoking exploration of information integrity, archival power, and historical erasure with consequences for both compliance and resistance - not all revolutions succeed.'
-    ],
+    overview: 'A Twine-based interactive fiction exploring information integrity and archival power where players discover they\'re deleting evidence of past revolutions.',
+    color: 'green',
+    featured: false,
+    year: 2025,
+    
+    role: 'Developer & Narrative Designer',
+    team: 'Individual Project',
+    timeline: '3 weeks',
+    
     tags: ['Twine', 'Interactive Fiction', 'Information Integrity', 'Narrative'],
     tech: ['Twine', 'Interactive Narrative', 'Game Design'],
+    
+    links: {
+      itchio: 'https://housangel.itch.io/archival-echoes'
+    },
+    
     image: '/projects/archivalEchoes/hero.jpg',
     images: [
       '/projects/archivalEchoes/choice1.jpg',
       '/projects/archivalEchoes/choice2.jpg',
       '/projects/archivalEchoes/outcome.jpg'
     ],
-    featured: false,
-    color: 'pink',
-    links: {
-      itchio: 'https://housangel.itch.io/archival-echoes'
+    
+    problem: {
+      context: 'Information control and historical erasure are complex topics often presented with simplistic morality.',
+      gap: 'Creating meaningful choices that explore themes of institutional power without falling into good/bad binaries.',
+      goals: ['Explore information control complexity', 'Create meaningful player choices', 'Show realistic consequences']
     },
-    year: 2025,
-    role: 'Developer & Narrative Designer',
-    team: 'Individual Project',
-    challenge: 'Creating meaningful choices that explore complex themes of information control and institutional power without simplistic morality.',
-    solution: 'Designed branching narrative where player discovers true nature of archival work. Created consequences for both compliance and resistance to show complexity of information control.',
-    impact: [
-      'Thought-provoking exploration of information control',
-      'Examines institutional power and historical erasure',
-      'Meaningful choices with realistic consequences',
-      'Published on itch.io for public play'
-    ]
+    
+    solution: {
+      approach: 'Designed branching narrative where player discovers true nature of archival work and must choose between compliance and resistance.',
+      features: [
+        {
+          name: 'Discovery Narrative',
+          description: 'Gradually reveals you\'re deleting evidence of civil unrest'
+        },
+        {
+          name: 'Meaningful Choices',
+          description: 'Player chooses between compliance and resistance'
+        },
+        {
+          name: 'Realistic Consequences',
+          description: 'Neither path is simple - not all revolutions succeed'
+        },
+        {
+          name: 'Information Ethics',
+          description: 'Explores archival power and historical responsibility'
+        }
+      ]
+    },
+    
+    impact: {
+      outcomes: [
+        'Published on itch.io for public play',
+        'Thought-provoking exploration of information control',
+        'Examines institutional power and historical erasure'
+      ],
+      lessonsLearned: [
+        'Complex topics need nuanced choice structures',
+        'Player agency more powerful when outcomes aren\'t predetermined',
+        'Short games can tackle serious themes effectively'
+      ]
+    },
   }
 ];
 

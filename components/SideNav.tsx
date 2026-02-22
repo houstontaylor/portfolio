@@ -182,7 +182,7 @@ export default function SideNav({
                   style={{
                     fontFamily: 'var(--font-space-grotesk), sans-serif',
                     fontWeight: isActive ? 800 : 700,
-                    color: 'var(--dark-green)',
+                    color: 'var(--deep-neutral)',
                     opacity: isActive ? 1 : 0.85,
                     fontSize: 12,
                     lineHeight: 1,

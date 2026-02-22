@@ -6,11 +6,7 @@ import Link from 'next/link';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa6';
 import { PiStarFourFill } from 'react-icons/pi';
 
-type Props = {
-  className?: string;
-};
-
-export default function Footer ( { className = '' }: Props ) {
+export default function Footer () {
   const links = [
     { name: 'PROJECTS', path: '/projects' },
     { name: 'ABOUT', path: '/about' },
@@ -28,7 +24,7 @@ export default function Footer ( { className = '' }: Props ) {
   const year = new Date().getFullYear();
 
   return (
-    <footer className={`relative mt-16 ${className}`}>
+    <footer className={`relative mt-8`}>
       {/* Top “trim” line */}
       <div
         className="h-[10px] w-full"
