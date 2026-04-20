@@ -1,10 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import ResumeCard from '@/components/resumes/ResumeCard';
+import ResumeCard from '@/components/project/resumes/ResumeCard';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ScrollToTop from '@/components/ScrollToTop';
+import ScrollToTop from '@/components/ui/ScrollToTop';
 
 export default function ResumePage() {
   return (

@@ -4,14 +4,14 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SideNav from '@/components/SideNav';
-import ScrollToTop from '@/components/ScrollToTop';
-import CheckerDivider from '@/components/about/CheckerDivider';
-import RoadTripExperience from '@/components/about/RoadTripExperience';
-import OrbitSkills from '@/components/about/OrbitSkills';
-import PostcardEducation from '@/components/about/PostcardEducation';
-import LangSkills from '@/components/about/LangSkills';
-import TradingCardHobbies from '@/components/about/TradingCardHobbies';
+import SideNav from '@/components/ui/SideNav';
+import ScrollToTop from '@/components/ui/ScrollToTop';
+import CheckerDivider from '@/components/project/about/CheckerDivider';
+import RoadTripExperience from '@/components/project/about/RoadTripExperience';
+import OrbitSkills from '@/components/project/about/OrbitSkills';
+import PostcardEducation from '@/components/project/about/PostcardEducation';
+import LangSkills from '@/components/project/about/LangSkills';
+import TradingCardHobbies from '@/components/project/about/TradingCardHobbies';
 
 export default function AboutPage() {
   const sections = [

@@ -92,14 +92,14 @@ export const projectsData: ProjectData[] = [
     slug: 'lulasapp',
     title: "Lula's Coffee Co. Mobile Ordering App",
     tagline: 'Order Local Coffee with Ease',
-    overview: 'A mobile platform designed to streamline the coffee ordering experience for local cafes, making it easier for customers to order ahead and support small businesses.',
+    overview: 'A mobile platform designed to expand options for customers to place orders and track loyalty points, making it easier for customers to track rewards and engage with the small business.',
     color: 'green',
     featured: true,
     year: 2026,
     
-    role: 'Full-Stack Developer',
+    role: 'Designer & Developer',
     team: 'Solo Project',
-    timeline: '4 months',
+    timeline: 'Ongoing (started April 2026)',
     
     tags: ['Mobile App', 'E-commerce', 'UI/UX Design', 'Full-Stack Development'],
     tech: ['React Native', 'Node.js', 'MongoDB'],
@@ -196,6 +196,16 @@ export const projectsData: ProjectData[] = [
         'Combined two existing projects into unified solution',
         'Prioritized accessibility from the start, not as afterthought',
         'Chose to maintain host voice authenticity over generic AI responses'
+      ],
+      constraints: [
+        'Placeholder1',
+        'Placeholder2',
+        'Placeholder3',
+      ],
+      iterations: [
+        'Placeholder4',
+        'Placeholder5',
+        'Placeholder6',
       ]
     },
     
@@ -221,7 +231,7 @@ export const projectsData: ProjectData[] = [
       ],
       finalIteration: {
         description: 'Frontend UI/UX design with accessible transcripts and clear citation display',
-        images: ['/projects/podbot/final-ui.jpg']
+        images: ['/projects/podbot/final-ui.jpg', '/projects/podbot/final-ui-2.jpg', '/projects/podbot/final-ui-3.jpg', '/projects/podbot/final-ui-4.jpg']
       }
     },
     
@@ -235,6 +245,8 @@ export const projectsData: ProjectData[] = [
         'Demonstrated how AI can maintain authentic voice while serving accessibility needs'
       ]
     },
+
+    relatedProjects: [3, 4]
   },
 
   {
@@ -1066,4 +1078,14 @@ export function getProjectsByTag(tag: string): ProjectData[] {
 
 export function getProjectsByYear(year: number): ProjectData[] {
   return projectsData.filter(project => project.year === year);
+}
+
+export function getProjectById(id: number): ProjectData | undefined {
+  return projectsData.find((p) => p.id === id);
+}
+
+export function getProjectsByIds(ids: number[]): ProjectData[] {
+  return ids
+    .map((id) => getProjectById(id))
+    .filter((p): p is ProjectData => Boolean(p));
 }

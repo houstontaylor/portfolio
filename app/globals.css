@@ -90,7 +90,7 @@ h4 {
 
 p {
   font-family: var(--font-space-grotesk), sans-serif;
-  color: var(--deep-neutral);
+  color: var(--foreground);
   font-size: clamp(1rem, 1.3vw, 1.2rem);
   line-height: 1.6;
 }

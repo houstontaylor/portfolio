@@ -14,7 +14,6 @@ export default function Footer () {
     { name: 'RESUME', path: '/resume' },
   ];
 
-  // Replace these with your real URLs
   const socials = [
     { name: 'GitHub', href: 'https://github.com/houstontaylor', icon: FaGithub },
     { name: 'LinkedIn', href: 'https://www.linkedin.com/in/houston-taylor/', icon: FaLinkedin },

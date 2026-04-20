@@ -100,7 +100,7 @@ function HalfCircleCard ( {
           paddingBottom: isUp? 10 : 20,
         }}
       >
-        <div className="text-[0.8rem] font-extrabold uppercase tracking-widest opacity-95">
+        <div className="text-[0.8rem] font-extrabold uppercase tracking-widest opacity-95" style={{ color: 'var(--neutral)' }}>
           {label}
         </div>
 
@@ -160,7 +160,7 @@ function LinkPill({
       rel="noopener noreferrer"
       className="inline-flex items-center gap-2 rounded-full border-3 px-5 py-3 font-extrabold uppercase tracking-wider shadow-[0_10px_0_rgba(0,0,0,0.12)] transition-transform hover:-translate-y-[2px]"
       style={{
-        background: 'rgba(from var(--light-neutral) r g b / 0.85)',
+        background: 'rgba(from var(--light-neutral) r g b / 0.95)',
         color: accent,
         borderColor: accent,
       }}
@@ -194,10 +194,7 @@ export default function Overview ( { project }: { project: ProjectData } ) {
   return (
     <div 
         className="overflow-hidden rounded-[28px] border-4 shadow-[0_18px_0_rgba(0,0,0,0.08)]"
-        style={{ 
-            background: 'var(--background)', 
-            borderColor: 'rgba(0,0,0,0.25)' 
-        }}
+        style={{ background: 'var(--light-neutral)', borderColor: 'rgba(0,0,0,0.25)' }}
     >
     {/* ===== TOP TITLE BAND ===== */}
     <div className="relative px-7 py-8 md:px-10 md:py-10" style={{ background: t.lightMain }}>
@@ -258,11 +255,11 @@ export default function Overview ( { project }: { project: ProjectData } ) {
                 {project.title}
             </h1>
 
-            <h3 className="mt-3 font-bold outlined-text"
+            <h2 className="mt-3 font-bold outlined-text"
                 style={{ color: t.darkTertiary, fontFamily: 'var(--font-space-grotesk), sans-serif' }}
             >
                 {project.tagline}
-            </h3>
+            </h2>
 
             <div className="mt-5 flex flex-wrap gap-2">
                 {project.tags.slice(0, 6).map((tag) => (
@@ -270,7 +267,7 @@ export default function Overview ( { project }: { project: ProjectData } ) {
                     key={tag}
                     className="rounded-full border-2 px-3 py-1 text-xs font-extrabold uppercase tracking-wider"
                     style={{
-                    background: 'rgba(from var(--light-neutral) r g b / 0.65)',
+                    background: 'rgba(from var(--light-neutral) r g b / 0.85)',
                     borderColor: t.darkSecondary,
                     color: t.darkSecondary,
                     }}
@@ -324,7 +321,7 @@ export default function Overview ( { project }: { project: ProjectData } ) {
             <HalfCircleCard
                 label="Team"
                 value={project.team ?? 'Solo'}
-                bg={t.tertiary}
+                bg={t.darkTertiary}
                 fg={t.cream}
                 direction='down'
             />
@@ -340,7 +337,7 @@ export default function Overview ( { project }: { project: ProjectData } ) {
             <HalfCircleCard
                 label="Timeline"
                 value={project.timeline}
-                bg={t.secondary}
+                bg={t.darkSecondary}
                 fg={t.cream}
                 direction='down'
             />
