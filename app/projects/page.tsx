@@ -537,33 +537,6 @@ export default function ProjectsPage() {
               </div>
             )}
           </div>
-
-          {/* ── Coming Soon ── */}
-          {filteredProjects.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="mt-16 text-center"
-            >
-              <motion.div
-                whileHover={{ scale: 1.05, rotate: 1 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-block rounded-full px-8 py-4 font-bold text-lg text-white shadow-lg hover:shadow-2xl transition-shadow relative overflow-hidden group cursor-default select-none"
-                style={{ background: 'var(--green)', border: '4px solid var(--dark-green)' }}
-              >
-                {/* Left starburst */}
-                <div className="absolute -left-6 top-1/2 -translate-y-1/2 opacity-50 group-hover:opacity-80 transition-opacity">
-                  <AtomicStarburst size={36} spokes={8} opacity={1} />
-                </div>
-                <span className="relative z-10">More Projects Coming Soon!</span>
-                {/* Right starburst */}
-                <div className="absolute -right-6 top-1/2 -translate-y-1/2 opacity-50 group-hover:opacity-80 transition-opacity">
-                  <AtomicStarburst size={36} spokes={8} opacity={1} />
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
         </main>
 
         <Footer />

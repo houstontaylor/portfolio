@@ -9,11 +9,16 @@ import ProjectsScreen from './screens/ProjectsScreen';
 import AboutScreen from './screens/AboutScreen';
 import ContactScreen from './screens/ContactScreen';
 
+import SecondaryHomeScreen from './screens/SecondaryHomeScreen';
+import SecondaryProjectsScreen from './screens/SecondaryProjectsScreen';
+import SecondaryAboutScreen from './screens/SecondaryAboutScreen';
+import SecondaryContactScreen from './screens/SecondaryContactScreen';
+
 import TVSvg from './TVSvg';
 
 export default function TV() {
   const [screen, setScreen] = useState<'home' | 'projects' | 'about' | 'contact'>('home');
-  const [mode, setMode] = useState<'color' | 'grayscale'>('color');
+  const [mode, setMode] = useState<'main' | 'secondary'>('main');
   const [isChanging, setIsChanging] = useState(false);
 
   const screens = {
@@ -21,6 +26,13 @@ export default function TV() {
     projects: <ProjectsScreen />,
     about: <AboutScreen />,
     contact: <ContactScreen />
+  };
+
+  const secondaryScreens = {
+    home: <SecondaryHomeScreen />,
+    projects: <SecondaryProjectsScreen />,
+    about: <SecondaryAboutScreen />,
+    contact: <SecondaryContactScreen />
   };
 
   const handleTopClick = () => {
@@ -38,7 +50,7 @@ export default function TV() {
   };
 
   const handleBottomClick = () => {
-    setMode((prev) => (prev === 'color' ? 'grayscale' : 'color'));
+    setMode((prev) => (prev === 'main' ? 'secondary' : 'main'));
   };
 
   return (
@@ -61,21 +73,20 @@ export default function TV() {
             <div className={styles.screenScale}>
               <div
                 className={styles.screenInner}
-                style={{
-                  filter: mode === 'grayscale' ? 'grayscale(100%)' : 'none'
-                }}
               >
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={screen}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    {screens[screen]}
-                  </motion.div>
-                </AnimatePresence>
+                <div style={{ width: '100%' }} >
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={screen}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      {mode === 'main' ? screens[screen] : secondaryScreens[screen]}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
               </div>
             </div>
           </div>

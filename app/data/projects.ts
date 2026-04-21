@@ -4,7 +4,7 @@ export interface ProjectData {
   slug: string;
   title: string;
   tagline: string; // One-liner for cards
-  color: 'teal' | 'pink' | 'green';
+  color: ThemeColor;
   featured: boolean;
   year: number;
 
@@ -145,7 +145,7 @@ export const projectsData: ProjectData[] = [
     title: 'PodBot',
     tagline: 'AI-Powered Podcast Chatbots',
     overview: 'An accessible AI chatbot that answers podcast listener questions in the style of the host using past episodes, with full transcripts and source citations.',
-    color: 'teal',
+    color: 'pink',
     featured: true,
     year: 2024,
     
@@ -231,7 +231,7 @@ export const projectsData: ProjectData[] = [
       ],
       finalIteration: {
         description: 'Frontend UI/UX design with accessible transcripts and clear citation display',
-        images: ['/projects/podbot/final-ui.jpg', '/projects/podbot/final-ui-2.jpg', '/projects/podbot/final-ui-3.jpg', '/projects/podbot/final-ui-4.jpg']
+        images: ['/projects/podbot/final-ui.jpg']
       }
     },
     
@@ -1089,3 +1089,48 @@ export function getProjectsByIds(ids: number[]): ProjectData[] {
     .map((id) => getProjectById(id))
     .filter((p): p is ProjectData => Boolean(p));
 }
+
+// Project color map
+export const colorMap = {
+  pink: {
+    cream: 'var(--light-neutral)',
+    main: 'var(--pink)',
+    lightMain: 'var(--light-pink)',
+    darkMain: 'var(--dark-pink)',
+    secondary: 'var(--teal)',
+    lightSecondary: 'var(--light-teal)',
+    darkSecondary: 'var(--dark-teal)',
+    tertiary: 'var(--green)',
+    lightTertiary: 'var(--light-green)',
+    darkTertiary: 'var(--dark-green)',
+    ink: 'var(--foreground)',
+  },
+  teal: {
+    cream: 'var(--light-neutral)',
+    main: 'var(--teal)',
+    lightMain: 'var(--light-teal)',
+    darkMain: 'var(--dark-teal)',
+    secondary: 'var(--green)',
+    lightSecondary: 'var(--light-green)',
+    darkSecondary: 'var(--dark-green)',
+    tertiary: 'var(--pink)',
+    lightTertiary: 'var(--light-pink)',
+    darkTertiary: 'var(--dark-pink)',
+    ink: 'var(--foreground)',
+  },
+  green: {
+    cream: 'var(--light-neutral)',
+    main: 'var(--green)',
+    lightMain: 'var(--light-green)',
+    darkMain: 'var(--dark-green)',
+    secondary: 'var(--pink)',
+    lightSecondary: 'var(--light-pink)',
+    darkSecondary: 'var(--dark-pink)',
+    tertiary: 'var(--teal)',
+    lightTertiary: 'var(--light-teal)',
+    darkTertiary: 'var(--dark-teal)',
+    ink: 'var(--foreground)',
+  },
+} as const;
+
+export type ThemeColor = keyof typeof colorMap;

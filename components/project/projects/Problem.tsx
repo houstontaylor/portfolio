@@ -4,48 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ProjectData } from '@/app/data/projects';
 import Bullet from '../../ui/Bullet';
-
-const colorMap = {
-  pink: {
-    cream: 'var(--light-neutral)',
-    main: 'var(--pink)',
-    lightMain: 'var(--light-pink)',
-    darkMain: 'var(--dark-pink)',
-    secondary: 'var(--teal)',
-    lightSecondary: 'var(--light-teal)',
-    darkSecondary: 'var(--dark-teal)',
-    tertiary: 'var(--green)',
-    lightTertiary: 'var(--light-green)',
-    darkTertiary: 'var(--dark-green)',
-    ink: 'var(--foreground)',
-  },
-  teal: {
-    cream: 'var(--light-neutral)',
-    main: 'var(--teal)',
-    lightMain: 'var(--light-teal)',
-    darkMain: 'var(--dark-teal)',
-    secondary: 'var(--green)',
-    lightSecondary: 'var(--light-green)',
-    darkSecondary: 'var(--dark-green)',
-    tertiary: 'var(--pink)',
-    lightTertiary: 'var(--light-pink)',
-    darkTertiary: 'var(--dark-pink)',
-    ink: 'var(--foreground)',
-  },
-  green: {
-    cream: 'var(--light-neutral)',
-    main: 'var(--green)',
-    lightMain: 'var(--light-green)',
-    darkMain: 'var(--dark-green)',
-    secondary: 'var(--pink)',
-    lightSecondary: 'var(--light-pink)',
-    darkSecondary: 'var(--dark-pink)',
-    tertiary: 'var(--teal)',
-    lightTertiary: 'var(--light-teal)',
-    darkTertiary: 'var(--dark-teal)',
-    ink: 'var(--foreground)',
-  },
-} as const;
+import { colorMap } from '@/app/data/projects';
 
 function RingsBackdrop({
   colors,

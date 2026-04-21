@@ -1,37 +1,15 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { projectsData } from '@/app/data/projects';
+import { colorMap } from '@/app/data/projects';
 
 export default function ProjectsScreen() {
-  const projects = [
-    {
-      title: "PodBot",
-      tech: "Startup • AI/ML • Python • React",
-      color: "bg-pink",
-      borderColor: "border-dark-pink",
-      accentColor: "bg-dark-pink",
-      textColor: "#6E6336"
-    },
-    {
-      title: "Tend",
-      tech: "Figma • Behavior Analysis • Needfinding",
-      color: "bg-light-teal",
-      borderColor: "border-dark-teal",
-      accentColor: "bg-dark-teal",
-      textColor: "#6E6336"
-    },
-    {
-      title: "FilmFlicks",
-      tech: "React • Figma • Javascript",
-      color: "bg-light-green",
-      borderColor: "border-dark-green",
-      accentColor: "bg-dark-green",
-      textColor: "#6E6336"
-    }
-  ];
+  const projects = projectsData.slice(0, 3);
+  const colors = projects.map(p => colorMap[p.color]);
 
   return (
-    <div className="flex flex-col h-full px-6 py-4">
+    <div className="flex flex-col w-full px-6 py-4">
       {/* Floating decorative atoms */}
       <motion.div
         className="absolute top-8 left-4 opacity-20"
@@ -70,7 +48,7 @@ export default function ProjectsScreen() {
 
       {/* Top right boomerang shape */}
       <motion.div
-        className="absolute top-6 right-8 opacity-30"
+        className="absolute top-6 right-2 opacity-30"
         animate={{ rotate: [0, 10, 0] }}
         transition={{ duration: 3, repeat: Infinity }}
       >
@@ -119,11 +97,9 @@ export default function ProjectsScreen() {
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}
-          className={`col-span-2 ${projects[0].color} ${projects[0].borderColor} border-4 rounded-2xl p-4 relative overflow-hidden group cursor-pointer`}
-        >
-          {/* Decorative corner element */}
-          <div className={`absolute top-0 right-0 w-16 h-16 ${projects[0].accentColor} transform rotate-45 translate-x-8 -translate-y-8`}></div>
-          
+          className={`col-span-2 border-4 rounded-2xl p-4 relative overflow-hidden group cursor-pointer`}
+          style={{ backgroundColor: colors[0].main, borderColor: colors[0].darkMain }}
+        >          
           {/* Animated concentric circles */}
           <motion.div 
             className="absolute top-3 right-20 opacity-20"
@@ -157,11 +133,11 @@ export default function ProjectsScreen() {
 
           <h3 
             className="text-xl font-bold mb-1 group-hover:scale-105 transition-transform origin-left"
-            style={{ color: projects[0].textColor }}
+            style={{ color: colors[0].ink, opacity: 0.8 }}
           >
             {projects[0].title}
           </h3>
-          <p className="text-sm opacity-70 ml-10">{projects[0].tech}</p>
+          <p className="text-sm opacity-70 ml-10">{projects[0].tech.join(' • ')}</p>
         </motion.div>
 
         {/* Small card left/top */}
@@ -169,24 +145,28 @@ export default function ProjectsScreen() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className={`${projects[1].color} ${projects[1].borderColor} border-4 rounded-2xl p-3 relative overflow-hidden group cursor-pointer`}
+          className={`border-4 rounded-2xl p-3 relative overflow-hidden group cursor-pointer`}
+          style={{ backgroundColor: colors[1].main, borderColor: colors[1].darkMain }}
         >
           {/* Triple circles */}
           <div className="absolute top-2 right-2 flex gap-1 opacity-30">
-            <div className={`w-3 h-3 ${projects[1].accentColor} rounded-full`}></div>
-            <div className={`w-3 h-3 ${projects[1].accentColor} rounded-full`}></div>
-            <div className={`w-3 h-3 ${projects[1].accentColor} rounded-full`}></div>
+            <div className="w-3 h-3 rounded-full" style={{ background: colors[1].secondary }} />
+            <div className="w-3 h-3 rounded-full" style={{ background: colors[1].secondary }} />
+            <div className="w-3 h-3 rounded-full" style={{ background: colors[1].secondary }} />
           </div>
 
-          <div className={`absolute -bottom-4 -right-4 w-12 h-12 ${projects[1].accentColor} rounded-full`}></div>
+          <div
+            className="absolute -bottom-4 -right-4 w-12 h-12 rounded-full"
+            style={{ background: colors[1].tertiary }}
+          />
           
           <h3 
             className="text-lg font-bold mb-1 relative z-10 group-hover:scale-105 transition-transform origin-left"
-            style={{ color: projects[1].textColor }}
+            style={{ color: colors[1].ink, opacity: 0.8 }}
           >
             {projects[1].title}
           </h3>
-          <p className="text-xs opacity-70 relative z-10">{projects[1].tech}</p>
+          <p className="text-xs opacity-70 relative z-10">{projects[1].tech.join(' • ')}</p>
         </motion.div>
 
         {/* Small card right/bottom */}
@@ -194,7 +174,8 @@ export default function ProjectsScreen() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className={`${projects[2].color} ${projects[2].borderColor} border-4 rounded-2xl p-3 relative overflow-hidden group cursor-pointer`}
+          className={`border-4 rounded-2xl p-3 relative overflow-hidden group cursor-pointer`}
+          style={{ backgroundColor: colors[2].main, borderColor: colors[2].darkMain }}
         >
           {/* Zigzag pattern */}
           <svg className="absolute bottom-1 right-2 opacity-20" width="50" height="20" viewBox="0 0 50 20">
@@ -226,11 +207,11 @@ export default function ProjectsScreen() {
 
           <h3 
             className="text-lg font-bold mb-1 relative z-10 group-hover:scale-105 transition-transform origin-left"
-            style={{ color: projects[2].textColor }}
+            style={{ color: colors[2].ink, opacity: 0.8 }}
           >
             {projects[2].title}
           </h3>
-          <p className="text-xs opacity-70 relative z-10">{projects[2].tech}</p>
+          <p className="text-xs opacity-70 relative z-10">{projects[2].tech.join(' • ')}</p>
         </motion.div>
       </div>
 
@@ -273,10 +254,16 @@ export default function ProjectsScreen() {
 
       {/* Retro scanline effect */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-5 bg-gradient-to-b from-transparent via-black to-transparent bg-[length:100%_4px] animate-[scan_8s_linear_infinite]"
+        className="absolute pointer-events-none opacity-5 bg-gradient-to-b from-transparent via-black to-transparent bg-[length:100%_4px] animate-[scan_8s_linear_infinite]"
         style={{
+          top: '60%',
+          left: '60%',
+          transform: 'translate(-50%, -50%)',
+
+          width: '100%',
+          height: '100%',
+
           clipPath: 'ellipse(48% 45% at 50% 50%)',
-          borderRadius: '8px'
         }}
       />
     </div>

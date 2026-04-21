@@ -10,42 +10,7 @@ import {
 } from 'react-icons/pi';
 import Bullet from '../../ui/Bullet';
 import ProjSectionHeader from '@/components/ui/ProjSectionHeader';
-
-const colorMap = {
-  pink: {
-    cream: 'var(--light-neutral)',
-    main: 'var(--pink)',
-    lightMain: 'var(--light-pink)',
-    darkMain: 'var(--dark-pink)',
-    secondary: 'var(--teal)',
-    darkSecondary: 'var(--dark-teal)',
-    tertiary: 'var(--green)',
-    darkTertiary: 'var(--dark-green)',
-    ink: 'var(--foreground)',
-  },
-  teal: {
-    cream: 'var(--light-neutral)',
-    main: 'var(--teal)',
-    lightMain: 'var(--light-teal)',
-    darkMain: 'var(--dark-teal)',
-    secondary: 'var(--green)',
-    darkSecondary: 'var(--dark-green)',
-    tertiary: 'var(--pink)',
-    darkTertiary: 'var(--dark-pink)',
-    ink: 'var(--foreground)',
-  },
-  green: {
-    cream: 'var(--light-neutral)',
-    main: 'var(--green)',
-    lightMain: 'var(--light-green)',
-    darkMain: 'var(--dark-green)',
-    secondary: 'var(--pink)',
-    darkSecondary: 'var(--dark-pink)',
-    tertiary: 'var(--teal)',
-    darkTertiary: 'var(--dark-teal)',
-    ink: 'var(--foreground)',
-  },
-} as const;
+import { colorMap } from '@/app/data/projects';
 
 function StripeFill ( { tone = 'rgba(0,0,0,0.08)' }: { tone?: string } ) {
   return (

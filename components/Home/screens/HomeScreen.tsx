@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function HomeScreen() {
   return (
-    <div className="flex flex-col h-full px-8 py-6 justify-between">
+    <div className="flex flex-col w-full px-8 py-6 justify-between">
       <div className="flex items-center gap-8">
         {/* Logo */}
         <motion.div
@@ -60,7 +60,7 @@ export default function HomeScreen() {
         {/* Projects Built */}
         <div className="bg-pink/30 border-2 border-dark-pink rounded-lg p-3 backdrop-blur-sm">
           <div className="text-2xl font-bold" style={{ fontFamily: 'var(--font-cherry-cream-soda)', color: 'var(--dark-pink)' }}>
-            15+
+            14+
           </div>
           <p className="text-sm opacity-80">Projects Built</p>
         </div>
@@ -76,9 +76,9 @@ export default function HomeScreen() {
         {/* Location */}
         <div className="bg-neutral/30 border-2 border-dark-neutral rounded-lg p-3 backdrop-blur-sm">
           <div className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--dark-neutral)' }}>
-            📍 BASED IN
+            📍 LOCATED IN
           </div>
-          <p className="text-sm opacity-80">Florence, SC | San Francisco, CA</p>
+          <p className="text-sm opacity-80">Florence, SC</p>
         </div>
       </motion.div>
 

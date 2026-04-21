@@ -46,153 +46,154 @@ export default function LangSkills() {
         <div className="relative mx-auto w-full max-w-[860px]">
             {/* Jukebox SVG */}
             <Image
-            src="/about/Jukebox.svg"
-            alt=""
-            width={856}
-            height={470}
-            className="w-full select-none"
-            priority={false}
+                src="/about/Jukebox.svg"
+                alt=""
+                width={856}
+                height={470}
+                className="w-full select-none"
+                priority={false}
             />
 
             {/* Screen overlay */}
             <div
-            className="absolute"
-            style={{
-                left: SCREEN.left,
-                top: SCREEN.top,
-                width: SCREEN.width,
-                height: SCREEN.height,
-                pointerEvents: "none",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-            }}
-            >
-            {/* subtle “glass” texture */}
-            <div
-                className="absolute inset-0"
-                style={{
-                opacity: 0.16,
-                background:
-                    "repeating-linear-gradient(180deg, rgba(255,255,255,0.22) 0 2px, rgba(255,255,255,0) 2px 6px)",
-                mixBlendMode: "overlay",
-                }}
-            />
-            <div
-                className="absolute inset-0"
-                style={{
-                opacity: 0.22,
-                background:
-                    "radial-gradient(circle at 50% 35%, rgba(255,255,255,0.35), rgba(255,255,255,0) 62%)",
-                mixBlendMode: "screen",
-                }}
-            />
-
-            {/* Sound-wave sweep transition on selection change */}
-            <motion.div
-                key={`wave-${selected?.id}`}
                 className="absolute"
                 style={{
-                left: "6%",
-                right: "6%",
-                top: "14%",
-                height: "22%",
-                opacity: 0.8,
-                }}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: [0, 1, 0], y: [8, 0, -6] }}
-                transition={{ duration: 0.55, ease: "easeOut" }}
-            >
-                <svg viewBox="0 0 600 120" className="w-full h-full" aria-hidden="true">
-                <path
-                    d="M0,70 C40,20 80,110 120,70 C160,30 200,110 240,70 C280,25 320,110 360,70 C400,35 440,110 480,70 C520,25 560,95 600,70"
-                    fill="none"
-                    stroke="var(--dark-pink)"
-                    strokeWidth="10"
-                    strokeLinecap="round"
-                    opacity="0.55"
-                />
-                <path
-                    d="M0,70 C40,20 80,110 120,70 C160,30 200,110 240,70 C280,25 320,110 360,70 C400,35 440,110 480,70 C520,25 560,95 600,70"
-                    fill="none"
-                    stroke="rgba(255, 219, 92, 0.95)"
-                    strokeWidth="6"
-                    strokeLinecap="round"
-                    opacity="0.75"
-                />
-                </svg>
-            </motion.div>
-
-            {/* Screen text */}
-            <motion.div
-                key={selected?.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.28, ease: "easeOut" }}
-                className="w-full text-center"
-                style={{
-                color: "var(--dark-green)",
-                textShadow: "0 2px 10px rgba(0,0,0,0.28)",
-                padding: "10px 12px",
+                    left: SCREEN.left,
+                    top: SCREEN.top,
+                    width: SCREEN.width,
+                    height: SCREEN.height,
+                    pointerEvents: "none",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                 }}
             >
-                {/* Heading */}
-                <div className="flex items-center justify-center gap-3">
-                {Icon && <Icon className="text-4xl" style={{ color: "var(--dark-green)" }} />}
+                {/* subtle “glass” texture */}
                 <div
-                    className="font-bold leading-tight"
+                    className="absolute inset-0"
                     style={{
-                    fontFamily: "var(--font-pacifico)",
-                    color: "var(--dark-green)",
-                    fontSize: "clamp(2.0rem, 3.0vw, 2.6rem)", // bigger heading
-                    lineHeight: 1.05,
+                    opacity: 0.16,
+                    background:
+                        "repeating-linear-gradient(180deg, rgba(255,255,255,0.22) 0 2px, rgba(255,255,255,0) 2px 6px)",
+                    mixBlendMode: "overlay",
                     }}
-                >
-                    {selected?.name}
-                </div>
-                </div>
-
-                {/* little jukebox label */}
+                />
                 <div
-                className="mt-2 font-bold tracking-widest"
-                style={{
-                    fontSize: "clamp(0.7rem, 1.0vw, 0.9rem)",
+                    className="absolute inset-0"
+                    style={{
+                    opacity: 0.22,
+                    background:
+                        "radial-gradient(circle at 50% 35%, rgba(255,255,255,0.35), rgba(255,255,255,0) 62%)",
+                    mixBlendMode: "screen",
+                    }}
+                />
+
+                {/* Sound-wave sweep transition on selection change */}
+                <motion.div
+                    key={`wave-${selected?.id}`}
+                    className="absolute"
+                    style={{
+                    left: "6%",
+                    right: "6%",
+                    top: "14%",
+                    height: "22%",
                     opacity: 0.8,
-                    color: "var(--dark-pink)",
-                }}
+                    }}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: [0, 1, 0], y: [8, 0, -6] }}
+                    transition={{ duration: 0.55, ease: "easeOut" }}
                 >
-                {selected?.proficiency}
-                </div>
+                    <svg viewBox="0 0 600 120" className="w-full h-full" aria-hidden="true">
+                    <path
+                        d="M0,70 C40,20 80,110 120,70 C160,30 200,110 240,70 C280,25 320,110 360,70 C400,35 440,110 480,70 C520,25 560,95 600,70"
+                        fill="none"
+                        stroke="var(--dark-pink)"
+                        strokeWidth="10"
+                        strokeLinecap="round"
+                        opacity="0.55"
+                    />
+                    <path
+                        d="M0,70 C40,20 80,110 120,70 C160,30 200,110 240,70 C280,25 320,110 360,70 C400,35 440,110 480,70 C520,25 560,95 600,70"
+                        fill="none"
+                        stroke="rgba(255, 219, 92, 0.95)"
+                        strokeWidth="6"
+                        strokeLinecap="round"
+                        opacity="0.75"
+                    />
+                    </svg>
+                </motion.div>
 
-                {/* Level */}
-                <div className="mt-2">{levelDots(selected?.level ?? 0)}</div>
-
-                {/* Detail */}
-                <div
-                className="mt-3"
-                style={{
-                    fontFamily: "var(--font-space-grotesk)",
-                    fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)",
-                    lineHeight: 1.3,
-                    opacity: 0.95,
-                }}
-                >
-                {selected?.detail}
-                </div>
-
-                {!!selected?.tags?.length && (
-                <div
-                    className="mt-3 font-bold tracking-widest"
+                {/* Screen text */}
+                <motion.div
+                    key={selected?.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.28, ease: "easeOut" }}
+                    className="w-full text-center"
                     style={{
-                    fontFamily: "var(--font-space-grotesk)",
-                    fontSize: "clamp(0.72rem, 0.95vw, 0.85rem)",
-                    opacity: 0.75,
+                    color: "var(--dark-green)",
+                    textShadow: "0 2px 10px rgba(0,0,0,0.28)",
+                    padding: "10px 12px",
                     }}
                 >
-                    {selected.tags.slice(0, 6).join(" • ")}
-                </div>
-                )}
-            </motion.div>
+                    {/* Heading */}
+                    <div className="flex items-center justify-center gap-3">
+                    {Icon && <Icon className="text-4xl" style={{ color: "var(--deep-neutral)" }} />}
+                    <div
+                        className="font-bold leading-tight"
+                        style={{
+                        fontFamily: "var(--font-pacifico)",
+                        color: "var(--deep-neutral)",
+                        fontSize: "clamp(2.0rem, 3.0vw, 2.6rem)", // bigger heading
+                        lineHeight: 1.05,
+                        }}
+                    >
+                        {selected?.name}
+                    </div>
+                    </div>
+
+                    {/* little jukebox label */}
+                    <div
+                    className="mt-4 font-bold tracking-widest"
+                    style={{
+                        fontSize: "clamp(0.7rem, 1.0vw, 0.9rem)",
+                        opacity: 0.8,
+                        color: "var(--dark-pink)",
+                    }}
+                    >
+                    {selected?.proficiency}
+                    </div>
+
+                    {/* Level */}
+                    <div className="mt-2">{levelDots(selected?.level ?? 0)}</div>
+
+                    {/* Detail */}
+                    <div
+                    className="mt-2"
+                    style={{
+                        fontFamily: "var(--font-space-grotesk)",
+                        fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)",
+                        lineHeight: 1.3,
+                        opacity: 0.95,
+                        color: "var(--deep-neutral)",
+                    }}
+                    >
+                    {selected?.detail}
+                    </div>
+
+                    {!!selected?.tags?.length && (
+                    <div
+                        className="mt-3 font-bold tracking-widest"
+                        style={{
+                        fontFamily: "var(--font-space-grotesk)",
+                        fontSize: "clamp(0.72rem, 0.95vw, 0.85rem)",
+                        opacity: 0.75,
+                        }}
+                    >
+                        {selected.tags.slice(0, 6).join(" • ")}
+                    </div>
+                    )}
+                </motion.div>
             </div>
 
             {/* Buttons overlay */}
@@ -224,7 +225,7 @@ export default function LangSkills() {
                     <BtnIcon
                         className="text-[30px] md:text-[34px]"
                         style={{
-                        color: isActive ? "var(--red)" : "var(--dark-green)",
+                        color: isActive ? "var(--red)" : "var(--deep-neutral)",
                         filter: isActive ? "drop-shadow(0 0 10px rgba(255, 219, 92, 0.45))" : "none",
                         }}
                     />

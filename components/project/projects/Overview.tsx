@@ -4,39 +4,7 @@ import { FaGithub, FaExternalLinkAlt, FaFigma } from 'react-icons/fa';
 import { PiStarFourFill } from 'react-icons/pi';
 import { PiPlayFill, PiNewspaperClippingFill, PiFileTextFill, PiFileDocFill, PiGameControllerFill, PiChartLineUpFill, PiBuildingsFill, PiLinkSimpleBold } from 'react-icons/pi';
 import { ProjectData } from '@/app/data/projects';
-
-const colorMap = {
-  pink: {
-    cream: 'var(--light-neutral)',
-    main: 'var(--pink)',
-    lightMain: 'var(--light-pink)',
-    darkMain: 'var(--dark-pink)',
-    secondary: 'var(--teal)',
-    darkSecondary: 'var(--dark-teal)',
-    tertiary: 'var(--green)',
-    darkTertiary: 'var(--dark-green)',
-  },
-  teal: {
-    cream: 'var(--light-neutral)',
-    main: 'var(--teal)',
-    lightMain: 'var(--light-teal)',
-    darkMain: 'var(--dark-teal)',
-    secondary: 'var(--green)',
-    darkSecondary: 'var(--dark-green)',
-    tertiary: 'var(--pink)',
-    darkTertiary: 'var(--dark-pink)',
-  },
-  green: {
-    cream: 'var(--light-neutral)',
-    main: 'var(--green)',
-    lightMain: 'var(--light-green)',
-    darkMain: 'var(--dark-green)',
-    secondary: 'var(--pink)',
-    darkSecondary: 'var(--dark-pink)',
-    tertiary: 'var(--teal)',
-    darkTertiary: 'var(--dark-teal)',
-  },
-} as const;
+import { colorMap } from '@/app/data/projects';
 
 function HalfCircleCard ( {
   label,

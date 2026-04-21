@@ -5,7 +5,7 @@ import styles from './TV.module.css';
 export default function TVSvg({ onTopDialClick, onBottomDialClick, mode, isChanging, className }: {
   onTopDialClick: () => void;
   onBottomDialClick: () => void;
-  mode: 'color' | 'grayscale';
+  mode: 'main' | 'secondary';
   isChanging: boolean;
   className?: string;
 }) {
@@ -160,7 +160,6 @@ export default function TVSvg({ onTopDialClick, onBottomDialClick, mode, isChang
               id="screen_2" 
               d="M222.586 341.782C226.889 320.641 244.326 305.237 265.992 303.155C442.28 286.211 722.264 292.888 840.77 307.796C859.145 310.108 874.86 322.433 881.586 339.789C912.615 419.85 909.989 478.794 879.635 560.765C873.897 576.258 860.591 587.52 844.358 591.269C651.992 635.699 513.483 639.642 307.812 646.156C287.555 646.798 267.818 636.26 258.12 618.1C205.553 519.658 202.766 439.164 222.586 341.782Z" 
               fill="#EEE0B3"
-              animate={{ filter: mode === 'grayscale' ? 'grayscale(100%)' : 'grayscale(0%)' }}
               transition={{ duration: 0.3 }}
             />
             

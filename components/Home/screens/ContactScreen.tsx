@@ -1,14 +1,18 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
-import { FaLinkedin, FaGithub, FaDribbble } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
+import Link from 'next/link';
 
 export default function ContactScreen() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
+    subject: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const socials = [
     { 
@@ -17,7 +21,7 @@ export default function ContactScreen() {
       color: "bg-light-teal", 
       border: "border-dark-teal",
       textColor: "var(--dark-teal)",
-      url: "https://linkedin.com/in/yourprofile" 
+      url: "https://linkedin.com/in/houston-taylor" 
     },
     { 
       name: "GitHub", 
@@ -25,25 +29,52 @@ export default function ContactScreen() {
       color: "bg-light-pink", 
       border: "border-dark-pink",
       textColor: "var(--dark-pink)",
-      url: "https://github.com/yourusername" 
+      url: "https://github.com/houstontaylor" 
     },
     { 
-      name: "Dribbble", 
-      icon: FaDribbble, 
+      name: "Email", 
+      icon: FaEnvelope, 
       color: "bg-light-green", 
       border: "border-dark-green",
       textColor: "var(--dark-green)",
-      url: "https://dribbble.com/yourusername" 
+      url: "mailto:hctaylor@alumni.stanford.edu" 
     },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    formData.subject = "Website Home Page Contact Form";
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error ?? "Failed to send message");
+      }
+
+      setSubmitSuccess(true);
+
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setSubmitSuccess(false);
+      }, 3000);
+    } catch (err) {
+      console.error(err);
+      setSubmitSuccess(false);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div className="flex flex-col h-full px-6 py-4 mt-4 mr-6">
+    <div className="flex flex-col w-full px-6 py-4 mt-4 mr-6">
       <div className="flex-1 grid grid-cols-2 gap-4">
         {/* LEFT COLUMN - Header SVG + Social Buttons */}
         <div className="flex flex-col justify-between">
@@ -163,7 +194,7 @@ export default function ContactScreen() {
           <div className="space-y-2.5 flex-1">
             {/* Name Input */}
             <div>
-              <label className="text-xs font-bold uppercase tracking-wider opacity-70 block mb-1">
+              <label className="text-xs font-bold uppercase tracking-wider opacity-80 block mb-1">
                 Name
               </label>
               <input
@@ -178,7 +209,7 @@ export default function ContactScreen() {
 
             {/* Email Input */}
             <div>
-              <label className="text-xs font-bold uppercase tracking-wider opacity-70 block mb-1">
+              <label className="text-xs font-bold uppercase tracking-wider opacity-80 block mb-1">
                 Email
               </label>
               <input
@@ -193,7 +224,7 @@ export default function ContactScreen() {
 
             {/* Message Textarea */}
             <div className="flex-1 flex flex-col">
-              <label className="text-xs font-bold uppercase tracking-wider opacity-70 block mb-1">
+              <label className="text-xs font-bold uppercase tracking-wider opacity-80 block mb-1">
                 Message
               </label>
               <textarea
@@ -208,8 +239,9 @@ export default function ContactScreen() {
             {/* Submit Button */}
             <motion.button
               type="submit"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              disabled={isSubmitting || submitSuccess}
+              whileHover={{ scale: 1.01, boxShadow: "0 12px 24px rgba(0,0,0,0.22)", cursor: isSubmitting || submitSuccess ? "not-allowed" : "pointer" }}
+              whileTap={{ scale: 0.98 }}
               className="w-full bg-teal border-2 border-dark-teal rounded-full py-2 text-sm font-bold uppercase tracking-wider text-white hover:bg-dark-teal transition-colors relative overflow-hidden group"
             >
               {/* Button shine effect */}
@@ -218,7 +250,7 @@ export default function ContactScreen() {
                 animate={{ x: ['-100%', '100%'] }}
                 transition={{ duration: 0.6 }}
               />
-              <span className="relative z-10">Send Message ✉️</span>
+              <span className="relative z-10">Send Message</span>
             </motion.button>
           </div>
         </motion.form>
@@ -252,19 +284,31 @@ export default function ContactScreen() {
           </svg>
         </motion.div>
 
-        <div className="inline-block bg-teal/30 border-2 border-dark-teal rounded-full px-6 py-2 cursor-pointer hover:bg-teal/50 transition-colors">
-          <p className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--dark-teal)' }}>
+        <Link
+          href="/contact"
+          className="inline-block bg-teal/30 border-2 border-dark-teal rounded-full px-6 py-2 cursor-pointer hover:bg-teal/50 transition-colors"
+        >
+          <p
+            className="text-sm font-bold uppercase tracking-wider"
+            style={{ color: 'var(--dark-teal)' }}
+          >
             More Ways to Connect →
           </p>
-        </div>
+        </Link>
       </motion.div>
 
       {/* Retro scanline effect */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-5 bg-gradient-to-b from-transparent via-black to-transparent bg-[length:100%_4px] animate-[scan_8s_linear_infinite]"
+        className="absolute pointer-events-none opacity-5 bg-gradient-to-b from-transparent via-black to-transparent bg-[length:100%_4px] animate-[scan_8s_linear_infinite]"
         style={{
+          top: '60%',
+          left: '60%',
+          transform: 'translate(-50%, -50%)',
+
+          width: '100%',
+          height: '100%',
+
           clipPath: 'ellipse(48% 45% at 50% 50%)',
-          borderRadius: '8px'
         }}
       />
     </div>

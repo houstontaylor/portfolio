@@ -105,9 +105,9 @@ export default function AboutPage() {
                     </h2>
 
                     <p className="text-[clamp(1rem,1.5vw,1.2rem)] leading-relaxed">
-                      I’m a UI/UX designer and full-stack developer passionate about unique and accessible design,
-                      finding new problems to help solve, and making products that inspire. Thanks for taking the
-                      time to learn more about me!
+                      I’m a recently graduated UI/UX designer and full-stack developer passionate about unique, 
+                      accessible design and finding new problems to help solve. Thanks for taking the time to 
+                      learn more about me!
                     </p>
                   </div>
                 </div>

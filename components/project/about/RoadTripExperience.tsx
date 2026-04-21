@@ -229,9 +229,9 @@ export default function RoadTripExperience() {
                           </h3>
 
                           <p
-                            className="font-bold mt-1"
+                            className="font-bold mt-2"
                             style={{
-                              color: 'var(--dark-green)',
+                              color: 'var(--deep-neutral)',
                               opacity: 0.9,
                               fontSize: 'clamp(0.85rem, 1vw, 1rem)',
                               lineHeight: 1.2,
@@ -246,8 +246,8 @@ export default function RoadTripExperience() {
                           <ul
                             className="list-disc pl-5"
                             style={{
-                              color: 'var(--dark-green)',
-                              opacity: 0.88,
+                              color: 'var(--foreground)',
+                              opacity: 0.85,
                               fontSize: 'clamp(0.75rem, 0.95vw, 0.9rem)',
                               lineHeight: 1.35,
                             }}
