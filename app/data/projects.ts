@@ -19,6 +19,7 @@ export interface ProjectData {
 
   // Overview Section
   overview: string; // 2-3 sentence summary of what the project is and why it matters
+  shortOverview?: string; // 1-sentence version for cards or quick intros
   
   // Links
   links: {
@@ -93,6 +94,7 @@ export const projectsData: ProjectData[] = [
     title: "Lula's Coffee Co. Mobile Ordering App",
     tagline: 'Order Local Coffee with Ease',
     overview: 'A mobile platform designed to expand options for customers to place orders and track loyalty points, making it easier for customers to track rewards and engage with the small business.',
+    shortOverview: 'A mobile app for ordering coffee and tracking rewards.',
     color: 'green',
     featured: true,
     year: 2026,

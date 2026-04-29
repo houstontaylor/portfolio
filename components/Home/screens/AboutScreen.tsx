@@ -12,7 +12,7 @@ export default function AboutScreen() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex justify-center mb-3 mt-4"
+        className="flex justify-center mb-6 mt-4"
       >
         <Image 
           src="/about/about.svg"
@@ -49,7 +49,7 @@ export default function AboutScreen() {
             </svg>
           </div>
 
-          <p className="text-sm leading-relaxed opacity-90 relative z-10">
+          <p className="leading-relaxed opacity-90 relative z-10">
             Recently graduated UI/UX designer & full-stack developer passionate about unique,
             accessible design and finding new problems to solve.
           </p>
@@ -61,7 +61,7 @@ export default function AboutScreen() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          <p className="text-sm font-bold uppercase tracking-wider opacity-60 mt-2 mb-2 text-center">
+          <p className="font-bold uppercase tracking-wider opacity-60 mt-2 mb-2 text-center">
             Tools & Technologies
           </p>
           <div className="flex flex-wrap justify-center gap-2 px-2">
@@ -87,7 +87,7 @@ export default function AboutScreen() {
                     aria-hidden
                   />
                   <p
-                    className="text-sm font-bold relative z-10 leading-none"
+                    className="font-bold relative z-10 leading-none"
                     style={{ color: text }}
                   >
                     {skill.name}

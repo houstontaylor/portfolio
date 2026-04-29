@@ -74,7 +74,7 @@ export default function ContactScreen() {
   };
 
   return (
-    <div className="flex flex-col w-full px-6 py-4 mt-4 mr-6">
+    <div className="flex flex-col w-full px-6 py-4 mt-6 mr-6">
       <div className="flex-1 grid grid-cols-2 gap-4">
         {/* LEFT COLUMN - Header SVG + Social Buttons */}
         <div className="flex flex-col justify-between">
@@ -96,7 +96,7 @@ export default function ContactScreen() {
 
           {/* Social Buttons - Bottom of left column */}
           <div className="flex flex-col gap-5">
-            <p className="text-small font-bold uppercase tracking-wider opacity-80 text-center">
+            <p className="text-sm font-bold uppercase tracking-wider opacity-80 text-center">
               Connect With Me
             </p>
             <div className="flex gap-3 justify-center mb-6">

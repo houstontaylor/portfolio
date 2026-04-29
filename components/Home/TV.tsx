@@ -57,7 +57,7 @@ export default function TV() {
     <div className={styles.tvContainer}>
       <div 
         className={styles.tvWrapper}
-        style={{ "--screen-scale": 0.8 } as React.CSSProperties }
+        style={mode === 'main' ? { "--screen-scale": 0.8 } as React.CSSProperties : { "--screen-scale": 0.7 } as React.CSSProperties }
       >
         <TVSvg
           onTopDialClick={handleTopClick}

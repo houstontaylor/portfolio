@@ -102,7 +102,7 @@ export default function HomeScreen() {
           className="flex items-center justify-center gap-2 text-sm opacity-70"
         >
           <span className="inline-block w-2 h-2 bg-red rounded-full animate-pulse"></span>
-          <p className="text-small">TURN TOP DIAL TO LEARN MORE ABOUT ME</p>
+          <p className="text-sm">TURN TOP DIAL TO LEARN MORE ABOUT ME</p>
           <span className="inline-block w-2 h-2 bg-red rounded-full animate-pulse"></span>
         </motion.div>
 

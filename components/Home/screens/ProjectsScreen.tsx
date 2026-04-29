@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { projectsData } from '@/app/data/projects';
-import { colorMap } from '@/app/data/projects';
+import { projectsData, colorMap } from '@/app/data/projects';
 
 export default function ProjectsScreen() {
   const projects = projectsData.slice(0, 3);
@@ -81,7 +80,7 @@ export default function ProjectsScreen() {
       {/* Featured Projects Grid */}
       <div className="flex-1 grid grid-cols-2 gap-3 mb-3 ml-6 relative">
         {/* Decorative dots between cards */}
-        <div className="absolute -left-2 top-1/2 flex flex-col gap-2">
+        <div className="absolute -left-5 top-1/2 flex flex-col gap-2">
           {[0, 1, 2, 3].map((i) => (
             <motion.div
               key={i}
@@ -97,7 +96,7 @@ export default function ProjectsScreen() {
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}
-          className={`col-span-2 border-4 rounded-2xl p-4 relative overflow-hidden group cursor-pointer`}
+          className={`col-span-2 border-4 rounded-2xl p-6 relative overflow-hidden group cursor-pointer`}
           style={{ backgroundColor: colors[0].main, borderColor: colors[0].darkMain }}
         >          
           {/* Animated concentric circles */}
@@ -133,7 +132,7 @@ export default function ProjectsScreen() {
 
           <h3 
             className="text-xl font-bold mb-1 group-hover:scale-105 transition-transform origin-left"
-            style={{ color: colors[0].ink, opacity: 0.8 }}
+            style={{ color: colors[0].ink, opacity: 0.75 }}
           >
             {projects[0].title}
           </h3>
@@ -145,7 +144,7 @@ export default function ProjectsScreen() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className={`border-4 rounded-2xl p-3 relative overflow-hidden group cursor-pointer`}
+          className={`border-4 rounded-2xl p-4 relative overflow-hidden group cursor-pointer`}
           style={{ backgroundColor: colors[1].main, borderColor: colors[1].darkMain }}
         >
           {/* Triple circles */}
@@ -162,7 +161,7 @@ export default function ProjectsScreen() {
           
           <h3 
             className="text-lg font-bold mb-1 relative z-10 group-hover:scale-105 transition-transform origin-left"
-            style={{ color: colors[1].ink, opacity: 0.8 }}
+            style={{ color: colors[1].ink, opacity: 0.75 }}
           >
             {projects[1].title}
           </h3>
@@ -174,7 +173,7 @@ export default function ProjectsScreen() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className={`border-4 rounded-2xl p-3 relative overflow-hidden group cursor-pointer`}
+          className={`border-4 rounded-2xl p-4 relative overflow-hidden group cursor-pointer`}
           style={{ backgroundColor: colors[2].main, borderColor: colors[2].darkMain }}
         >
           {/* Zigzag pattern */}
@@ -207,7 +206,7 @@ export default function ProjectsScreen() {
 
           <h3 
             className="text-lg font-bold mb-1 relative z-10 group-hover:scale-105 transition-transform origin-left"
-            style={{ color: colors[2].ink, opacity: 0.8 }}
+            style={{ color: colors[2].ink, opacity: 0.75 }}
           >
             {projects[2].title}
           </h3>

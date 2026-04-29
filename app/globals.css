@@ -95,14 +95,34 @@ p {
   line-height: 1.6;
 }
 
-.text-small {
+/* .text-xl {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(1.5rem, 2vw, 2rem);
+}
+
+.text-lg {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(1.25rem, 1.75vw, 1.5rem);
+} */
+/* 
+.text-med {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(1.125rem, 1.5vw, 1.25rem);
+} */
+
+.text-sm {
   font-family: var(--font-space-grotesk), sans-serif;
   font-size: clamp(0.875rem, 1vw, 1rem);
 }
 
 .text-xs {
   font-family: var(--font-space-grotesk), sans-serif;
-  font-size: clamp(0.75rem, 0.8vw, 0.875rem);
+  font-size: clamp(0.75rem, 0.95vw, 0.9rem);
+}
+
+.text-xxs {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(0.625rem, 0.9vw, 0.8rem);
 }
 
 .outlined-text {
