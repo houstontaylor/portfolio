@@ -126,7 +126,7 @@ export default function LangSkills() {
 
                     {/* description: appears on hover */}
                     <div
-                        className="mt-3 text-small opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                        className="mt-3 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200"
                         style={{
                         color: "var(--dark-green)",
                         lineHeight: 1.35,
