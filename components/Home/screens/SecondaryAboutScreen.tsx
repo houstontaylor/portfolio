@@ -80,7 +80,7 @@ export default function SecondaryAboutScreen () {
             </h3>
 
             <p className="leading-relaxed">
-              Earned my bachelor's and master's degrees in Computer Science and studied abroad.
+              Earned my bachelor&apos;s and master&apos;s degrees in Computer Science and studied abroad.
             </p>
           </motion.div>
 
