@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
 import { projectsData, colorMap } from '@/app/data/projects';
+import HomeButton from './HomeButton';
 
 export default function ProjectsScreen() {
   const projects = projectsData.slice(0, 3);
@@ -215,41 +215,11 @@ export default function ProjectsScreen() {
       </div>
 
       {/* Bottom CTA */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-        className="text-center mt-4 relative"
-      >
-        {/* Decorative arrows */}
-        <motion.div 
-          className="absolute left-1/4 top-1/2 -translate-y-1/2"
-          animate={{ x: [0, -5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <path d="M 15 10 L 5 5 L 5 15 Z" fill="var(--green)" opacity="0.4"/>
-          </svg>
-        </motion.div>
-        
-        <motion.div 
-          className="absolute right-1/4 top-1/2 -translate-y-1/2"
-          animate={{ x: [0, 5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <path d="M 5 10 L 15 5 L 15 15 Z" fill="var(--green)" opacity="0.4"/>
-          </svg>
-        </motion.div>
-
-        <Link href="/projects">
-          <div className="inline-block bg-green/30 border-2 border-dark-green rounded-full px-6 py-2 cursor-pointer hover:bg-green/50 transition-colors">
-            <p className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--dark-green)' }}>
-              View All Projects →
-            </p>
-          </div>
-        </Link>
-      </motion.div>
+      <HomeButton
+        text="View All Projects"
+        href="/projects"
+        color="green"
+      />
 
       {/* Retro scanline effect */}
       <div 

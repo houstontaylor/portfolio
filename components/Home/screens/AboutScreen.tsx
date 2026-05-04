@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
 import { techSkills } from '@/app/data/skills';
+import HomeButton from './HomeButton';
 
 export default function AboutScreen() {
 
@@ -99,41 +99,12 @@ export default function AboutScreen() {
         </motion.div>
       </div>
 
-      {/* Bottom Button */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-        className="text-center mt-6 relative"
-      >
-        <motion.div 
-          className="absolute left-1/4 top-1/2 -translate-y-1/2"
-          animate={{ x: [0, -5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <path d="M 15 10 L 5 5 L 5 15 Z" fill="var(--dark-pink)" opacity="0.4"/>
-          </svg>
-        </motion.div>
-        
-        <motion.div 
-          className="absolute right-1/4 top-1/2 -translate-y-1/2"
-          animate={{ x: [0, 5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <path d="M 5 10 L 15 5 L 15 15 Z" fill="var(--dark-pink)" opacity="0.4"/>
-          </svg>
-        </motion.div>
-
-        <Link href="/about">
-          <div className="inline-block bg-pink/30 border-2 border-dark-pink rounded-full px-6 py-2 cursor-pointer hover:bg-pink/50 transition-colors">
-            <p className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--dark-pink)' }}>
-              Read Full Bio →
-            </p>
-          </div>
-        </Link>
-      </motion.div>
+      {/* Bottom CTA */}
+      <HomeButton
+        text="Read Full Bio"
+        href="/about"
+        color="pink"
+      />
 
       {/* Retro scanline effect */}
       <div 

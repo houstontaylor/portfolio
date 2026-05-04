@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 import Link from 'next/link';
+import HomeButton from './HomeButton';
 
 export default function ContactScreen() {
   const [formData, setFormData] = useState({
@@ -256,46 +257,12 @@ export default function ContactScreen() {
         </motion.form>
       </div>
 
-      {/* Bottom CTA Button */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.7 }}
-        className="text-center mt-8 relative"
-      >
-        {/* Decorative arrows */}
-        <motion.div 
-          className="absolute left-1/4 top-1/2 -translate-y-1/2"
-          animate={{ x: [0, -5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <path d="M 15 10 L 5 5 L 5 15 Z" fill="var(--teal)" opacity="0.4"/>
-          </svg>
-        </motion.div>
-        
-        <motion.div 
-          className="absolute right-1/4 top-1/2 -translate-y-1/2"
-          animate={{ x: [0, 5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <path d="M 5 10 L 15 5 L 15 15 Z" fill="var(--teal)" opacity="0.4"/>
-          </svg>
-        </motion.div>
-
-        <Link
-          href="/contact"
-          className="inline-block bg-teal/30 border-2 border-dark-teal rounded-full px-6 py-2 cursor-pointer hover:bg-teal/50 transition-colors"
-        >
-          <p
-            className="text-sm font-bold uppercase tracking-wider"
-            style={{ color: 'var(--dark-teal)' }}
-          >
-            More Ways to Connect →
-          </p>
-        </Link>
-      </motion.div>
+      {/* Bottom CTA */}
+      <HomeButton
+        text="More Ways To Connect"
+        href="/contact"
+        color="teal"
+      />
 
       {/* Retro scanline effect */}
       <div 

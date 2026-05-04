@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { projectsData, colorMap } from '@/app/data/projects';
+import HomeButton from './HomeButton';
 
 export default function SecondaryProjectsScreen () {
   const featured = projectsData[0];
@@ -27,7 +28,7 @@ export default function SecondaryProjectsScreen () {
       </motion.div>
 
       {/* Main content */}
-      <div className="grid grid-cols-[1.05fr_0.95fr] gap-4 flex-1">
+      <div className="grid grid-cols-[1.05fr_0.95fr] gap-4 flex-1 mr-4 ml-4">
         {/* LEFT: project visual */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -48,13 +49,13 @@ export default function SecondaryProjectsScreen () {
           <div className="relative z-10 mb-3 flex items-start justify-between gap-3">
             <div>
               <h3
-                className="text-lg leading-tight"
+                className="leading-tight"
                 style={{ color: t.darkMain }}
               >
                 {featured.title}
               </h3>
               <p
-                className="text-xs font-bold uppercase tracking-widest opacity-75 mt-1"
+                className="text-sm font-bold uppercase tracking-widest opacity-75 mt-1"
                 style={{ color: t.ink }}
               >
                 {featured.tagline}
@@ -62,7 +63,7 @@ export default function SecondaryProjectsScreen () {
             </div>
 
             <div
-              className="shrink-0 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest border-2"
+              className="shrink-0 rounded-full px-3 py-1 text-[12px] font-bold uppercase tracking-widest border-2"
               style={{
                 background: t.cream,
                 color: t.darkMain,
@@ -87,10 +88,10 @@ export default function SecondaryProjectsScreen () {
           </div>
 
           <div className="mt-3 flex flex-wrap gap-2">
-            {featured.tech.slice(0, 3).map((tech) => (
+            {featured.tech.slice(0, 4).map((tech) => (
               <span
                 key={tech}
-                className="rounded-full px-3 py-1 text-[11px] font-bold border-2"
+                className="rounded-full px-3 py-1 text-sm font-bold border-2"
                 style={{
                   background: t.cream,
                   color: t.darkMain,
@@ -116,12 +117,12 @@ export default function SecondaryProjectsScreen () {
             }}
           >
             <p
-              className="text-xs font-bold uppercase tracking-widest opacity-70 mb-2"
+              className="text-sm font-bold uppercase tracking-widest opacity-70 mb-2"
               style={{ color: t.darkSecondary }}
             >
               Overview
             </p>
-            <p className="text-sm leading-relaxed">
+            <p className="leading-relaxed">
               {featured.shortOverview}
             </p>
           </motion.div>
@@ -137,20 +138,20 @@ export default function SecondaryProjectsScreen () {
             }}
           >
             <p
-              className="text-xs font-bold uppercase tracking-widest opacity-70 mb-2"
+              className="text-sm font-bold uppercase tracking-widest opacity-70 mb-2"
               style={{ color: t.darkTertiary }}
             >
               Quick Info
             </p>
 
             <div className="space-y-2">
-              <p className="text-sm">
+              <p>
                 <span className="font-bold">Role:</span> {featured.role}
               </p>
-              <p className="text-sm">
+              <p>
                 <span className="font-bold">Team:</span> {featured.team}
               </p>
-              <p className="text-sm">
+              <p>
                 <span className="font-bold">Timeline:</span> {featured.timeline}
               </p>
             </div>
@@ -167,7 +168,7 @@ export default function SecondaryProjectsScreen () {
             }}
           >
             <p
-              className="text-xs font-bold uppercase tracking-widest opacity-70 mb-2"
+              className="text-sm font-bold uppercase tracking-widest opacity-70 mb-2"
               style={{ color: t.darkTertiary }}
             >
               Feature Snapshot
@@ -175,8 +176,8 @@ export default function SecondaryProjectsScreen () {
 
             <ul className="space-y-2">
               {featured.solution.features.slice(0, 2).map((feature) => (
-                <li key={feature.name} className="text-sm leading-relaxed">
-                  <span className="font-bold">{feature.name}:</span> {feature.description}
+                <li key={feature.name} className="leading-relaxed">
+                  <p><span className="font-bold">{feature.name}:</span> {feature.description}</p>
                 </li>
               ))}
             </ul>
@@ -185,49 +186,11 @@ export default function SecondaryProjectsScreen () {
       </div>
 
       {/* Bottom CTA */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        className="text-center mt-6 relative"
-      >
-        <motion.div
-          className="absolute left-1/4 top-1/2 -translate-y-1/2"
-          animate={{ x: [0, -5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <path d="M 15 10 L 5 5 L 5 15 Z" fill={t.darkMain} opacity="0.4" />
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="absolute right-1/4 top-1/2 -translate-y-1/2"
-          animate={{ x: [0, 5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <path d="M 5 10 L 15 5 L 15 15 Z" fill={t.darkMain} opacity="0.4" />
-          </svg>
-        </motion.div>
-
-        <Link href={`/projects/${featured.slug}`}>
-          <div
-            className="inline-block border-2 rounded-full px-6 py-2 cursor-pointer transition-colors"
-            style={{
-              background: `${t.main}55`,
-              borderColor: t.darkMain,
-            }}
-          >
-            <p
-              className="text-sm font-bold uppercase tracking-wider"
-              style={{ color: t.darkMain }}
-            >
-              View Full Project →
-            </p>
-          </div>
-        </Link>
-      </motion.div>
+      <HomeButton
+        text="View Full Project"
+        href={`/projects/${featured.slug}`}
+        color="teal"
+      />
 
       {/* Scanline */}
       <div

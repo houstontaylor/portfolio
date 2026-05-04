@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import HomeButton from './HomeButton';
 
 export default function SecondaryHomeScreen () {
   return (
@@ -22,13 +23,13 @@ export default function SecondaryHomeScreen () {
       </motion.div>
 
       {/* main content */}
-      <div className="grid grid-cols-[1.08fr_0.92fr] gap-4 flex-1">
+      <div className="grid grid-cols-[1.08fr_0.92fr] gap-4 flex-1 mr-4 ml-4">
         {/* LEFT: featured broadcast card */}
         <motion.div
           initial={{ opacity: 0, x: -18 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.45 }}
-          className="rounded-[28px] border-4 p-5 relative overflow-hidden"
+          className="rounded-[28px] border-4 p-8 relative overflow-hidden mt-8 mb-16"
           style={{
             background: 'rgba(135, 201, 191, 0.28)',
             borderColor: 'var(--dark-teal)',
@@ -38,15 +39,15 @@ export default function SecondaryHomeScreen () {
           <div className="flex items-start justify-between gap-4 mb-4">
             <div>
               <p
-                className="text-xs font-bold uppercase tracking-widest opacity-65 mb-1"
+                className="text-sm font-bold uppercase tracking-widest opacity-65 mb-1"
                 style={{ color: 'var(--dark-teal)' }}
               >
                 Now Broadcasting
               </p>
 
-              <h3 style={{ color: 'var(--dark-teal)' }}>
+              <h2 style={{ color: 'var(--dark-teal)' }}>
                 Designing with personality
-              </h3>
+              </h2>
             </div>
 
             <Image
@@ -58,33 +59,12 @@ export default function SecondaryHomeScreen () {
             />
           </div>
 
-          <p className="text-sm leading-relaxed mb-4">
+          <p className="text-large leading-relaxed mb-4">
             I’m a UI/UX designer and full-stack developer who loves making digital
             experiences feel thoughtful, approachable, and a little more memorable.
             I’m especially drawn to projects where visual identity, usability, and
-            real user needs all meet.
+            real user needs all meet. 
           </p>
-
-          <div
-            className="rounded-[22px] border-3 p-4"
-            style={{
-              background: 'rgba(255,255,255,0.45)',
-              borderColor: 'var(--dark-teal)',
-            }}
-          >
-            <p
-              className="text-xs font-bold uppercase tracking-widest opacity-65 mb-2"
-              style={{ color: 'var(--dark-teal)' }}
-            >
-              Current Focus
-            </p>
-
-            <p className="text-sm leading-relaxed">
-              Right now, I’m building out Lula’s Coffee Co., a mobile ordering app
-              for a local coffee shop, while continuing to explore frontend
-              development, accessibility, and interaction design.
-            </p>
-          </div>
 
           {/* decorative atom */}
           <div className="absolute bottom-4 right-4 opacity-15">
@@ -118,15 +98,15 @@ export default function SecondaryHomeScreen () {
             }}
           >
             <p
-              className="text-xs font-bold uppercase tracking-widest opacity-65 mb-2"
+              className="text-sm font-bold uppercase tracking-widest opacity-65 mb-2"
               style={{ color: 'var(--dark-pink)' }}
             >
               I Care About
             </p>
 
-            <p className="text-sm leading-relaxed">
+            <p className="leading-relaxed">
               Accessible design, strong visual systems, polished interactions,
-              and building products that feel human instead of generic.
+              and building products that feel personal and human instead of generic.
             </p>
           </motion.div>
 
@@ -141,13 +121,13 @@ export default function SecondaryHomeScreen () {
             }}
           >
             <p
-              className="text-xs font-bold uppercase tracking-widest opacity-65 mb-2"
+              className="text-sm font-bold uppercase tracking-widest opacity-65 mb-2"
               style={{ color: 'var(--dark-green)' }}
             >
               Looking For
             </p>
 
-            <p className="text-sm leading-relaxed">
+            <p className="leading-relaxed">
               UI/UX, frontend, and product-minded roles where I can help shape
               both the look and the experience of what gets built.
             </p>
@@ -164,7 +144,7 @@ export default function SecondaryHomeScreen () {
             }}
           >
             <p
-              className="text-xs font-bold uppercase tracking-widest opacity-65 mb-2"
+              className="text-sm font-bold uppercase tracking-widest opacity-65 mb-2"
               style={{ color: 'var(--dark-neutral)' }}
             >
               Style
@@ -174,7 +154,7 @@ export default function SecondaryHomeScreen () {
               {['Playful', 'Thoughtful', 'Accessible', 'Retro-Futuristic'].map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border-2 px-3 py-1 text-[11px] font-bold uppercase tracking-wide"
+                  className="rounded-full border-2 px-3 py-1 text-[14px] font-bold uppercase tracking-wide"
                   style={{
                     borderColor: 'var(--dark-neutral)',
                     color: 'var(--deep-neutral)',
@@ -190,43 +170,11 @@ export default function SecondaryHomeScreen () {
       </div>
 
       {/* bottom CTA */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.28 }}
-        className="text-center mt-6 relative"
-      >
-        <motion.div
-          className="absolute left-1/4 top-1/2 -translate-y-1/2"
-          animate={{ x: [0, -5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <path d="M 15 10 L 5 5 L 5 15 Z" fill="var(--dark-teal)" opacity="0.4" />
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="absolute right-1/4 top-1/2 -translate-y-1/2"
-          animate={{ x: [0, 5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <path d="M 5 10 L 15 5 L 15 15 Z" fill="var(--dark-teal)" opacity="0.4" />
-          </svg>
-        </motion.div>
-
-        <Link href="/about">
-          <div className="inline-block bg-teal/30 border-2 border-dark-teal rounded-full px-6 py-2 cursor-pointer hover:bg-teal/50 transition-colors">
-            <p
-              className="text-sm font-bold uppercase tracking-wider"
-              style={{ color: 'var(--dark-teal)' }}
-            >
-              View Full About Page →
-            </p>
-          </div>
-        </Link>
-      </motion.div>
+      <HomeButton
+        text="Read Full Bio"
+        href="/about"
+        color="pink"
+      />
 
       {/* Scanline */}
       <div

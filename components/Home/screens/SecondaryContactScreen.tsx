@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import HomeButton from './HomeButton';
 
 type ResumeType = 'ats' | 'creative';
 
@@ -78,7 +79,7 @@ export default function SecondaryContactScreen () {
               </svg>
             </div>
 
-            <p className="text-xs font-bold uppercase tracking-widest opacity-60 mb-2">
+            <p className="text-sm font-bold uppercase tracking-widest opacity-60 mb-2">
               Resume Type
             </p>
 
@@ -86,7 +87,7 @@ export default function SecondaryContactScreen () {
               <button
                 type="button"
                 onClick={() => setResumeType('ats')}
-                className="flex-1 rounded-full px-3 py-2 text-xs font-bold uppercase tracking-wider border-2 transition-all"
+                className="flex-1 rounded-full px-3 py-2 font-bold uppercase tracking-wider border-2 transition-all"
                 style={{
                   background:
                     resumeType === 'ats'
@@ -102,7 +103,7 @@ export default function SecondaryContactScreen () {
               <button
                 type="button"
                 onClick={() => setResumeType('creative')}
-                className="flex-1 rounded-full px-3 py-2 text-xs font-bold uppercase tracking-wider border-2 transition-all"
+                className="flex-1 rounded-full px-3 py-2 font-bold uppercase tracking-wider border-2 transition-all"
                 style={{
                   background:
                     resumeType === 'creative'
@@ -128,7 +129,7 @@ export default function SecondaryContactScreen () {
             href={resume.pdfHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="block rounded-full border-2 px-5 py-3 text-center text-sm font-bold uppercase tracking-wider transition-colors"
+            className="block rounded-full border-2 px-5 py-3 text-center font-bold uppercase tracking-wider transition-colors"
             style={{
               background: resume.buttonBg,
               borderColor: resume.border,
@@ -144,7 +145,7 @@ export default function SecondaryContactScreen () {
             transition={{ delay: 0.14, duration: 0.4 }}
             href={resume.pdfHref}
             download
-            className="block rounded-full border-2 px-5 py-3 text-center text-sm font-bold uppercase tracking-wider transition-colors"
+            className="block rounded-full border-2 px-5 py-3 text-center font-bold uppercase tracking-wider transition-colors"
             style={{
               background: 'rgba(255,255,255,0.5)',
               borderColor: resume.border,
@@ -164,7 +165,7 @@ export default function SecondaryContactScreen () {
               borderColor: 'var(--dark-neutral)',
             }}
           >
-            <p className="text-xs font-bold uppercase tracking-widest opacity-60 mb-2">
+            <p className="text-sm font-bold uppercase tracking-widest opacity-60 mb-2">
               Quick Note
             </p>
             <p className="text-sm leading-relaxed">
@@ -197,7 +198,7 @@ export default function SecondaryContactScreen () {
             >
               {resume.label}
             </h3>
-            <p className="text-xs font-bold uppercase tracking-widest opacity-65 mt-1">
+            <p className="text-sm font-bold uppercase tracking-widest opacity-65 mt-1">
               Preview
             </p>
           </div>
@@ -217,49 +218,11 @@ export default function SecondaryContactScreen () {
       </div>
 
       {/* bottom CTA */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.28 }}
-        className="text-center mt-6 relative"
-      >
-        <motion.div
-          className="absolute left-1/4 top-1/2 -translate-y-1/2"
-          animate={{ x: [0, -5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <path d="M 15 10 L 5 5 L 5 15 Z" fill={resume.accent} opacity="0.4" />
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="absolute right-1/4 top-1/2 -translate-y-1/2"
-          animate={{ x: [0, 5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <path d="M 5 10 L 15 5 L 15 15 Z" fill={resume.accent} opacity="0.4" />
-          </svg>
-        </motion.div>
-
-        <Link href="/resume">
-          <div
-            className="inline-block border-2 rounded-full px-6 py-2 cursor-pointer transition-colors"
-            style={{
-              background: resume.buttonBg,
-              borderColor: resume.border,
-            }}
-          >
-            <p
-              className="text-sm font-bold uppercase tracking-wider"
-              style={{ color: resume.accent }}
-            >
-              View Full Resume Page →
-            </p>
-          </div>
-        </Link>
-      </motion.div>
+      <HomeButton
+        text="View Full Resume Page"
+        href="/resume"
+        color="green"
+      />
 
       {/* Scanline */}
       <div

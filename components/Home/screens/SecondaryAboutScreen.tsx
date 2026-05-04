@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import HomeButton from './HomeButton';
 
 export default function SecondaryAboutScreen () {
   return (
@@ -15,88 +16,27 @@ export default function SecondaryAboutScreen () {
           className="text-sm font-extrabold tracking-[0.25em] uppercase"
           style={{ color: 'var(--dark-neutral)', fontFamily: 'var(--font-heading)' }}
         >
-          Education
+          About
         </p>
         <div className="flex-1 h-px opacity-30" style={{ background: 'var(--dark-neutral)' }} />
         <p className="text-[10px] opacity-40 font-mono">DEEP DIVE</p>
       </motion.div>
 
       {/* main content */}
-      <div className="grid grid-cols-[1.05fr_0.95fr] gap-4 flex-1 items-center">
+      <div className="grid grid-cols-[0.95fr_1.05fr] gap-4 flex-1 items-center">
         {/* LEFT: postcard */}
         <motion.div
-          initial={{ opacity: 0, x: -18, rotate: -3 }}
-          animate={{ opacity: 1, x: 0, rotate: -2 }}
+          initial={{ opacity: 0, x: -18, rotate: 0 }}
+          animate={{ opacity: 1, x: 25, rotate: -6 }}
           transition={{ duration: 0.45 }}
-          className="relative"
         >
-          {/* postcard shadow layer */}
-          <div
-            className="absolute inset-0 translate-x-2 translate-y-2 rounded-[26px] opacity-35"
-            style={{ background: 'var(--dark-neutral)' }}
+          <Image
+            src="/about/BachelorsPostcard.svg"
+            alt="Stanford postcard"
+            width={600}
+            height={450}
+            className="w-[90%] h-auto"
           />
-
-          <div
-            className="relative rounded-[26px] border-4 p-3 overflow-hidden shadow-[0_12px_0_rgba(0,0,0,0.08)]"
-            style={{
-              background: 'var(--light-neutral)',
-              borderColor: 'var(--dark-teal)',
-            }}
-          >
-            {/* postcard top */}
-            <div className="flex items-start justify-between mb-3">
-              <div>
-                <p
-                  className="text-xs font-bold uppercase tracking-widest opacity-60"
-                  style={{ color: 'var(--dark-teal)' }}
-                >
-                  Education Feature
-                </p>
-                <h3 style={{ color: 'var(--dark-teal)' }}>Stanford Postcard</h3>
-              </div>
-
-              <div
-                className="rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest border-2"
-                style={{
-                  background: 'var(--light-teal)',
-                  color: 'var(--dark-teal)',
-                  borderColor: 'var(--dark-teal)',
-                }}
-              >
-                Front
-              </div>
-            </div>
-
-            {/* postcard image */}
-            <div
-              className="relative rounded-[16px] overflow-hidden border-3 bg-white"
-              style={{ borderColor: 'rgba(0,0,0,0.16)' }}
-            >
-              <Image
-                src="/about/stanfordPostcardFront.svg"
-                alt="Stanford education postcard"
-                width={800}
-                height={540}
-                className="w-full h-[250px] object-cover"
-              />
-            </div>
-
-            {/* bottom line */}
-            <div className="mt-3 flex items-center justify-between">
-              <p
-                className="text-xs font-bold uppercase tracking-widest opacity-60"
-                style={{ color: 'var(--dark-neutral)' }}
-              >
-                Stanford, California
-              </p>
-
-              <div className="flex gap-1 opacity-50">
-                <div className="w-2 h-2 rounded-full bg-dark-teal" />
-                <div className="w-2 h-2 rounded-full bg-dark-pink" />
-                <div className="w-2 h-2 rounded-full bg-dark-green" />
-              </div>
-            </div>
-          </div>
         </motion.div>
 
         {/* RIGHT: details panel */}
@@ -107,7 +47,7 @@ export default function SecondaryAboutScreen () {
             transition={{ delay: 0.08, duration: 0.4 }}
             className="rounded-[24px] border-4 p-4 relative overflow-hidden"
             style={{
-              background: 'rgba(249,219,193,0.55)',
+              background: 'rgba(from var(--light-pink) r g b / 0.5)',
               borderColor: 'var(--dark-pink)',
             }}
           >
@@ -129,7 +69,7 @@ export default function SecondaryAboutScreen () {
             </div>
 
             <p
-              className="text-xs font-bold uppercase tracking-widest opacity-65 mb-2"
+              className="text-sm font-bold uppercase tracking-widest opacity-65 mb-2"
               style={{ color: 'var(--dark-pink)' }}
             >
               Snapshot
@@ -139,9 +79,8 @@ export default function SecondaryAboutScreen () {
               Stanford University
             </h3>
 
-            <p className="text-sm leading-relaxed">
-              I studied Computer Science at Stanford, then continued into the coterminal
-              master’s program with a focus on human-computer interaction.
+            <p className="leading-relaxed">
+              Earned my bachelor's and master's degrees in Computer Science and studied abroad.
             </p>
           </motion.div>
 
@@ -156,20 +95,20 @@ export default function SecondaryAboutScreen () {
             }}
           >
             <p
-              className="text-xs font-bold uppercase tracking-widest opacity-65 mb-2"
+              className="text-sm font-bold uppercase tracking-widest opacity-65 mb-2"
               style={{ color: 'var(--dark-teal)' }}
             >
               Degrees
             </p>
 
             <div className="space-y-2">
-              <p className="text-sm">
+              <p>
                 <span className="font-bold">B.S.</span> Computer Science
               </p>
-              <p className="text-sm">
+              <p>
                 <span className="font-bold">M.S.</span> Computer Science
               </p>
-              <p className="text-sm">
+              <p>
                 <span className="font-bold">Focus:</span> Human-Computer Interaction
               </p>
             </div>
@@ -186,7 +125,7 @@ export default function SecondaryAboutScreen () {
             }}
           >
             <p
-              className="text-xs font-bold uppercase tracking-widest opacity-65 mb-2"
+              className="text-sm font-bold uppercase tracking-widest opacity-65 mb-2"
               style={{ color: 'var(--dark-green)' }}
             >
               Key Interests
@@ -196,7 +135,7 @@ export default function SecondaryAboutScreen () {
               {['UI/UX', 'Frontend', 'Accessibility', 'HCI'].map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border-2 px-3 py-1 text-[11px] font-bold uppercase tracking-wide"
+                  className="rounded-full border-2 px-3 py-1 text-[14px] font-bold uppercase tracking-wide"
                   style={{
                     borderColor: 'var(--dark-green)',
                     color: 'var(--dark-green)',
@@ -212,43 +151,11 @@ export default function SecondaryAboutScreen () {
       </div>
 
       {/* bottom CTA */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.28 }}
-        className="text-center mt-4 relative"
-      >
-        <motion.div
-          className="absolute left-1/4 top-1/2 -translate-y-1/2"
-          animate={{ x: [0, -5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <path d="M 15 10 L 5 5 L 5 15 Z" fill="var(--dark-pink)" opacity="0.4" />
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="absolute right-1/4 top-1/2 -translate-y-1/2"
-          animate={{ x: [0, 5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <path d="M 5 10 L 15 5 L 15 15 Z" fill="var(--dark-pink)" opacity="0.4" />
-          </svg>
-        </motion.div>
-
-        <Link href="/about">
-          <div className="inline-block bg-pink/30 border-2 border-dark-pink rounded-full px-6 py-2 cursor-pointer hover:bg-pink/50 transition-colors">
-            <p
-              className="text-sm font-bold uppercase tracking-wider"
-              style={{ color: 'var(--dark-pink)' }}
-            >
-              View Full About Page →
-            </p>
-          </div>
-        </Link>
-      </motion.div>
+      <HomeButton
+        text="View Full About Page"
+        href="/about"
+        color="pink"
+      />
 
       {/* Scanline */}
       <div

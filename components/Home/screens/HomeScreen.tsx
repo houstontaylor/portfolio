@@ -27,7 +27,7 @@ export default function HomeScreen() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="leading-tight mb-1"
+            className="leading-tight mt-4 mb-2"
           >
             Houston Taylor
           </motion.h1>
