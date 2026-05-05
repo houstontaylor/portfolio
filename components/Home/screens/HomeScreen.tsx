@@ -4,7 +4,7 @@ import Image from 'next/image';
 export default function HomeScreen() {
   return (
     <div className="flex flex-col w-full px-8 py-6 justify-between">
-      <div className="flex items-center gap-8">
+      <div className="flex items-center gap-8 mt-2">
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, rotate: -10 }}

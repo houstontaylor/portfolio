@@ -111,7 +111,7 @@ export default function TrapezoidCard({ project }: { project: ProjectCard }) {
   const sizes =
     isLarge
       ? 'min-h-[240px] md:min-h-[280px]'
-      : 'min-h-[210px] md:min-h-[240px]';
+      : 'min-h-[220px] md:min-h-[240px]';
 
   return (
     <motion.article

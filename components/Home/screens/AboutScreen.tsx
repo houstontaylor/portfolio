@@ -12,7 +12,7 @@ export default function AboutScreen() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex justify-center mb-6 mt-4"
+        className="flex justify-center mb-6 mt-8"
       >
         <Image 
           src="/about/about.svg"

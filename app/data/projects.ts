@@ -91,7 +91,7 @@ export const projectsData: ProjectData[] = [
   {
     id: 1,
     slug: 'lulasapp',
-    title: "Lula's Coffee Co. Mobile Ordering App",
+    title: "Lula's Mobile Ordering App",
     tagline: 'Order Local Coffee with Ease',
     overview: 'A mobile platform designed to expand options for customers to place orders and track loyalty points, making it easier for customers to track rewards and engage with the small business.',
     shortOverview: 'A mobile app for ordering coffee and tracking rewards.',
@@ -103,7 +103,7 @@ export const projectsData: ProjectData[] = [
     team: 'Solo Project',
     timeline: 'Ongoing (started April 2026)',
     
-    tags: ['Mobile App', 'E-commerce', 'UI/UX Design', 'Full-Stack Development'],
+    tags: ['Mobile', 'E-commerce', 'UI/UX Design', 'Full-Stack Development'],
     tech: ['React Native', 'Node.js', 'MongoDB'],
     
     links: {
@@ -143,6 +143,62 @@ export const projectsData: ProjectData[] = [
 
   {
     id: 2,
+    slug: 'portfolio',
+    title: 'Personal Portfolio Website',
+    tagline: 'Showcasing My Work & Skills',
+    overview: 'A personal portfolio website built with Next.js and Tailwind CSS to showcase my projects, skills, and experience in a visually engaging way.',
+    shortOverview: 'A portfolio website to highlight my work and skills.',
+    color: 'green',
+    featured: true,
+    year: 2024,
+
+    role: 'Designer & Developer',
+    team: 'Solo Project',
+    timeline: '3 months (Jan 2024 - Mar 2024)',
+
+    tags: ['UI/UX', 'Web Dev', 'Next.js', 'Tailwind CSS'],
+    tech: ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion', 'Vercel'],
+    
+    links: {
+      github: '',
+      live: 'https://houstontaylor.com'
+    },
+
+    image: '/projects/portfolio/hero.jpg',
+    images: [
+      '/projects/portfolio/homepage.jpg',
+      '/projects/portfolio/about.jpg',
+      '/projects/portfolio/projects.jpg'
+    ],
+
+    problem: {
+      context: 'As a designer and developer, I needed a platform to showcase my work and skills to potential employers and collaborators.',
+      gap: 'Existing portfolio templates felt generic and didn\'t allow for the level of customization I wanted to reflect my personality and design philosophy.',
+      goals: ['Create a unique, engaging portfolio', 'Showcase my projects and skills effectively', 'Build the site from scratch to demonstrate my development abilities']
+    },
+
+    solution: {
+      approach: 'Designed and developed a custom portfolio website using Next.js and Tailwind CSS, with a focus on visual storytelling and user experience.',
+      features: [
+        {
+          name: 'Custom Design',
+          description: 'A unique, engaging design that reflects my personality and design philosophy.'
+        },
+        {
+          name: 'Project Showcase',
+          description: 'An effective way to display my projects and skills.'
+        },
+        {
+          name: 'Responsive Layout',
+          description: 'A fully responsive layout that works on all devices.'
+        }
+      ]
+    }
+
+  },
+
+  {
+    id: 3,
     slug: 'podbot',
     title: 'PodBot',
     tagline: 'AI-Powered Podcast Chatbots',
@@ -252,7 +308,7 @@ export const projectsData: ProjectData[] = [
   },
 
   {
-    id: 3,
+    id: 4,
     slug: 'queerx',
     title: 'QUEERx',
     tagline: 'LGBTQ+-Friendly Healthcare Provider Finder',
@@ -336,7 +392,7 @@ export const projectsData: ProjectData[] = [
   },
 
   {
-    id: 4,
+    id: 5,
     slug: 'filmflicks',
     title: 'FilmFlicks',
     tagline: 'Social Movie Discovery Platform',
@@ -401,7 +457,7 @@ export const projectsData: ProjectData[] = [
   },
 
   {
-    id: 5,
+    id: 6,
     slug: 'tend',
     title: 'Tend',
     tagline: 'Friendship Maintenance Through Plant Care',
@@ -499,7 +555,7 @@ export const projectsData: ProjectData[] = [
   },
 
   {
-    id: 6,
+    id: 7,
     slug: 'barcodeScanner',
     title: 'Blind/Low-Vision Barcode Scanner',
     tagline: 'Allergen Detection for Blind & Low-Vision Users',
@@ -580,7 +636,7 @@ export const projectsData: ProjectData[] = [
   },
 
   {
-    id: 7,
+    id: 8,
     slug: 'critter',
     title: 'Critter',
     tagline: 'Environmental Puzzle-Platformer',
@@ -646,7 +702,7 @@ export const projectsData: ProjectData[] = [
   },
 
   {
-    id: 8,
+    id: 9,
     slug: 'brainspark',
     title: 'BrainSpark Games Strategy',
     tagline: 'EdTech Product Strategy',
@@ -722,7 +778,7 @@ export const projectsData: ProjectData[] = [
   },
 
   {
-    id: 9,
+    id: 10,
     slug: 'isps',
     title: 'InterStellar Postal Service (ISPS)',
     tagline: 'Educational Mail Game',
@@ -788,7 +844,7 @@ export const projectsData: ProjectData[] = [
   },
 
   {
-    id: 10,
+    id: 11,
     slug: 'raccoonMama',
     title: 'Raccoon Mama',
     tagline: 'Stanford Campus Adventure',
@@ -854,7 +910,7 @@ export const projectsData: ProjectData[] = [
   },
 
   {
-    id: 11,
+    id: 12,
     slug: 'nationalGallery',
     title: 'National Gallery Data Visualization',
     tagline: 'Art Acquisition and Power',
@@ -916,7 +972,7 @@ export const projectsData: ProjectData[] = [
   },
 
   {
-    id: 12,
+    id: 13,
     slug: 'ASLVision',
     title: 'Fingerspelling in CV',
     tagline: 'Bias Mitigation in Computer Vision',
@@ -989,7 +1045,7 @@ export const projectsData: ProjectData[] = [
   },
 
   {
-    id: 13,
+    id: 14,
     slug: 'archivalEchoes',
     title: 'Archival Echoes',
     tagline: 'Interactive Fiction on Information Control',
