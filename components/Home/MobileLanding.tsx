@@ -365,8 +365,7 @@ function ContactPanel() {
         }}
       >
         <p className="leading-relaxed" style={{ fontSize: '0.95rem' }}>
-          If you're building something fun, inclusive, or forward-thinking... I'm in. Always happy to
-          chat design, code, or collab.
+          {"If you're building something fun, inclusive, or forward-thinking... I'm in. Always happy to chat design, code, or collab."}
         </p>
       </div>
 
