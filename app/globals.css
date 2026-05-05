@@ -47,12 +47,12 @@
   --color-light-neutral: var(--light-neutral);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   color: var(--foreground);
@@ -94,6 +94,11 @@ p {
   font-size: clamp(1rem, 1.3vw, 1.2rem);
   line-height: 1.6;
 }
+
+/* .text-xl {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(1.5rem, 2vw, 2rem);
+} */
 
 .text-large {
   font-family: var(--font-space-grotesk), sans-serif;
